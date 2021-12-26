@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  portfilios:
+    image: portfilios
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - "9876:80"
+    networks:
+      - default
+
+

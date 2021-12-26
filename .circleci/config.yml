@@ -1,0 +1,94 @@
+version: 2.1
+# Define the jobs we want to run for this project
+jobs:
+  test:
+    docker:
+      - image: arvindr226/alpine-ssh
+    steps:
+      - checkout
+      - run: echo "test"
+      - run:
+          name: Check Branch
+          command: |
+            if [[ "${CIRCLE_BRANCH}" =~ "master" ]]; then
+              echo ${CIRCLE_BRANCH}
+            else
+              echo 'No Master'
+              echo ${CIRCLE_BRANCH}
+            fi
+  build:
+    docker:
+      - image: arvindr226/alpine-ssh
+    steps:
+      - checkout
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - run: echo "build"
+      - run:
+          name: Check Tag
+          command: |
+            if [[ "${CIRCLE_TAG}" =~ /^v.*/ ]]; then
+              echo ${CIRCLE_TAG}
+            else
+              echo 'No tag'
+            fi
+  deploy:
+    docker:
+      - image: arvindr226/alpine-ssh
+    environment:
+      DEV_SSH: ssh $USER@$HOST
+    steps:
+      - checkout
+      - run: echo "deploy"
+      - run: echo $DEV_SSH $USER@$HOST
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - add_ssh_keys:
+          fingerprints: 
+            - "35:50:e0:50:50:d8:ec:6f:25:d9:c4:4b:c7:10:85:9c"
+      - run:
+          name: 'Tag'
+          command: echo ${CIRCLE_TAG}
+      - run:
+          name: deploy
+          # ssh $USER@$HOST "cd $PROJECT_NAME; git tag -d $(git tag); git pull; git checkout tags/$CIRCLE_TAG -b master_$CIRCLE_TAG; ls;"
+          command: |
+            if [[ "${CIRCLE_TAG}" =~ ^v.* ]]; then
+              echo ${CIRCLE_TAG}
+              ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+              ssh $USER@$HOST "cd $PROJECT_NAME; git pull; ls;"
+              ssh $USER@$HOST "cd $PROJECT_NAME; bash deploy.sh ${CIRCLE_TAG}"
+              ssh $USER@$HOST "cd $PROJECT_NAME; git branch"
+              ssh $USER@$HOST "cd $PROJECT_NAME; git checkout master"
+            else
+              echo 'No tag'
+            fi
+# Orchestrate our job run sequence
+workflows:
+  version: 2
+  deploy-project:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+                - dev
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          filters:
+            tags:
+              only: /^v.*/ 
+            branches:
+              ignore: /.*/
+            # branches:
+            #   only:
+            #     - master

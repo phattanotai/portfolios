@@ -1,0 +1,63 @@
+image: node:14.17.0-alpine
+
+variables:
+  DEV_SSH: "ssh $USER@$HOST"
+
+# before_script:
+#   - npm install
+
+# cache:
+#   paths:
+#     - node_modules/
+
+stages:
+  # - test
+  - build
+  - deploy
+
+# test_1:
+#   stage: test
+#   only:
+#     - master
+#   script:
+#     - echo "start test1"
+
+# test_2:
+#   stage: test
+#   only:
+#     - master
+#   script:
+#     - echo "start test2"
+
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - echo "start build"
+    # - npm cache clean --force
+    # - npm install
+    # - npm run build
+  # artifacts:
+  #   paths:
+  #     - build
+
+deploy:
+  image: gitlab/dind
+  stage: deploy
+  only:
+    - master
+  before_script:
+      - eval "$(ssh-agent -s)"
+      - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+      - mkdir -p ~/.ssh
+      - chmod 700 ~/.ssh
+      - ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+  script:
+    - echo "start deploy"
+    - $DEV_SSH "cd $PROJECT_NAME; ls; bash deploy.sh"
+  dependencies:
+    - build
+
+after_script:
+    - echo 'after script here.'
