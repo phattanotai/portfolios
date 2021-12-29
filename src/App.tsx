@@ -5,6 +5,7 @@ import styled from "styled-components";
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import ResumePage from "./Pages/ResumePage";
+import Portfolios3dPage from "./Pages/Portfolios3dPage";
 import PortfoliosPage from "./Pages/PortfoliosPage";
 import BlogsPage from "./Pages/BlogsPage";
 import ContactPage from "./Pages/ContactPage";
@@ -15,7 +16,9 @@ import Switch from "@material-ui/core/Switch";
 import { IconButton } from "@material-ui/core";
 
 // import LangContext from "./contexts/LangContext";
+
 import { setLangAsync, setLang } from "./redux-thunk/actions/langAction";
+import { openNav, openNavAsync } from "./redux-thunk/actions/navAction";
 import LanguageSwitcherSelector from "./Components/LanguageSwitcherSelector";
 
 function App() {
@@ -30,11 +33,13 @@ function App() {
   const [checkedLang, setCheckedLang] = useState<boolean>(
     localStorage.getItem("theme") === "light-theme" ? true : false
   );
-  const [navToggle, setNavToggle] = useState<boolean>(false);
+
+  // const [navToggle, setNavToggle] = useState<boolean>(false);
 
   // state manament redux
   const dispatch = useDispatch();
   const langType = useSelector((state: any) => state.lang);
+  const navToggle = useSelector((state: any) => state.nav);
 
   // state manament context api
   // const { langType, setLangType } = useContext(LangContext);
@@ -90,16 +95,18 @@ function App() {
               onClick={themeToggler}
             />
           </div>
-        </div>
-      </div>
-      <div className="theme">
-        <div className="en-th-mode">
           <LanguageSwitcherSelector></LanguageSwitcherSelector>
         </div>
       </div>
 
+      {/* <div className="theme">
+        <div className="en-th-mode">
+          <LanguageSwitcherSelector></LanguageSwitcherSelector>
+        </div>
+      </div> */}
+
       <div className="ham-burger-menu">
-        <IconButton onClick={() => setNavToggle(!navToggle)}>
+        <IconButton onClick={() => dispatch(openNav(!navToggle))}>
           <MenuIcon />
         </IconButton>
       </div>
@@ -121,6 +128,9 @@ function App() {
           </Route>
           <Route path="/resume" exact>
             <ResumePage />
+          </Route>
+          <Route path="/portfolios3d" exact>
+            <Portfolios3dPage />
           </Route>
           <Route path="/portfolios" exact>
             <PortfoliosPage />

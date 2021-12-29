@@ -27,7 +27,7 @@ import { Octree } from "three/examples/jsm/math/Octree.js";
 import { Capsule } from "three/examples/jsm/math/Capsule.js";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 
-export class Game {
+export class Test {
   renderer: WebGLRenderer = new WebGLRenderer();
   scene: Scene = new Scene();
   camera: PerspectiveCamera = new PerspectiveCamera();

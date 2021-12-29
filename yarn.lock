@@ -9600,6 +9600,11 @@
   dependencies:
     "react-is" "^16.13.1"
 
+"react-icons@^4.3.1":
+  "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="
+  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
+  "version" "4.3.1"
+
 "react-intersection-observer@^8.31.0":
   "integrity" "sha512-XraIC/tkrD9JtrmVA7ypEN1QIpKc52mXBH1u/bz/aicRLo8QQEJQAMUTb8mz4B6dqpPwyzgjrr7Ljv/2ACDtqw=="
   "resolved" "https://registry.npmjs.org/react-intersection-observer/-/react-intersection-observer-8.31.0.tgz"

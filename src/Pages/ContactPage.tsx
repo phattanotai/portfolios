@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Particles from "react-particles-js";
 
 const ContactPage: FC = () => {
   const langType = useSelector((state: any) => state.lang);
@@ -68,6 +69,7 @@ const ContactPage: FC = () => {
       progress: undefined,
     });
   };
+
   const handleValidation = (id: string, value: string) => {
     const list = document.querySelectorAll("#contactForm div.form-field");
     if (id === "from_name") {
@@ -186,7 +188,11 @@ const ContactPage: FC = () => {
 
   return (
     <div>
-      <Particle />
+      <Particles
+        style={{
+          position: "absolute",
+        }}
+      />
       <MainLayout>
         <ToastContainer
           theme="dark"

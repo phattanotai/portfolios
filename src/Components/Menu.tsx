@@ -15,8 +15,16 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
           <div className="grid-item" key={item.id}>
             <div className="portfolio-content">
               <div className="portfolio-image">
-                <img src={item.image} alt="" />
-                <ul>
+                <img
+                  src={item.image}
+                  alt=""
+                  style={{
+                    width: item.title === "Application" ? "55%" : "100%",
+                    height: item.title === "Application" ? "295px" : "30%",
+                  }}
+                />
+
+                {/* <ul>
                   <li>
                     <a href={item.link1}>
                       <GitHub />
@@ -27,8 +35,15 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
                       <Pinterest />
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
+              <div
+                className="di"
+                style={{
+                  width: item.title === "Application" ? "55%" : "100%",
+                  height: item.title === "Application" ? "295px" : "30%",
+                }}
+              ></div>
               <h6>{item.title}</h6>
               <p>{item.text}</p>
             </div>
@@ -135,7 +150,7 @@ const MenuItemStyled = styled.div`
           }
         }
         &::before {
-          height: calc(100% - 32%);
+          height: calc(100% - 22%);
           width: calc(100% - 4%);
           background-color: white;
           opacity: 0.9;

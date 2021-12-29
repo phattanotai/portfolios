@@ -1,5 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 /* :root{
@@ -77,7 +76,7 @@ body{
 }
 
 body::-webkit-scrollbar{
-    width: 9px;
+    width: 5px;
     background-color: #383838;
 }
 body::-webkit-scrollbar-thumb{
@@ -132,10 +131,11 @@ h6{
 .light-dark-mode{
     position: fixed;
     right: 0;
-    top: 50%;
+    top: 50vh;
     background-color: var(--background-light-color-2);
-    width: 6.5rem;
+    width: 7.5rem;
     height: 2.5rem;
+    padding-right: 10px;
     z-index: 15;
     display: flex;
     align-items: center;
@@ -152,7 +152,7 @@ h6{
 .en-th-mode{
     position: fixed;
     right: 0;
-    top: 41%;
+    top: 41vh;
     background-color: var(--background-light-color-2);
     width: 6.5rem;
     height: 2.5rem;
@@ -171,8 +171,8 @@ h6{
   //Nav Toggler
   .ham-burger-menu{
       position: absolute;
-      right: 5%;
-      top: 3%; 
+      right: 0px;
+      top: 4%; 
       display: none;
       z-index: 15;
       svg{

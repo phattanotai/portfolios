@@ -110,7 +110,7 @@ export class Portfolios {
 
   playerDirection: THREE.Vector3 = new THREE.Vector3();
   playerOnFloor: boolean = false;
-  GRAVITY: number = 30;
+  GRAVITY: number = 10;
 
   draggable: THREE.Object3D;
   raycaster: THREE.Raycaster = new THREE.Raycaster();
@@ -119,11 +119,12 @@ export class Portfolios {
 
   imageSaveData: THREE.Object3D;
 
+  editImages = false;
+  showImage: any;
+
   constructor() {
     this.canvasContainer = document.getElementById("canvasContainer");
     if (this.canvasContainer) {
-      // this.canvasContainer = document.createElement("div");
-      // this.canvasContainer.setAttribute("id", "canvasContainer");
       // this.onCreateBlocker();
       // this.onCreateInfo();
       this.onInit();
@@ -136,7 +137,10 @@ export class Portfolios {
     this.canvasContainer.appendChild(this.canvas);
 
     this.renderer = new WebGLRenderer({ canvas: this.canvas, antialias: true });
-    this.renderer.setSize(this.canvasContainer.offsetWidth, window.innerHeight);
+    this.renderer.setSize(
+      this.canvasContainer.offsetWidth + 20,
+      window.innerHeight
+    );
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = PCFSoftShadowMap;
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -146,13 +150,14 @@ export class Portfolios {
 
     this.scene = new Scene();
     this.scene.background = new THREE.Color(0x000000);
+
     this.camera = new PerspectiveCamera(
       60,
       this.canvasContainer.offsetWidth / window.innerHeight,
       0.1,
       2000
     );
-    this.camera.position.set(0, 40, 130);
+    this.camera.position.set(0, 40, 150);
     this.camera.lookAt(0, 0, 0);
 
     this.cameraControls = new OrbitControls(this.camera, this.canvas);
@@ -196,6 +201,11 @@ export class Portfolios {
     document.addEventListener("keydown", this.onKeyDown);
     document.addEventListener("keyup", this.onKeyUp);
 
+    document.body.addEventListener("mousemove", (event) => {
+      this.camera.rotation.y -= event.movementX / 500;
+      this.camera.rotation.x -= event.movementY / 500;
+    });
+
     window.addEventListener("click", this.onMouseClick);
     window.addEventListener("mousemove", this.onMouseMove);
   }
@@ -233,15 +243,17 @@ export class Portfolios {
   };
 
   private dragObject = () => {
-    const found = this.intersect(this.moveMouse);
-    if (this.draggable != null) {
+    if (this.editImages) {
       const found = this.intersect(this.moveMouse);
-      if (found.length > 0) {
-        for (let i = 0; i < found.length; i++) {
-          if (!found[i].object.userData.ground) continue;
-          let target = found[i].point;
-          this.draggable.position.x = target.x;
-          this.draggable.position.z = target.z;
+      if (this.draggable != null) {
+        const found = this.intersect(this.moveMouse);
+        if (found.length > 0) {
+          for (let i = 0; i < found.length; i++) {
+            if (!found[i].object.userData.ground) continue;
+            let target = found[i].point;
+            this.draggable.position.x = target.x;
+            this.draggable.position.z = target.z;
+          }
         }
       }
     }
@@ -260,8 +272,14 @@ export class Portfolios {
     const found = this.intersect(this.clickMouse);
     if (found.length > 0 && found[0].object.userData.draggable) {
       this.draggable = found[0].object;
-      this.createDatGui(this.draggable);
+
       console.log(`found draggable ${this.draggable.userData.name}`);
+
+      if (!this.editImages) {
+        this.showImage(0);
+      } else {
+        this.createDatGui(this.draggable);
+      }
     }
   };
 
@@ -270,6 +288,7 @@ export class Portfolios {
     this.moveMouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     this.moveMouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
   };
+
   private onCreateInfo = () => {
     const info: HTMLElement = document.createElement("div");
     info.setAttribute("id", "info");
@@ -305,7 +324,7 @@ export class Portfolios {
   private onLoadImages = () => {
     for (let index in this.images) {
       const items = this.images[index];
-      if (index !== "bet88822") {
+      if (index !== "2taxi") {
         for (let i = 0; i < items.length; i++) {
           const imagesData = items[i];
           for (let imageUrl of imagesData.images) {
@@ -348,10 +367,12 @@ export class Portfolios {
     const loader = new GLTFLoader().setPath("./assets//models/gltf/");
     loader.load("collision-world.glb", (gltf) => {
       // gltf.scene.scale.set(100, 0, 100);
+
       gltf.scene.scale.x = 120;
       gltf.scene.scale.z = 120;
       gltf.scene.scale.y = 40;
-      gltf.scene.position.y = 70;
+
+      // gltf.scene.position.y = 70;
 
       gltf.scene.userData.ground = true;
 
@@ -367,6 +388,7 @@ export class Portfolios {
           }
         }
       });
+      // this.onRender();
     });
   };
 
@@ -428,6 +450,30 @@ export class Portfolios {
     this.spotLight.shadow.camera.top = 350;
     this.spotLight.shadow.camera.bottom = -350;
     this.scene.add(this.spotLight);
+
+    const fillLight1 = new DirectionalLight(0xff9999, 0.5);
+    fillLight1.position.set(-1, 1, 2);
+    this.scene.add(fillLight1);
+
+    const fillLight2 = new DirectionalLight(0x8888ff, 0.2);
+    fillLight2.position.set(0, -1, 0);
+    this.scene.add(fillLight2);
+
+    const directionalLight = new DirectionalLight(0xffffaa, 1.2);
+    directionalLight.position.set(-5, 25, -1);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.camera.near = 0.01;
+    directionalLight.shadow.camera.far = 500;
+    directionalLight.shadow.camera.right = 30;
+    directionalLight.shadow.camera.left = -30;
+    directionalLight.shadow.camera.top = 30;
+    directionalLight.shadow.camera.bottom = -30;
+    directionalLight.shadow.mapSize.width = 1024;
+    directionalLight.shadow.mapSize.height = 1024;
+    directionalLight.shadow.radius = 4;
+    directionalLight.shadow.bias = -0.00006;
+
+    this.scene.add(directionalLight);
   };
 
   private onLoadModelCharacter() {
@@ -440,6 +486,8 @@ export class Portfolios {
         // this.model.rotateY(3);
         this.model.receiveShadow = true;
         this.model.scale.set(10, 10, 10);
+
+        // this.model.position.y = -10;
         this.scene.add(this.model);
         // this.createGUI(this.model, gltf.animations);
         this.setActionCharacter(this.model, gltf.animations);
@@ -454,10 +502,11 @@ export class Portfolios {
 
   private updatePlayer = (deltaTime) => {
     let damping = Math.exp(-4 * deltaTime) - 1;
+
     if (!this.playerOnFloor) {
       this.playerVelocity.y -= this.GRAVITY * deltaTime;
       // small air resistance
-      damping *= 0.1;
+      damping *= 0.01;
     }
 
     this.playerVelocity.addScaledVector(this.playerVelocity, damping);
@@ -550,7 +599,7 @@ export class Portfolios {
     ground.material.map.encoding = THREE.sRGBEncoding;
     // note that because the ground does not cast a shadow, .castShadow is left false
     ground.receiveShadow = true;
-    ground.position.y = -10;
+    ground.position.y = -70;
     ground.userData.ground = true;
     this.scene.add(ground);
   };
@@ -564,9 +613,11 @@ export class Portfolios {
     floor.receiveShadow = true;
     floor.castShadow = true;
     floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -80;
     this.scene.add(floor);
     floor.userData.ground = true;
   };
+
   private onCreateBox = () => {
     const color = new THREE.Color();
     const boxGeometry = new THREE.BoxGeometry(20, 20, 20).toNonIndexed();
@@ -607,131 +658,6 @@ export class Portfolios {
 
       this.scene.add(box);
     }
-  };
-
-  private setActionCharacter = (model: any, animations: any) => {
-    this.mixer = new THREE.AnimationMixer(model);
-    for (let i = 0; i < animations.length; i++) {
-      const clip = animations[i];
-      const action = this.mixer.clipAction(clip);
-      this.actions[clip.name] = action;
-      if (
-        this.emotes.indexOf(clip.name) >= 0 ||
-        this.states.indexOf(clip.name) >= 4
-      ) {
-        action.clampWhenFinished = true;
-        action.loop = THREE.LoopOnce;
-      }
-    }
-
-    this.api.state = "Wave";
-    this.activeAction = this.actions[this.api.state];
-    this.activeAction.play();
-  };
-
-  private createDatGui = (object: THREE.Object3D) => {
-    if (this.datgui) {
-      this.datgui.destroy();
-    }
-    this.datgui = new DAT.GUI();
-    const rotationFolder = this.datgui.addFolder("Rotation");
-    const sizeFolder = this.datgui.addFolder("Size");
-    const positionFolder = this.datgui.addFolder("Position");
-    rotationFolder.add(object.rotation, "x", 0, Math.PI * 2);
-    rotationFolder.add(object.rotation, "y", 0, Math.PI * 2);
-    rotationFolder.add(object.rotation, "z", 0, Math.PI * 2);
-    rotationFolder.open();
-    sizeFolder.add(object.scale, "x", 0, 10);
-    sizeFolder.add(object.scale, "y", 0, 10);
-    sizeFolder.add(object.scale, "z", 0, 10);
-    sizeFolder.open();
-    positionFolder.add(object.position, "x", 0, 1000);
-    positionFolder.add(object.position, "y", 0, 100);
-    positionFolder.add(object.position, "z", 0, 1000);
-    positionFolder.open();
-
-    this.imageSaveData = object;
-
-    this.datgui.add(
-      {
-        save: this.saveData,
-      },
-      "save"
-    );
-    console.log(object.userData.url);
-  };
-
-  private saveData = () => {
-    let data = {};
-
-    if (localStorage.getItem("images")) {
-      data = JSON.parse(localStorage.getItem("images"));
-    }
-
-    const d = {
-      position: this.imageSaveData.position,
-      scale: this.imageSaveData.scale,
-      rotation: this.imageSaveData.rotation,
-    };
-
-    data[this.imageSaveData.userData.url] = d;
-
-    localStorage.setItem("images", JSON.stringify(data));
-    if (this.datgui) {
-      this.datgui.destroy();
-
-      this.datgui = undefined;
-    }
-  };
-
-  private createGUI = (model: any, animations: any) => {
-    this.gui = new GUI();
-    this.mixer = new THREE.AnimationMixer(model);
-    for (let i = 0; i < animations.length; i++) {
-      const clip = animations[i];
-      const action = this.mixer.clipAction(clip);
-      this.actions[clip.name] = action;
-
-      if (
-        this.emotes.indexOf(clip.name) >= 0 ||
-        this.states.indexOf(clip.name) >= 4
-      ) {
-        action.clampWhenFinished = true;
-        action.loop = THREE.LoopOnce;
-      }
-    }
-
-    // ---states
-
-    const statesFolder = this.gui.addFolder("States");
-    const clipCtrl = statesFolder.add(this.api, "state").options(this.states);
-    clipCtrl.onChange(() => {
-      this.fadeToAction(this.api.state, 0.5);
-    });
-    statesFolder.open();
-
-    // ---emotes
-
-    this.emoteFolder = this.gui.addFolder("Emotes");
-    for (let i = 0; i < this.emotes.length; i++) {
-      this.createEmoteCallback(this.emotes[i]);
-    }
-    this.emoteFolder.open();
-
-    // ---expressions
-
-    const face = model.getObjectByName("Head_4");
-    const expressions = Object.keys(face.morphTargetDictionary);
-    const expressionFolder = this.gui.addFolder("Expressions");
-
-    for (let i = 0; i < expressions.length; i++) {
-      expressionFolder
-        .add(face.morphTargetInfluences, i.toString(), 0, 1, 0.01)
-        .name(expressions[i]);
-    }
-    expressionFolder.open();
-
-    this.gui.close();
   };
 
   private directionOffset = () => {
@@ -789,6 +715,110 @@ export class Portfolios {
     }
   };
 
+  private updateCameraTargetByModel = () => {
+    // update camera target
+    // --set cameraControls with model position
+    if (this.cameraControls) {
+      this.cameraControls.target.set(
+        this.model.position.x,
+        this.model.position.y,
+        this.model.position.z
+      );
+    }
+  };
+
+  private rotateModel = () => {
+    const angleYCameraDirection = Math.atan2(
+      this.camera.position.x - this.model.position.x,
+      this.camera.position.z - this.model.position.z
+    );
+    // diagonal movement angle offset
+    const directionOffset = this.directionOffset();
+
+    // rotate model
+    this.rotateQuarternion.setFromAxisAngle(
+      this.rotateAngle,
+      angleYCameraDirection + directionOffset
+    );
+    this.model.quaternion.rotateTowards(this.rotateQuarternion, 0.2);
+  };
+
+  private controlsModel = (delta) => {
+    if (this.controls) {
+      if (this.controls.walking || this.controls.running) {
+        const speedDelta = delta * (this.playerOnFloor ? this.moveSpeed : 100);
+
+        if (this.controls.moveForward) {
+          this.playerVelocity.add(
+            this.getForwardVector().multiplyScalar(speedDelta)
+          );
+        }
+        if (this.controls.moveBackward) {
+          this.playerVelocity.add(
+            this.getForwardVector().multiplyScalar(-speedDelta)
+          );
+        }
+        if (this.controls.moveLeft) {
+          this.playerVelocity.add(
+            this.getSideVector().multiplyScalar(-speedDelta)
+          );
+        }
+        if (this.controls.moveRight) {
+          this.playerVelocity.add(
+            this.getSideVector().multiplyScalar(speedDelta)
+          );
+        }
+
+        this.moveSpeed += 0.5;
+        if (this.moveSpeed > 250) {
+          this.moveSpeed = 250;
+        }
+        this.rotateModel();
+        this.updateCameraTargetByModel();
+      }
+      // -- check speed for run
+      if (this.moveSpeed > 200) {
+        if (!this.controls.running) {
+          this.controls.running = true;
+          if (this.controls.running) {
+            this.api.state = "Running";
+            this.fadeToAction(this.api.state, 0.5);
+          }
+        }
+        if (!this.controls.walking) {
+          this.controls.running = false;
+        }
+      }
+      // --setAction model
+      if (this.controls.walking && this.api.state !== "Walking" && this.model) {
+        if (!this.controls.running) {
+          this.api.state = "Walking";
+          this.fadeToAction(this.api.state, 0.5);
+        }
+      }
+      if (
+        !this.controls.walking &&
+        !this.controls.running &&
+        (this.api.state === "Walking" ||
+          (this.api.state === "Running" && this.model))
+      ) {
+        this.moveSpeed = 50;
+        this.api.state = "Idle";
+        this.fadeToAction(this.api.state, 0.5);
+      }
+
+      if (this.controls.jump && this.model) {
+        this.api.state = "Jump";
+        this.fadeToAction(this.api.state, 0.5);
+        this.playerVelocity.y = 15;
+      }
+      if (this.controls.wave && this.model) {
+        this.api.state = "Wave";
+        this.fadeToAction(this.api.state, 0.5);
+      }
+    }
+  };
+
   private modelAction = (delta) => {
     if (this.controls) {
       if (this.controls.walking || this.controls.running) {
@@ -817,12 +847,10 @@ export class Portfolios {
         const moveX = this.walkDirection.x * this.moveSpeed * delta;
         const moveZ = this.walkDirection.z * this.moveSpeed * delta;
 
-        // this.playerVelocity.x -= moveX;
-        // this.playerVelocity.z -= moveZ;
+        this.playerVelocity.x -= moveX;
+        this.playerVelocity.z -= moveZ;
 
-        // this.model.position.copy(this.playerVelocity);
-        this.model.position.x -= moveX;
-        this.model.position.z -= moveZ;
+        this.model.position.copy(this.playerVelocity);
         this.updateCameraTarget(moveX, moveZ);
 
         this.moveSpeed += 0.5;
@@ -867,8 +895,6 @@ export class Portfolios {
         this.api.state = "Wave";
         this.fadeToAction(this.api.state, 0.5);
       }
-
-      // this.updatePlayer(delta);
     }
   };
 
@@ -1040,8 +1066,12 @@ export class Portfolios {
     }
     if (this.model) {
       this.checkWalking();
-      this.modelAction(delta);
-      // this.modelActionB(delta);
+      this.controlsModel(delta);
+      const STEPS_PER_FRAME = this.moveSpeed <= 100 ? 1 : 8;
+      for (let i = 0; i < STEPS_PER_FRAME; i++) {
+        this.updatePlayer(delta);
+      }
+      // this.modelAction(delta);
     }
   };
 
@@ -1078,10 +1108,11 @@ export class Portfolios {
 
   private onRender = () => {
     const dt = this.clock.getDelta();
-    this.updateModelCharacter(dt);
+
     this.dragObject();
     this.resetMaterials();
     this.hoverObject();
+    this.updateModelCharacter(dt);
 
     if (this.mixer) this.mixer.update(dt);
     this.stats.update();
@@ -1100,6 +1131,68 @@ export class Portfolios {
 
     if (this.datgui) {
       this.datgui.destroy();
+    }
+
+    window.removeEventListener("resize", this.onResize, false);
+    window.removeEventListener("click", this.onMouseClick, false);
+    window.removeEventListener("mousemove", this.onMouseMove, false);
+  };
+
+  public moveForwardBtnT = (btn) => {
+    switch (btn) {
+      case "w":
+        this.controls.moveForward = true;
+        this.controls.walking = true;
+        break;
+      case "s":
+        this.controls.moveBackward = true;
+        this.controls.walking = true;
+        break;
+      case "a":
+        this.controls.moveLeft = true;
+        this.controls.walking = true;
+        break;
+      case "d":
+        this.controls.moveRight = true;
+        this.controls.walking = true;
+        break;
+      case "c":
+        this.controls.wave = true;
+        break;
+      case "space":
+        this.controls.jump = true;
+        break;
+      // case 'ControlLeft':
+      // case 'ControlRight': controls.attack = true; break;
+    }
+  };
+
+  public moveForwardBtnF = (btn) => {
+    switch (btn) {
+      case "w":
+        this.controls.moveForward = false;
+        this.controls.walking = false;
+        break;
+      case "s":
+        this.controls.moveBackward = false;
+        this.controls.walking = false;
+        break;
+      case "a":
+        this.controls.moveLeft = false;
+        this.controls.walking = false;
+        break;
+      case "d":
+        this.controls.moveRight = false;
+        this.controls.walking = false;
+        break;
+      case "c":
+        this.controls.wave = false;
+        break;
+      case "space":
+        this.controls.jump = false;
+        break;
+      // case 'ControlLeft':
+      // case 'ControlRight': controls.attack = true; break;
     }
   };
 
@@ -1167,5 +1260,159 @@ export class Portfolios {
         // case 'ControlRight': controls.attack = false; break;
       }
     }
+  };
+
+  private setActionCharacter = (model: any, animations: any) => {
+    this.mixer = new THREE.AnimationMixer(model);
+    for (let i = 0; i < animations.length; i++) {
+      const clip = animations[i];
+      const action = this.mixer.clipAction(clip);
+      this.actions[clip.name] = action;
+      if (
+        this.emotes.indexOf(clip.name) >= 0 ||
+        this.states.indexOf(clip.name) >= 4
+      ) {
+        action.clampWhenFinished = true;
+        action.loop = THREE.LoopOnce;
+      }
+    }
+
+    this.api.state = "Wave";
+    this.activeAction = this.actions[this.api.state];
+    this.activeAction.play();
+  };
+
+  private createDatGui = (object: THREE.Object3D) => {
+    if (this.datgui) {
+      this.datgui.destroy();
+    }
+    this.datgui = new DAT.GUI();
+    const rotationFolder = this.datgui.addFolder("Rotation");
+    const sizeFolder = this.datgui.addFolder("Size");
+    const positionFolder = this.datgui.addFolder("Position");
+    rotationFolder.add(object.rotation, "x", 0, Math.PI * 2);
+    rotationFolder.add(object.rotation, "y", 0, Math.PI * 2);
+    rotationFolder.add(object.rotation, "z", 0, Math.PI * 2);
+    rotationFolder.open();
+    sizeFolder.add(object.scale, "x", 0, 10);
+    sizeFolder.add(object.scale, "y", 0, 10);
+    sizeFolder.add(object.scale, "z", 0, 10);
+    sizeFolder.open();
+    positionFolder.add(object.position, "x", 0, 1000);
+    positionFolder.add(object.position, "y", 0, 100);
+    positionFolder.add(object.position, "z", 0, 1000);
+    positionFolder.open();
+
+    this.imageSaveData = object;
+
+    this.datgui.add(
+      {
+        Save: this.saveData,
+      },
+      "Save"
+    );
+
+    this.datgui.add(
+      {
+        Exit: () => {
+          if (this.datgui) {
+            this.datgui.destroy();
+
+            this.datgui = undefined;
+          }
+        },
+      },
+      "Exit"
+    );
+  };
+
+  private saveData = () => {
+    let data = {};
+
+    if (localStorage.getItem("images")) {
+      data = JSON.parse(localStorage.getItem("images"));
+    }
+
+    const d = {
+      position: this.imageSaveData.position,
+      scale: this.imageSaveData.scale,
+      rotation: this.imageSaveData.rotation,
+    };
+
+    data[this.imageSaveData.userData.url] = d;
+
+    localStorage.setItem("images", JSON.stringify(data));
+    if (this.datgui) {
+      this.datgui.destroy();
+
+      this.datgui = undefined;
+    }
+  };
+
+  private createGUI = (model: any, animations: any) => {
+    this.gui = new GUI();
+    this.mixer = new THREE.AnimationMixer(model);
+    for (let i = 0; i < animations.length; i++) {
+      const clip = animations[i];
+      const action = this.mixer.clipAction(clip);
+      this.actions[clip.name] = action;
+
+      if (
+        this.emotes.indexOf(clip.name) >= 0 ||
+        this.states.indexOf(clip.name) >= 4
+      ) {
+        action.clampWhenFinished = true;
+        action.loop = THREE.LoopOnce;
+      }
+    }
+
+    // ---states
+
+    const statesFolder = this.gui.addFolder("States");
+    const clipCtrl = statesFolder.add(this.api, "state").options(this.states);
+    clipCtrl.onChange(() => {
+      this.fadeToAction(this.api.state, 0.5);
+    });
+    statesFolder.open();
+
+    // ---emotes
+
+    this.emoteFolder = this.gui.addFolder("Emotes");
+    for (let i = 0; i < this.emotes.length; i++) {
+      this.createEmoteCallback(this.emotes[i]);
+    }
+    this.emoteFolder.open();
+
+    // ---expressions
+
+    const face = model.getObjectByName("Head_4");
+    const expressions = Object.keys(face.morphTargetDictionary);
+    const expressionFolder = this.gui.addFolder("Expressions");
+
+    for (let i = 0; i < expressions.length; i++) {
+      expressionFolder
+        .add(face.morphTargetInfluences, i.toString(), 0, 1, 0.01)
+        .name(expressions[i]);
+    }
+    expressionFolder.open();
+
+    this.gui.close();
+  };
+
+  private getForwardVector = () => {
+    this.camera.getWorldDirection(this.playerDirection);
+    this.playerDirection.y = 0;
+    this.playerDirection.normalize();
+
+    return this.playerDirection;
+  };
+
+  private getSideVector = () => {
+    this.camera.getWorldDirection(this.playerDirection);
+    this.playerDirection.y = 0;
+    this.playerDirection.normalize();
+    this.playerDirection.cross(this.camera.up);
+
+    return this.playerDirection;
   };
 }

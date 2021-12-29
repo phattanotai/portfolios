@@ -18,12 +18,13 @@ const HomePage: FC = () => {
   let nameRef: any = useRef(null);
   let pRef: any = useRef(null);
   const [name, setName] = useState("");
-  useEffect(() => {
-    new WorldMap();
-    // new Game();
-    // new Raycaster();
 
+  useEffect(() => {
+    const world = new WorldMap();
     particle();
+    return () => {
+      world.onDestroy();
+    };
   }, [typographyRef]);
 
   const particle = () => {

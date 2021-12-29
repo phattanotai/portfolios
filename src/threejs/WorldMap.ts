@@ -238,4 +238,8 @@ export class WorldMap {
     this.clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
     this.scene.add(this.clouds);
   };
+
+  public onDestroy = () => {
+    window.removeEventListener("resize", this.onResize, false);
+  };
 }

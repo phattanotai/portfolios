@@ -2,12 +2,20 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import menu from "../data/menu";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { openNav } from "../redux-thunk/actions/navAction";
 
 const avatar = "../assets/images/avatar.jpg";
 
 const Navigation: FC = () => {
   const langType = useSelector((state: any) => state.lang);
+  const navToggle = useSelector((state: any) => state.nav);
+  const dispatch = useDispatch();
+
+  const setNavToggle = () => {
+    dispatch(openNav(!navToggle));
+  };
 
   return (
     <NavigationStyled>
@@ -15,27 +23,32 @@ const Navigation: FC = () => {
         <img src={avatar} alt="" />
       </div>
       <ul className="nav-items">
-        <li className="nav-item">
+        <li className="nav-item" onClick={setNavToggle}>
           <NavLink to="/" activeClassName="active-class" exact>
             {menu[langType].home}
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item" onClick={setNavToggle}>
           <NavLink to="/about" activeClassName="active-class" exact>
             {menu[langType].about}
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item" onClick={setNavToggle}>
           <NavLink to="/resume" activeClassName="active-class" exact>
             {menu[langType].resume}
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item" onClick={setNavToggle}>
           <NavLink to="/portfolios" activeClassName="active-class" exact>
             {menu[langType].portfolios}
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className="nav-item" onClick={setNavToggle}>
+          <NavLink to="/portfolios3d" activeClassName="active-class" exact>
+            {menu[langType].portfolios3d}
+          </NavLink>
+        </li>
+        <li className="nav-item" onClick={setNavToggle}>
           <NavLink to="/contact" activeClassName="active-class" exact>
             {menu[langType].contact}
           </NavLink>
