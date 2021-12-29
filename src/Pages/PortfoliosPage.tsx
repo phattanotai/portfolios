@@ -1,5 +1,5 @@
-import React, { FC, useState, useEffect, useRef } from "react";
-import { MainLayout, InnerLayout } from "../styles/Layouts";
+import { FC, useState, useRef } from "react";
+import { MainLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import portfoliosData from "../data/portfolios";
 import Menu from "../Components/Menu";

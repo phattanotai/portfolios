@@ -136,5 +136,21 @@ const NavigationStyled = styled.nav`
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .nav-items {
+      a {
+        font-size: 30px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .nav-items {
+      a {
+        font-size: 23px;
+      }
+    }
+  }
 `;
 export default Navigation;

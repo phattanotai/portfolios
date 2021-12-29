@@ -1,10 +1,10 @@
 import { OPEN_NAV } from "../types/navType";
 
 export function openNav(nav: boolean) {
-  const checkMobile = window.matchMedia(
-    "only screen and (max-width: 1024px)"
+  const checkScreen = window.matchMedia(
+    "only screen and (max-width: 1200px)"
   ).matches;
-  if (!checkMobile) {
+  if (!checkScreen) {
     return {
       type: OPEN_NAV,
       payload: false,

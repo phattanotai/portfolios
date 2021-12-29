@@ -5,10 +5,8 @@ import GithubIcon from "@material-ui/icons/GitHub";
 import YoutubeIcon from "@material-ui/icons/YouTube";
 import { VersionInfo } from "../Components/VersionInfo";
 import { WorldMap } from "../threejs/WorldMap";
-import { gsap, TweenMax, TimelineMax, Bounce } from "gsap";
+import { gsap } from "gsap";
 import { TextPlugin } from "gsap/dist/TextPlugin";
-import { Game } from "../threejs/Game";
-import { Raycaster } from "../threejs/Raycaster";
 
 gsap.registerPlugin(TextPlugin);
 

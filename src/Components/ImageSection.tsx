@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LanguageSwitcherSelector from "./LanguageSwitcherSelector";
 import PrimaryButton from "./PrimaryButton";
 const resume = "../assets/images/resume.jpg";
-
+const resume2 = "../assets/images/resume2.jpg";
 const ImageSection: FC = () => {
   const langType = useSelector((state: any) => state.lang);
 
@@ -12,6 +12,7 @@ const ImageSection: FC = () => {
     <ImageSectionStyled>
       <div className="left-content">
         <img src={resume} alt="" />
+        <img src={resume2} alt="" />
       </div>
       <div className="right-content">
         <h4>
@@ -40,7 +41,19 @@ const ImageSection: FC = () => {
           </div>
         </div>
         <PrimaryButton
-          title={"Download Cv"}
+          title={"See Resume"}
+          onClick={() => {
+            window.open(
+              `../html/Resume-Phattanothai-Pukham-${langType}.html`,
+              "_blank"
+            );
+          }}
+          style={{
+            marginRight: "5px",
+          }}
+        />
+        <PrimaryButton
+          title={"Download"}
           onClick={() => {
             window.open(
               `../assets/resume/Resume-Phattanothai-Pukham-${langType}.pdf`,

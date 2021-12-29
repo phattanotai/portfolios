@@ -1,148 +1,58 @@
-import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Sidebar from "./Components/Sidebar";
 import styled from "styled-components";
-import HomePage from "./Pages/HomePage";
-import AboutPage from "./Pages/AboutPage";
-import ResumePage from "./Pages/ResumePage";
-import Portfolios3dPage from "./Pages/Portfolios3dPage";
-import PortfoliosPage from "./Pages/PortfoliosPage";
-import BlogsPage from "./Pages/BlogsPage";
-import ContactPage from "./Pages/ContactPage";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import MenuIcon from "@material-ui/icons/Menu";
-import { Route, Switch as Switching } from "react-router";
-import Switch from "@material-ui/core/Switch";
-import { IconButton } from "@material-ui/core";
-
+import { useLocation, Route } from "react-router-dom";
 // import LangContext from "./contexts/LangContext";
+import { openNav } from "./redux-thunk/actions/navAction";
+import PreLoader from "./Components/PreLoader";
+import AppRouter from "./Components/AppRoute";
+import NotFound from "./Pages/NotFound";
+import HamMenu from "./Components/HamMenu";
+import FloaMenu from "./Components/FloaMenu";
 
-import { setLangAsync, setLang } from "./redux-thunk/actions/langAction";
-import { openNav, openNavAsync } from "./redux-thunk/actions/navAction";
-import LanguageSwitcherSelector from "./Components/LanguageSwitcherSelector";
-
-function App() {
-  const [theme, setTheme] = useState<string>(
-    localStorage.getItem("theme")
-      ? String(localStorage.getItem("theme"))
-      : "dark-theme"
+const AppLine = () => {
+  return (
+    <div className="lines">
+      <div className="line-1"></div>
+      <div className="line-2"></div>
+      <div className="line-3"></div>
+      <div className="line-4"></div>
+    </div>
   );
-  const [checked, setChecked] = useState<boolean>(
-    localStorage.getItem("theme") === "light-theme" ? true : false
-  );
-  const [checkedLang, setCheckedLang] = useState<boolean>(
-    localStorage.getItem("theme") === "light-theme" ? true : false
-  );
+};
 
-  // const [navToggle, setNavToggle] = useState<boolean>(false);
-
+const AppChildren = () => {
+  const location = useLocation();
   // state manament redux
   const dispatch = useDispatch();
-  const langType = useSelector((state: any) => state.lang);
   const navToggle = useSelector((state: any) => state.nav);
 
-  // state manament context api
-  // const { langType, setLangType } = useContext(LangContext);
+  if (location.pathname === "/404") {
+    return (
+      <div>
+        <Route path="/404" component={NotFound} exact />
+      </div>
+    );
+  }
+  return (
+    <>
+      <Sidebar navToggle={navToggle} />
+      <HamMenu />
+      <FloaMenu />
+      <MainContentStyled onClick={() => dispatch(openNav(false))}>
+        <AppLine></AppLine>
+        <AppRouter></AppRouter>
+      </MainContentStyled>
+    </>
+  );
+};
 
-  useEffect(() => {
-    document.documentElement.className = theme;
-  }, [theme]);
-
-  const themeToggler = () => {
-    if (theme === "light-theme") {
-      setTheme("dark-theme");
-      setChecked(false);
-      localStorage.setItem("theme", "dark-theme");
-    } else {
-      setTheme("light-theme");
-      setChecked(true);
-      localStorage.setItem("theme", "light-theme");
-    }
-  };
-
-  const langToggler = () => {
-    // if (langType === "EN") {
-    //   setLangType("TH");
-    //   setCheckedLang(false);
-    // } else {
-    //   setLangType("EN");
-    //   setCheckedLang(true);
-    // }
-
-    if (langType === "EN") {
-      dispatch(setLangAsync("TH"));
-      setCheckedLang(false);
-    } else {
-      dispatch(setLangAsync("EN"));
-      setCheckedLang(true);
-    }
-  };
-
+function App() {
   return (
     <div className="App">
-      <Sidebar navToggle={navToggle} />
-      <div className="theme">
-        <div className="light-dark-mode">
-          <div className="left-content">
-            <Brightness4Icon />
-          </div>
-          <div className="right-content">
-            <Switch
-              value=""
-              checked={checked}
-              inputProps={{ "aria-label": "" }}
-              size="medium"
-              onClick={themeToggler}
-            />
-          </div>
-          <LanguageSwitcherSelector></LanguageSwitcherSelector>
-        </div>
-      </div>
-
-      {/* <div className="theme">
-        <div className="en-th-mode">
-          <LanguageSwitcherSelector></LanguageSwitcherSelector>
-        </div>
-      </div> */}
-
-      <div className="ham-burger-menu">
-        <IconButton onClick={() => dispatch(openNav(!navToggle))}>
-          <MenuIcon />
-        </IconButton>
-      </div>
-
-      <MainContentStyled>
-        <div className="lines">
-          <div className="line-1"></div>
-          <div className="line-2"></div>
-          <div className="line-3"></div>
-          <div className="line-4"></div>
-        </div>
-
-        <Switching>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/about" exact>
-            <AboutPage />
-          </Route>
-          <Route path="/resume" exact>
-            <ResumePage />
-          </Route>
-          <Route path="/portfolios3d" exact>
-            <Portfolios3dPage />
-          </Route>
-          <Route path="/portfolios" exact>
-            <PortfoliosPage />
-          </Route>
-          <Route path="/blogs" exact>
-            <BlogsPage />
-          </Route>
-          <Route path="/contact" exact>
-            <ContactPage />
-          </Route>
-        </Switching>
-      </MainContentStyled>
+      <PreLoader>
+        <AppChildren></AppChildren>
+      </PreLoader>
     </div>
   );
 }

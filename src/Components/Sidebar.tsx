@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 import Navigation from "./Navigation";
 
@@ -24,6 +24,14 @@ const SidebarStyled = styled.div`
   @media screen and (max-width: 1200px) {
     transform: translateX(-100%);
     z-index: 20;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 34.3rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 28.3rem;
   }
 `;
 

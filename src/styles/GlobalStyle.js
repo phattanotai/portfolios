@@ -126,69 +126,10 @@ h6{
     margin-bottom: 4rem;
 }
 
-
-//Floting Toggler
-.light-dark-mode{
-    position: fixed;
-    right: 0;
-    top: 50vh;
-    background-color: var(--background-light-color-2);
-    width: 7.5rem;
-    height: 2.5rem;
-    padding-right: 10px;
-    z-index: 15;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    svg{
-      display: flex;
-      align-items: center;
-      font-size: 1.7rem;
-      color: var(--white-color);
-    }
-  }
-
-  //Floting Toggler
-.en-th-mode{
-    position: fixed;
-    right: 0;
-    top: 41vh;
-    background-color: var(--background-light-color-2);
-    width: 6.5rem;
-    height: 2.5rem;
-    z-index: 15;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    svg{
-      display: flex;
-      align-items: center;
-      font-size: 1.7rem;
-      color: var(--white-color);
-    }
-  }
-
-  //Nav Toggler
-  .ham-burger-menu{
-      position: absolute;
-      right: 0px;
-      top: 4%; 
-      display: none;
-      z-index: 15;
-      svg{
-          font-size: 3rem;
-      }
-    }
-
-    .nav-toggle{
-        transform: translateX(0);
-        z-index: 20;
-    }
-  @media screen and (max-width:1200px){
-    .ham-burger-menu{
-        display: block;
-    }
-  }
+.nav-toggle {
+    transform: translateX(0);
+    z-index: 20;
+}
 
 
 //Global Media Queries

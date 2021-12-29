@@ -6,11 +6,15 @@ export type PropsType = {
   onClick: any;
 };
 
-const PrimaryButton = ({ title, onClick = "" }: any) => {
+const PrimaryButton = ({ title, onClick = "", style = {} }: any) => {
   if (onClick) {
-    return <PrimaryButtonStyled onClick={onClick}>{title}</PrimaryButtonStyled>;
+    return (
+      <PrimaryButtonStyled onClick={onClick} style={style}>
+        {title}
+      </PrimaryButtonStyled>
+    );
   } else {
-    return <PrimaryButtonStyled>{title}</PrimaryButtonStyled>;
+    return <PrimaryButtonStyled style={style}>{title}</PrimaryButtonStyled>;
   }
 };
 
