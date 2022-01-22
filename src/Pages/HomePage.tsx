@@ -3,9 +3,9 @@ import styled from "styled-components";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GithubIcon from "@material-ui/icons/GitHub";
 import YoutubeIcon from "@material-ui/icons/YouTube";
-import { VersionInfo } from "../Components/VersionInfo";
-import { WorldMap } from "../threejs/WorldMap";
-import { gsap } from "gsap";
+import VersionInfo from "../Components/VersionInfo";
+import { WorldMap } from "../Threejs/WorldMap";
+import { gsap, TweenMax } from "gsap";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 
 gsap.registerPlugin(TextPlugin);
@@ -15,7 +15,10 @@ const HomePage: FC = () => {
   let h2Ref: any = useRef(null);
   let nameRef: any = useRef(null);
   let pRef: any = useRef(null);
-  const [name, setName] = useState("");
+
+  let versionRef = useRef<HTMLDivElement>(null);
+
+  const [name, setName] = useState("Phattano");
 
   useEffect(() => {
     const world = new WorldMap();
@@ -38,16 +41,52 @@ const HomePage: FC = () => {
       clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
     });
 
-    // tl.to(h2Ref, {
-    //   duration: 2,
-    //   clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
-    // });
+    tl.to(pRef, {
+      duration: 2,
+      clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
+    });
 
     gsap.to(nameRef, {
-      duration: 4,
+      duration: 3,
       text: "Phattanothai Pukham",
       ease: "out",
     });
+
+    TweenMax.from(".icons", 2.5, {
+      opacity: 1,
+      x: random(-500, 500),
+      y: random(-500, 500),
+      z: random(-500, 500),
+      scale: 1,
+      delay: 1,
+      yoyo: true,
+    });
+
+    tl.to(".icons", {
+      duration: 2,
+      scaleY: 1,
+    });
+
+    gsap.to(versionRef.current, {
+      duration: 4,
+      scaleX: 1,
+    });
+
+    tl.to(versionRef.current, {
+      duration: 2,
+      rotateY: 360,
+      translateY: 50,
+    });
+
+    tl.to(versionRef.current, {
+      duration: 2,
+      rotateY: 1,
+      translateY: 25,
+    });
+  };
+
+  const random = (min, max) => {
+    return Math.random() * (max - min) + min;
   };
 
   return (
@@ -111,7 +150,7 @@ const HomePage: FC = () => {
           </a>
         </div>
         <br />
-        <VersionInfo />
+        <VersionInfo versionRef={versionRef} />
       </div>
     </HomePageStyled>
   );
@@ -134,6 +173,10 @@ const HomePageStyled = styled.header`
       display: flex;
       justify-content: center;
       margin-top: 1rem;
+
+      transform: scaleY(0);
+      transform-origin: bottom;
+
       .icon {
         border: 2px solid var(--border-color);
         display: flex;
@@ -179,11 +222,20 @@ const HomePageStyled = styled.header`
     transform: scaleX(1);
   }
 
-  h2,
+  h2 {
+    flex-basic: 0;
+    flex-grow: 1;
+    clip-path: polygon(0 0, 100% 0, 0 0);
+  }
+
   p {
     flex-basic: 0;
     flex-grow: 1;
-    // clip-path: polygon(0 0, 100% 0, 0 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+
+  .versionApp {
+    transform: scaleX(0);
   }
 `;
 

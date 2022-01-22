@@ -54,7 +54,10 @@ export class WorldMap {
     this.canvasContainer.appendChild(this.canvas);
     this.renderer = new WebGLRenderer({ canvas: this.canvas });
 
-    this.renderer.setSize(this.canvasContainer.offsetWidth, window.innerHeight);
+    this.renderer.setSize(
+      this.canvasContainer.offsetWidth + 15,
+      window.innerHeight
+    );
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = PCFSoftShadowMap;
     this.scene = new Scene();

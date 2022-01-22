@@ -10,9 +10,11 @@ const FloaMenu: FC = () => {
   const [checked, setChecked] = useState<boolean>(
     localStorage.getItem("theme") === "light-theme" ? true : false
   );
-  const [checkedLang, setCheckedLang] = useState<boolean>(
-    localStorage.getItem("theme") === "light-theme" ? true : false
-  );
+  const [openMenu, setOpenmenu] = useState<boolean>(false);
+
+  // const [checkedLang, setCheckedLang] = useState<boolean>(
+  //   localStorage.getItem("theme") === "light-theme" ? true : false
+  // );
 
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("theme")
@@ -40,30 +42,19 @@ const FloaMenu: FC = () => {
     }
   };
 
-  // state manament context api
-  // const { langType, setLangType } = useContext(LangContext);
-
-  const langToggler = () => {
-    // if (langType === "EN") {
-    //   setLangType("TH");
-    //   setCheckedLang(false);
-    // } else {
-    //   setLangType("EN");
-    //   setCheckedLang(true);
-    // }
-
-    if (langType === "EN") {
-      dispatch(setLangAsync("TH"));
-      setCheckedLang(false);
-    } else {
-      dispatch(setLangAsync("EN"));
-      setCheckedLang(true);
-    }
-  };
-
   return (
     <FloaMenuDiv>
-      <div className="theme">
+      <div className={"theme  " + (openMenu ? "open" : "")}>
+        <div
+          className="style-switcher "
+          onClick={() => {
+            setOpenmenu(!openMenu);
+          }}
+        >
+          <div className="style-switcher-toggler s-icon outer-shadow hover-in-shadow">
+            <i className="fas fa-cog fa-spin"></i>
+          </div>
+        </div>
         <div className="light-dark-mode">
           <div className="left-content">
             <Brightness4Icon />
@@ -77,7 +68,9 @@ const FloaMenu: FC = () => {
               onClick={themeToggler}
             />
           </div>
-          <LanguageSwitcherSelector></LanguageSwitcherSelector>
+          <div>
+            <LanguageSwitcherSelector></LanguageSwitcherSelector>
+          </div>
         </div>
       </div>
     </FloaMenuDiv>
@@ -85,9 +78,75 @@ const FloaMenu: FC = () => {
 };
 
 const FloaMenuDiv = styled.div`
+  .theme {
+    position: fixed;
+    right: 0;
+    top: 50vh;
+    transform: translateX(100%);
+    z-index: 101;
+  }
+
+  .style-switcher .style-switcher-toggler {
+    top: 0;
+  }
+
+  .open {
+    transform: translateX(1%);
+  }
+
+  .style-switcher {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    z-index: 101;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    display: flex;
+  }
+
+  .style-switcher .s-icon {
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    align-content: center;
+    display: grid;
+    font-size: 20px;
+    color: #ffffff;
+    right: 0px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    background-color: var(--background-light-color-2);
+  }
+
+  .hover-in-shadow {
+    position: relative;
+    z-index: 1;
+  }
+
+  .style-switcher .s-icon:after {
+    border-radius: 50%;
+  }
+  .hover-in-shadow:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    z-index: -1;
+  }
+
+  .outer-shadow {
+    box-shadow: 3px 3px 3px #222327, -3px -3px 3px #363636;
+  }
+
   //Floting Toggler
   .light-dark-mode {
-    position: fixed;
+    /* position: fixed; */
     right: 0;
     top: 50vh;
     background-color: var(--background-light-color-2);
@@ -111,12 +170,18 @@ const FloaMenuDiv = styled.div`
       height: 5.5rem;
       width: 9.5rem;
     }
+    .style-switcher {
+      top: 30px;
+    }
   }
 
   @media screen and (max-width: 768px) {
     .light-dark-mode {
       height: 4.5rem;
       width: 8.5rem;
+    }
+    .style-switcher {
+      top: 25px;
     }
   }
 `;

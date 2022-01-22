@@ -1,19 +1,8 @@
-import React, { FC, useState, useEffect, useRef } from "react";
-import { MainLayout, InnerLayout } from "../styles/Layouts";
-import Title from "../Components/Title";
-import portfoliosData from "../data/portfolios";
-import Menu from "../Components/Menu";
-// import Button from "../Components/Button";
+import { FC, useState, useEffect, useRef } from "react";
 import Button from "@material-ui/core/Button";
-import Particle from "../Components/Particle";
-import { WorldMap } from "../threejs/WorldMap";
-import { Portfolios } from "../threejs/Portfolios";
-
+import { Portfolios } from "../Threejs/Portfolios";
 import styled from "styled-components";
-
-import { RedBox } from "../threejs/RedBox";
-import { Raycaster } from "../threejs/Raycaster";
-import { Test } from "../threejs/Test";
+import { useHistory } from "react-router";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -25,12 +14,7 @@ import {
   FaArrowsAltH,
 } from "react-icons/fa";
 
-const allButtons = [
-  "All",
-  ...Array.from(new Set(portfoliosData.map((item) => item.category))),
-];
-
-let portfolios;
+let portfolios: Portfolios;
 
 export type imgDataType = {
   url: string;
@@ -40,61 +24,52 @@ export type imgDataType = {
 };
 
 const Portfolios3dPage: FC = () => {
-  const [menuItem, setMenuItems] = useState(portfoliosData);
-  const [button, setButtons] = useState(allButtons);
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [images, setImages] = useState<imgDataType[]>([]);
   let imageRef = useRef<HTMLImageElement>(null);
   let imgScollRef = useRef<HTMLDivElement>(null);
   let imgScollMobileRef = useRef<HTMLDivElement>(null);
   let imageShowRef = useRef<HTMLDivElement>(null);
+  const history = useHistory<string>();
+
   const checkMobile = window.matchMedia(
-    "only screen and (max-width: 1024px)"
+    "only screen and (max-width: 500px)"
   ).matches;
 
   useEffect(() => {
     portfolios = new Portfolios();
     const img: imgDataType[] = [];
-    for (let index in portfolios.images) {
-      const items = portfolios.images[index];
 
-      for (let i = 0; i < items.length; i++) {
-        const imagesData = items[i];
-        for (let imageUrl of imagesData.images) {
-          const data = {
-            url: imageUrl,
-            width: imagesData.category === "APP" ? "30%" : "86%",
-            height: imagesData.category === "APP" ? "80%" : "90%",
-            type: imagesData.category,
-          };
-          img.push(data);
+    if (checkMobile) {
+      history.replace("portfolios");
+    }
+
+    if (portfolios) {
+      for (let index in portfolios.images) {
+        const items = portfolios.images[index];
+
+        for (let i = 0; i < items.length; i++) {
+          const imagesData = items[i];
+          for (let imageUrl of imagesData.images) {
+            const data = {
+              url: imageUrl,
+              width: imagesData.width ? imagesData.width : "86%",
+              height: imagesData.height ? imagesData.height : "90%",
+              type: imagesData.category,
+            };
+            img.push(data);
+          }
         }
       }
+      setImages(img);
     }
-    setImages(img);
 
-    setTimeout(() => {
-      portfolios.showImage = showImage;
-    }, 10000);
     return () => {
-      portfolios.onDestroy();
+      if (portfolios) {
+        portfolios.onDestroy();
+      }
     };
   }, []);
-
-  const filter = (button: string) => {
-    if (button === "All") {
-      setMenuItems(portfoliosData);
-      return;
-    }
-    const filteredData = portfoliosData.filter(
-      (item) => item.category === button
-    );
-    setMenuItems(filteredData);
-  };
-
-  const buttonClick = (btn) => {
-    portfolios.moveForwardBtnT(btn);
-  };
 
   const closeImage = () => {
     imageShowRef.current.style.display = "none";
@@ -127,6 +102,7 @@ const Portfolios3dPage: FC = () => {
   };
 
   const showImgScoll = () => {
+    console.log(imgScollRef.current);
     if (
       imgScollRef.current.style.display === "none" ||
       !imgScollRef.current.style.display
@@ -146,6 +122,13 @@ const Portfolios3dPage: FC = () => {
     } else {
       imgScollMobileRef.current.style.display = "none";
     }
+  };
+
+  const buttonTouchStart = (btn: string) => {
+    portfolios.moveForwardBtnT(btn);
+  };
+  const buttonTouchEnd = (btn: string) => {
+    portfolios.moveForwardBtnF(btn);
   };
 
   return (
@@ -183,6 +166,18 @@ const Portfolios3dPage: FC = () => {
                       } else {
                         showImgScollMobile();
                       }
+                    }}
+                  />
+                </Button>
+                <Button variant="outlined">
+                  <div
+                    className="icon-bar-item"
+                    id="icon-bar-stats"
+                    style={{
+                      backgroundImage: 'url("./assets/icons/ui/skills.png")',
+                    }}
+                    onClick={() => {
+                      portfolios.createModelGUI();
                     }}
                   />
                 </Button>
@@ -259,8 +254,11 @@ const Portfolios3dPage: FC = () => {
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={() => {
-                    buttonClick("w");
+                  onTouchStart={() => {
+                    buttonTouchStart("w");
+                  }}
+                  onTouchEnd={() => {
+                    buttonTouchEnd("w");
                   }}
                 >
                   <FaArrowUp></FaArrowUp>
@@ -272,8 +270,11 @@ const Portfolios3dPage: FC = () => {
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={() => {
-                    buttonClick("a");
+                  onTouchStart={() => {
+                    buttonTouchStart("a");
+                  }}
+                  onTouchEnd={() => {
+                    buttonTouchEnd("a");
                   }}
                 >
                   <FaArrowLeft></FaArrowLeft>
@@ -281,8 +282,11 @@ const Portfolios3dPage: FC = () => {
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={() => {
-                    buttonClick("s");
+                  onTouchStart={() => {
+                    buttonTouchStart("s");
+                  }}
+                  onTouchEnd={() => {
+                    buttonTouchEnd("s");
                   }}
                 >
                   <FaArrowDown></FaArrowDown>
@@ -290,8 +294,11 @@ const Portfolios3dPage: FC = () => {
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={() => {
-                    buttonClick("d");
+                  onTouchStart={() => {
+                    buttonTouchStart("d");
+                  }}
+                  onTouchEnd={() => {
+                    buttonTouchEnd("d");
                   }}
                 >
                   <FaArrowRight></FaArrowRight>
@@ -304,8 +311,11 @@ const Portfolios3dPage: FC = () => {
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={() => {
-                    buttonClick("space");
+                  onTouchStart={() => {
+                    buttonTouchStart("space");
+                  }}
+                  onTouchEnd={() => {
+                    buttonTouchEnd("space");
                   }}
                 >
                   <FaArrowsAltH></FaArrowsAltH>
@@ -315,14 +325,6 @@ const Portfolios3dPage: FC = () => {
           </ControlUi>
         </div>
       </PortfoliosDiv>
-
-      {/* <MainLayout>
-        <Title title={"Portfolios"} span={"portfolios"} />
-        <InnerLayout>
-          <Button filter={filter} button={button} />
-          <Menu menuItem={menuItem} />
-        </InnerLayout>
-      </MainLayout> */}
     </>
   );
 };
@@ -356,6 +358,11 @@ const ImagesScollMobile = styled.div`
 `;
 
 const IconUi = styled.div`
+  Button {
+    margin: 5px;
+    padding: 0px;
+    background-color: brown;
+  }
   .icon-ui {
     display: flex;
     flex-direction: column;
@@ -423,7 +430,10 @@ const ImagesScoll = styled.div`
   height: 95vh;
   display: none;
   overflow: scroll;
-  background-color: black;
+  background-color: darkgrey;
+  z-index: 20;
+  padding-top: 15px;
+  border-radius: 10px;
 
   div {
     width: 100%;
@@ -525,6 +535,7 @@ const ControlUi = styled.div`
     bottom: 50px;
     left: 80px;
     position: absolute;
+    z-index: 10;
   }
 
   .control-ui-space {
@@ -535,6 +546,7 @@ const ControlUi = styled.div`
     bottom: 10px;
     right: 10px;
     position: absolute;
+    z-index: 10;
   }
 
   .control-ui-asd {
@@ -545,13 +557,14 @@ const ControlUi = styled.div`
     bottom: 10px;
     left: 10px;
     position: absolute;
+    z-index: 10;
     Button {
       margin: 2px;
     }
   }
 
   @media screen and (max-width: 1024px) {
-    display: none;
+    display: block;
   }
 `;
 
@@ -571,7 +584,7 @@ const PortfoliosDiv = styled.div`
     color: #2fa1d6;
   }
 
-  #three-canvas: {
+  #three-canvas {
     position: absolute !important;
   }
 

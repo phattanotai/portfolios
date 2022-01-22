@@ -16,7 +16,14 @@ const ServicesSection: FC = () => {
         <div className="services">
           <ServiceCard
             image={design}
-            title={"Web Design"}
+            title={"Frontend Developere"}
+            paragraph={
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
+            }
+          />
+          <ServiceCard
+            image={design}
+            title={"Backend Developere"}
             paragraph={
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
             }
@@ -24,19 +31,28 @@ const ServicesSection: FC = () => {
           <div className="mid-card">
             <ServiceCard
               image={intelligence}
-              title={"Artificial Intelligence"}
+              title={"Application Developere"}
               paragraph={
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
               }
             />
           </div>
-          <ServiceCard
+          <div className="mid-card">
+            <ServiceCard
+              image={intelligence}
+              title={"Devops"}
+              paragraph={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
+              }
+            />
+          </div>
+          {/* <ServiceCard
             image={gamedev}
             title={"Game Development"}
             paragraph={
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
             }
-          />
+          /> */}
         </div>
       </ServicesSectionStyled>
     </InnerLayout>

@@ -33,6 +33,10 @@ const SidebarStyled = styled.div`
   @media screen and (max-width: 768px) {
     width: 28.3rem;
   }
+
+  @media screen and (max-width: 420px) {
+    width: 18.3rem;
+  }
 `;
 
 export default Sidebar;

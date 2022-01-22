@@ -11,8 +11,6 @@ const allButtons = [
   ...Array.from(new Set(portfoliosData.map((item) => item.category))),
 ];
 
-let portfolios;
-
 export type imgDataType = {
   url: string;
   width: string;
@@ -23,12 +21,7 @@ export type imgDataType = {
 const PortfoliosPage: FC = () => {
   const [menuItem, setMenuItems] = useState(portfoliosData);
   const [button, setButtons] = useState(allButtons);
-  const [imgIndex, setImgIndex] = useState<number>(0);
-  const [images, setImages] = useState<imgDataType[]>([]);
-  let imageRef = useRef<HTMLImageElement>(null);
-  let imgScollRef = useRef<HTMLDivElement>(null);
-  let imgScollMobileRef = useRef<HTMLDivElement>(null);
-  let imageShowRef = useRef<HTMLDivElement>(null);
+
   const checkMobile = window.matchMedia(
     "only screen and (max-width: 1024px)"
   ).matches;
@@ -71,10 +64,6 @@ const PortfoliosDiv = styled.div`
 
   a {
     color: #2fa1d6;
-  }
-
-  #three-canvas: {
-    position: absolute !important;
   }
 
   p {

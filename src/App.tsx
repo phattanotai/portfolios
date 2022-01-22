@@ -50,9 +50,9 @@ const AppChildren = () => {
 function App() {
   return (
     <div className="App">
-      <PreLoader>
-        <AppChildren></AppChildren>
-      </PreLoader>
+      {/* <PreLoader> */}
+      <AppChildren></AppChildren>
+      {/* </PreLoader> */}
     </div>
   );
 }
@@ -60,7 +60,7 @@ function App() {
 const MainContentStyled = styled.main`
   position: relative;
   margin-left: 16.3rem;
-  min-height: 100vh;
+  min-height: 90vh;
   @media screen and (max-width: 1200px) {
     margin-left: 0;
   }

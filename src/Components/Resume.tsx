@@ -21,7 +21,7 @@ const Resume: FC = () => {
           <ResumeItem
             year={"2020 - 2021"}
             title={"Full Stack Developer"}
-            subTitle={"OTEN INNOVAT GROUP"}
+            subTitle={"OTEN INNOVAT"}
             text={`
               Nodejs, Express.js, React Native, React, Nextjs, PHP, Mongodb, 
               Mysql, GCP, AWS, Nginx, Docker, Cloudflare, Github, Kubernetes`}

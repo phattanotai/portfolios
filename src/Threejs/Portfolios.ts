@@ -5,14 +5,9 @@ import {
   Mesh,
   DirectionalLight,
   PCFSoftShadowMap,
-  SphereGeometry,
-  MeshBasicMaterial,
-  TextureLoader,
   AmbientLight,
-  MeshPhongMaterial,
   Object3D,
   AnimationMixer,
-  BoxGeometry,
   PlaneGeometry,
   MeshStandardMaterial,
 } from "three";
@@ -29,7 +24,8 @@ import { Octree } from "three/examples/jsm/math/Octree.js";
 import { Capsule } from "three/examples/jsm/math/Capsule";
 import DAT from "dat.gui";
 
-import { portfolios, portfoliosData } from "../data/portfolios.data";
+import { portfolios } from "../data/portfolios.data";
+import { portfoliosData } from "../data/images.data";
 
 declare const window: any;
 
@@ -79,6 +75,7 @@ export class Portfolios {
   };
   images: any;
   model: Object3D;
+  animations: any;
   angle: number = 3;
   states: string[] = [
     "Idle",
@@ -93,7 +90,9 @@ export class Portfolios {
   emotes: string[] = ["Jump", "Yes", "No", "Wave", "Punch", "ThumbsUp"];
   characterOgro: MD2CharacterComplex;
   readonly rotateSpeed: number = 0.5;
-  moveSpeed: number = 100;
+  moveSpeed: number = 300;
+  moveSpeedMax: number = 700;
+  moveSpeedRun: number = 450;
 
   // temporary data
   rotateAngle: THREE.Vector3 = new THREE.Vector3(0, 1, 0);
@@ -101,16 +100,17 @@ export class Portfolios {
   walkDirection: THREE.Vector3 = new THREE.Vector3();
   playerVelocity: THREE.Vector3 = new THREE.Vector3();
 
+  playerDirection: THREE.Vector3 = new THREE.Vector3();
+  playerOnFloor: boolean = false;
+  GRAVITY: number = 40;
+  STEPS_PER_FRAME: number = 2;
   worldOctree: Octree = new Octree();
+  playerRadius: number = 16;
   playerCollider: Capsule = new Capsule(
     new THREE.Vector3(0, 0.35, 0),
     new THREE.Vector3(0, 1, 0),
-    0.35
+    16
   );
-
-  playerDirection: THREE.Vector3 = new THREE.Vector3();
-  playerOnFloor: boolean = false;
-  GRAVITY: number = 10;
 
   draggable: THREE.Object3D;
   raycaster: THREE.Raycaster = new THREE.Raycaster();
@@ -119,7 +119,7 @@ export class Portfolios {
 
   imageSaveData: THREE.Object3D;
 
-  editImages = false;
+  editImages = true;
   showImage: any;
 
   constructor() {
@@ -157,7 +157,7 @@ export class Portfolios {
       0.1,
       2000
     );
-    this.camera.position.set(0, 40, 150);
+    this.camera.position.set(0, 40, 350);
     this.camera.lookAt(0, 0, 0);
 
     this.cameraControls = new OrbitControls(this.camera, this.canvas);
@@ -186,22 +186,17 @@ export class Portfolios {
     this.clock = new THREE.Clock();
     this.stats = Stats();
 
+    this.setImages(portfolios);
     this.onCreateLight();
     // this.onCreateFloor();
     this.createFloor();
     this.onLoadModelMap();
-    this.onLoadModelCharacter();
-    // this.onCreateModelOgro();
-
-    this.setImages(portfolios);
-    this.onLoadImages();
-    this.onRender();
 
     window.addEventListener("resize", this.onResize);
     document.addEventListener("keydown", this.onKeyDown);
     document.addEventListener("keyup", this.onKeyUp);
 
-    document.body.addEventListener("mousemove", (event) => {
+    document.body.addEventListener("mousemove", (event: MouseEvent) => {
       this.camera.rotation.y -= event.movementX / 500;
       this.camera.rotation.x -= event.movementY / 500;
     });
@@ -259,7 +254,7 @@ export class Portfolios {
     }
   };
 
-  private onMouseClick = (e) => {
+  private onMouseClick = (e: MouseEvent) => {
     if (this.draggable) {
       console.log(`dropping draggable ${this.draggable.userData.name}`);
       this.draggable = null as any;
@@ -276,14 +271,14 @@ export class Portfolios {
       console.log(`found draggable ${this.draggable.userData.name}`);
 
       if (!this.editImages) {
-        this.showImage(0);
+        // this.showImage(0);
       } else {
-        this.createDatGui(this.draggable);
+        this.createImagesGui(this.draggable);
       }
     }
   };
 
-  private onMouseMove = (e) => {
+  private onMouseMove = (e: MouseEvent) => {
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.moveMouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     this.moveMouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
@@ -344,11 +339,11 @@ export class Portfolios {
                 mesh.scale.copy(data.scale);
                 mesh.rotation.copy(data.rotation);
               } else {
-                // mesh.scale.x = texture.image.width / 1000;
-                // mesh.scale.y = texture.image.height / 500;
-                // const i = this.random(-Math.PI * 2, Math.PI * 2);
-                // mesh.position.setFromCylindricalCoords(600, i, 40);
-                // mesh.position.y = 50;
+                mesh.scale.x = texture.image.width / 1000;
+                mesh.scale.y = texture.image.height / 500;
+                const i = this.random(-Math.PI * 2, Math.PI * 2);
+                mesh.position.setFromCylindricalCoords(600, i, 40);
+                mesh.position.y = 50;
               }
 
               mesh.userData.draggable = true;
@@ -372,7 +367,7 @@ export class Portfolios {
       gltf.scene.scale.z = 120;
       gltf.scene.scale.y = 40;
 
-      // gltf.scene.position.y = 70;
+      // gltf.scene.position.y = 65;
 
       gltf.scene.userData.ground = true;
 
@@ -388,7 +383,10 @@ export class Portfolios {
           }
         }
       });
-      // this.onRender();
+      this.onLoadModelCharacter();
+      // this.onCreateModelOgro();
+      this.onLoadImages();
+      this.onRender();
     });
   };
 
@@ -483,13 +481,14 @@ export class Portfolios {
       url,
       (gltf) => {
         this.model = gltf.scene;
+        this.animations = gltf.animations;
         // this.model.rotateY(3);
         this.model.receiveShadow = true;
         this.model.scale.set(10, 10, 10);
 
         // this.model.position.y = -10;
         this.scene.add(this.model);
-        // this.createGUI(this.model, gltf.animations);
+        // this.createModelGUI();
         this.setActionCharacter(this.model, gltf.animations);
         this.playerVelocity.copy(this.model.position);
       },
@@ -500,20 +499,22 @@ export class Portfolios {
     );
   }
 
-  private updatePlayer = (deltaTime) => {
+  private updatePlayer = (deltaTime: number) => {
     let damping = Math.exp(-4 * deltaTime) - 1;
 
     if (!this.playerOnFloor) {
       this.playerVelocity.y -= this.GRAVITY * deltaTime;
       // small air resistance
-      damping *= 0.01;
+      damping *= 0.1;
     }
 
     this.playerVelocity.addScaledVector(this.playerVelocity, damping);
     const deltaPosition = this.playerVelocity.clone().multiplyScalar(deltaTime);
     this.playerCollider.translate(deltaPosition);
     this.playerCollisions();
+
     this.model.position.copy(this.playerCollider.end);
+    this.model.position.y -= this.playerRadius;
   };
 
   private playerCollisions = () => {
@@ -769,15 +770,16 @@ export class Portfolios {
           );
         }
 
-        this.moveSpeed += 0.5;
-        if (this.moveSpeed > 250) {
-          this.moveSpeed = 250;
+        this.moveSpeed += 1;
+        if (this.moveSpeed > this.moveSpeedMax) {
+          this.moveSpeed = this.moveSpeedMax;
         }
         this.rotateModel();
         this.updateCameraTargetByModel();
       }
+
       // -- check speed for run
-      if (this.moveSpeed > 200) {
+      if (this.moveSpeed > this.moveSpeedRun) {
         if (!this.controls.running) {
           this.controls.running = true;
           if (this.controls.running) {
@@ -802,7 +804,7 @@ export class Portfolios {
         (this.api.state === "Walking" ||
           (this.api.state === "Running" && this.model))
       ) {
-        this.moveSpeed = 50;
+        this.moveSpeed = 300;
         this.api.state = "Idle";
         this.fadeToAction(this.api.state, 0.5);
       }
@@ -819,7 +821,7 @@ export class Portfolios {
     }
   };
 
-  private modelAction = (delta) => {
+  private modelAction = (delta: number) => {
     if (this.controls) {
       if (this.controls.walking || this.controls.running) {
         // calculate towards camera direction
@@ -898,7 +900,7 @@ export class Portfolios {
     }
   };
 
-  private modelActionB = (delta) => {
+  private modelActionB = (delta: number) => {
     if (this.controls) {
       // --set model moment
       if (this.controls.moveForward) {
@@ -1067,8 +1069,8 @@ export class Portfolios {
     if (this.model) {
       this.checkWalking();
       this.controlsModel(delta);
-      const STEPS_PER_FRAME = this.moveSpeed <= 100 ? 1 : 8;
-      for (let i = 0; i < STEPS_PER_FRAME; i++) {
+      this.STEPS_PER_FRAME = this.moveSpeed <= 350 ? 2 : 2;
+      for (let i = 0; i < this.STEPS_PER_FRAME; i++) {
         this.updatePlayer(delta);
       }
       // this.modelAction(delta);
@@ -1128,75 +1130,15 @@ export class Portfolios {
     if (this.gui) {
       this.gui.destroy();
     }
-
     if (this.datgui) {
       this.datgui.destroy();
     }
-
     window.removeEventListener("resize", this.onResize, false);
     window.removeEventListener("click", this.onMouseClick, false);
     window.removeEventListener("mousemove", this.onMouseMove, false);
   };
 
-  public moveForwardBtnT = (btn) => {
-    switch (btn) {
-      case "w":
-        this.controls.moveForward = true;
-        this.controls.walking = true;
-        break;
-      case "s":
-        this.controls.moveBackward = true;
-        this.controls.walking = true;
-        break;
-      case "a":
-        this.controls.moveLeft = true;
-        this.controls.walking = true;
-        break;
-      case "d":
-        this.controls.moveRight = true;
-        this.controls.walking = true;
-        break;
-      case "c":
-        this.controls.wave = true;
-        break;
-      case "space":
-        this.controls.jump = true;
-        break;
-      // case 'ControlLeft':
-      // case 'ControlRight': controls.attack = true; break;
-    }
-  };
-
-  public moveForwardBtnF = (btn) => {
-    switch (btn) {
-      case "w":
-        this.controls.moveForward = false;
-        this.controls.walking = false;
-        break;
-      case "s":
-        this.controls.moveBackward = false;
-        this.controls.walking = false;
-        break;
-      case "a":
-        this.controls.moveLeft = false;
-        this.controls.walking = false;
-        break;
-      case "d":
-        this.controls.moveRight = false;
-        this.controls.walking = false;
-        break;
-      case "c":
-        this.controls.wave = false;
-        break;
-      case "space":
-        this.controls.jump = false;
-        break;
-      // case 'ControlLeft':
-      // case 'ControlRight': controls.attack = true; break;
-    }
-  };
-
-  private onKeyDown = (event) => {
+  private onKeyDown = (event: KeyboardEvent) => {
     if (this.controls) {
       switch (event.code) {
         case "ArrowUp":
@@ -1231,7 +1173,7 @@ export class Portfolios {
     }
   };
 
-  private onKeyUp = (event) => {
+  private onKeyUp = (event: KeyboardEvent) => {
     if (this.controls) {
       switch (event.code) {
         case "ArrowUp":
@@ -1282,7 +1224,7 @@ export class Portfolios {
     this.activeAction.play();
   };
 
-  private createDatGui = (object: THREE.Object3D) => {
+  private createImagesGui = (object: THREE.Object3D) => {
     if (this.datgui) {
       this.datgui.destroy();
     }
@@ -1317,7 +1259,6 @@ export class Portfolios {
         Exit: () => {
           if (this.datgui) {
             this.datgui.destroy();
-
             this.datgui = undefined;
           }
         },
@@ -1340,63 +1281,61 @@ export class Portfolios {
     };
 
     data[this.imageSaveData.userData.url] = d;
-
     localStorage.setItem("images", JSON.stringify(data));
     if (this.datgui) {
       this.datgui.destroy();
-
       this.datgui = undefined;
     }
   };
 
-  private createGUI = (model: any, animations: any) => {
-    this.gui = new GUI();
-    this.mixer = new THREE.AnimationMixer(model);
-    for (let i = 0; i < animations.length; i++) {
-      const clip = animations[i];
-      const action = this.mixer.clipAction(clip);
-      this.actions[clip.name] = action;
-
-      if (
-        this.emotes.indexOf(clip.name) >= 0 ||
-        this.states.indexOf(clip.name) >= 4
-      ) {
-        action.clampWhenFinished = true;
-        action.loop = THREE.LoopOnce;
+  public createModelGUI = () => {
+    if (this.gui) {
+      this.gui.destroy();
+      this.gui = undefined;
+    } else {
+      this.gui = new GUI();
+      this.mixer = new THREE.AnimationMixer(this.model);
+      for (let i = 0; i < this.animations.length; i++) {
+        const clip = this.animations[i];
+        const action = this.mixer.clipAction(clip);
+        this.actions[clip.name] = action;
+        if (
+          this.emotes.indexOf(clip.name) >= 0 ||
+          this.states.indexOf(clip.name) >= 4
+        ) {
+          action.clampWhenFinished = true;
+          action.loop = THREE.LoopOnce;
+        }
       }
+
+      // ---states
+      const statesFolder = this.gui.addFolder("States");
+      const clipCtrl = statesFolder.add(this.api, "state").options(this.states);
+      clipCtrl.onChange(() => {
+        this.fadeToAction(this.api.state, 0.5);
+      });
+      statesFolder.open();
+
+      // ---emotes
+      this.emoteFolder = this.gui.addFolder("Emotes");
+      for (let i = 0; i < this.emotes.length; i++) {
+        this.createEmoteCallback(this.emotes[i]);
+      }
+      this.emoteFolder.open();
+
+      // ---expressions
+      const face: any = this.model.getObjectByName("Head_4");
+      const expressions = Object.keys(face.morphTargetDictionary);
+      const expressionFolder = this.gui.addFolder("Expressions");
+
+      for (let i = 0; i < expressions.length; i++) {
+        expressionFolder
+          .add(face.morphTargetInfluences, i.toString(), 0, 1, 0.01)
+          .name(expressions[i]);
+      }
+      expressionFolder.open();
+      // this.gui.close();
     }
-
-    // ---states
-
-    const statesFolder = this.gui.addFolder("States");
-    const clipCtrl = statesFolder.add(this.api, "state").options(this.states);
-    clipCtrl.onChange(() => {
-      this.fadeToAction(this.api.state, 0.5);
-    });
-    statesFolder.open();
-
-    // ---emotes
-
-    this.emoteFolder = this.gui.addFolder("Emotes");
-    for (let i = 0; i < this.emotes.length; i++) {
-      this.createEmoteCallback(this.emotes[i]);
-    }
-    this.emoteFolder.open();
-
-    // ---expressions
-
-    const face = model.getObjectByName("Head_4");
-    const expressions = Object.keys(face.morphTargetDictionary);
-    const expressionFolder = this.gui.addFolder("Expressions");
-
-    for (let i = 0; i < expressions.length; i++) {
-      expressionFolder
-        .add(face.morphTargetInfluences, i.toString(), 0, 1, 0.01)
-        .name(expressions[i]);
-    }
-    expressionFolder.open();
-
-    this.gui.close();
   };
 
   private getForwardVector = () => {
@@ -1414,5 +1353,63 @@ export class Portfolios {
     this.playerDirection.cross(this.camera.up);
 
     return this.playerDirection;
+  };
+
+  public moveForwardBtnT = (btn: string) => {
+    switch (btn) {
+      case "w":
+        this.controls.moveForward = true;
+        this.controls.walking = true;
+        break;
+      case "s":
+        this.controls.moveBackward = true;
+        this.controls.walking = true;
+        break;
+      case "a":
+        this.controls.moveLeft = true;
+        this.controls.walking = true;
+        break;
+      case "d":
+        this.controls.moveRight = true;
+        this.controls.walking = true;
+        break;
+      case "c":
+        this.controls.wave = true;
+        break;
+      case "space":
+        this.controls.jump = true;
+        break;
+      // case 'ControlLeft':
+      // case 'ControlRight': controls.attack = true; break;
+    }
+  };
+
+  public moveForwardBtnF = (btn: string) => {
+    switch (btn) {
+      case "w":
+        this.controls.moveForward = false;
+        this.controls.walking = false;
+        break;
+      case "s":
+        this.controls.moveBackward = false;
+        this.controls.walking = false;
+        break;
+      case "a":
+        this.controls.moveLeft = false;
+        this.controls.walking = false;
+        break;
+      case "d":
+        this.controls.moveRight = false;
+        this.controls.walking = false;
+        break;
+      case "c":
+        this.controls.wave = false;
+        break;
+      case "space":
+        this.controls.jump = false;
+        break;
+      // case 'ControlLeft':
+      // case 'ControlRight': controls.attack = true; break;
+    }
   };
 }

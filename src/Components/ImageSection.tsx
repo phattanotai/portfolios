@@ -1,7 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import LanguageSwitcherSelector from "./LanguageSwitcherSelector";
 import PrimaryButton from "./PrimaryButton";
 const resume = "../assets/images/resume.jpg";
 const resume2 = "../assets/images/resume2.jpg";
@@ -11,7 +10,7 @@ const ImageSection: FC = () => {
   return (
     <ImageSectionStyled>
       <div className="left-content">
-        <img src={resume} alt="" />
+        {/* <img src={resume} alt="" /> */}
         <img src={resume2} alt="" />
       </div>
       <div className="right-content">
@@ -20,12 +19,24 @@ const ImageSection: FC = () => {
         </h4>
         <h1>Phattanothai Pukham</h1>
         <h2>I build things for the web.</h2>
-        <p className="paragraph">
+        {/* <p className="paragraph">
           I’m a software engineer specializing in building exceptional digital
           experiences. Currently, I’m focused on building accessible,
           human-centered products at Upstatement.
-        </p>
+        </p> */}
 
+        <p className="paragraph">
+          I am interested in working as a programmer. And what I'm interested in
+          is Computer Programming,Web/App Developer, Devops
+        </p>
+        <p>
+          I don't have much work experience. But I am ready to learn and
+          develop. I'm the type of person who likes a challenge. easy to get
+          along with I like to try new things and develop myself all the time.
+        </p>
+        <br />
+        <p>I hope that we will have the opportunity to work together.</p>
+        <br />
         <div className="about-info">
           <div className="info-title">
             <p>Full Name :</p>
@@ -83,11 +94,11 @@ const ImageSectionStyled = styled.div`
     }
   }
   h1 {
-    font-size: 3rem;
+    font-size: 2.7rem;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--white-color);
   }
 
