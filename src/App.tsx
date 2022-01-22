@@ -50,9 +50,9 @@ const AppChildren = () => {
 function App() {
   return (
     <div className="App">
-      {/* <PreLoader> */}
-      <AppChildren></AppChildren>
-      {/* </PreLoader> */}
+      <PreLoader>
+        <AppChildren></AppChildren>
+      </PreLoader>
     </div>
   );
 }
