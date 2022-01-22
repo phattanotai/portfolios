@@ -119,7 +119,7 @@ export class Portfolios {
 
   imageSaveData: THREE.Object3D;
 
-  editImages = true;
+  editImages: boolean = false;
   showImage: any;
 
   constructor() {
@@ -331,7 +331,6 @@ export class Portfolios {
               });
               const geometry = new THREE.BoxGeometry(100, 100, 2);
               const mesh = new THREE.Mesh(geometry, materialPainting);
-
               const data = portfoliosData[imageUrl];
 
               if (data) {
@@ -362,15 +361,12 @@ export class Portfolios {
     const loader = new GLTFLoader().setPath("./assets//models/gltf/");
     loader.load("collision-world.glb", (gltf) => {
       // gltf.scene.scale.set(100, 0, 100);
-
       gltf.scene.scale.x = 120;
       gltf.scene.scale.z = 120;
       gltf.scene.scale.y = 40;
-
       // gltf.scene.position.y = 65;
 
       gltf.scene.userData.ground = true;
-
       this.scene.add(gltf.scene);
       this.worldOctree.fromGraphNode(gltf.scene);
       gltf.scene.traverse((child: any) => {
@@ -384,7 +380,6 @@ export class Portfolios {
         }
       });
       this.onLoadModelCharacter();
-      // this.onCreateModelOgro();
       this.onLoadImages();
       this.onRender();
     });
@@ -430,7 +425,7 @@ export class Portfolios {
 
   private setNewScene = () => {
     this.onCreateFloor();
-    // this.onCreateBox();
+    this.onCreateBox();
   };
 
   private onCreateLight = () => {
@@ -606,7 +601,7 @@ export class Portfolios {
   };
 
   private createFloor = () => {
-    const floorGeometry = new PlaneGeometry(3500, 3500);
+    const floorGeometry = new PlaneGeometry(4500, 4500);
     const floorMaterial = new MeshStandardMaterial({
       color: 0xffffff,
     });
@@ -744,7 +739,7 @@ export class Portfolios {
     this.model.quaternion.rotateTowards(this.rotateQuarternion, 0.2);
   };
 
-  private controlsModel = (delta) => {
+  private controlsModel = (delta: number) => {
     if (this.controls) {
       if (this.controls.walking || this.controls.running) {
         const speedDelta = delta * (this.playerOnFloor ? this.moveSpeed : 100);
@@ -1068,11 +1063,13 @@ export class Portfolios {
     }
     if (this.model) {
       this.checkWalking();
+
       this.controlsModel(delta);
       this.STEPS_PER_FRAME = this.moveSpeed <= 350 ? 2 : 2;
       for (let i = 0; i < this.STEPS_PER_FRAME; i++) {
         this.updatePlayer(delta);
       }
+
       // this.modelAction(delta);
     }
   };
@@ -1093,11 +1090,9 @@ export class Portfolios {
   private fadeToAction = (name: string, duration: number) => {
     this.previousAction = this.activeAction;
     this.activeAction = this.actions[name];
-
     if (this.previousAction !== this.activeAction) {
       this.previousAction.fadeOut(duration);
     }
-
     if (this.activeAction) {
       this.activeAction
         .reset()
@@ -1110,7 +1105,6 @@ export class Portfolios {
 
   private onRender = () => {
     const dt = this.clock.getDelta();
-
     this.dragObject();
     this.resetMaterials();
     this.hoverObject();
@@ -1269,11 +1263,9 @@ export class Portfolios {
 
   private saveData = () => {
     let data = {};
-
     if (localStorage.getItem("images")) {
       data = JSON.parse(localStorage.getItem("images"));
     }
-
     const d = {
       position: this.imageSaveData.position,
       scale: this.imageSaveData.scale,
@@ -1342,7 +1334,6 @@ export class Portfolios {
     this.camera.getWorldDirection(this.playerDirection);
     this.playerDirection.y = 0;
     this.playerDirection.normalize();
-
     return this.playerDirection;
   };
 
@@ -1351,7 +1342,6 @@ export class Portfolios {
     this.playerDirection.y = 0;
     this.playerDirection.normalize();
     this.playerDirection.cross(this.camera.up);
-
     return this.playerDirection;
   };
 

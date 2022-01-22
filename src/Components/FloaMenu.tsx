@@ -167,13 +167,6 @@ const FloaMenuDiv = styled.div`
   }
 
   @media screen and (max-width: 1024px) {
-    .light-dark-mode {
-      height: 5.5rem;
-      width: 9.5rem;
-    }
-    .style-switcher {
-      top: 30px;
-    }
   }
 
   @media screen and (max-width: 768px) {

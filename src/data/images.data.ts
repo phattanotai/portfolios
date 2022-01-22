@@ -1024,6 +1024,361 @@ const portfoliosData: any = {
       _order: "XYZ",
     },
   },
+
+  ///
+  //
+  //
+  //
+  //
+
+  "./assets/images/portImages/okwin/backoffice/0.JPG": {
+    position: {
+      x: -531.3685126714861,
+      y: 50,
+      z: 1058.8957102715865,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _order: "XYZ",
+      _x: 0,
+      _y: 1.5526603016535458,
+      _z: 0,
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/1.JPG": {
+    position: {
+      x: -531.0733015658142,
+      y: 50,
+      z: 1234.2310890168544,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 1.5526603016535458,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/2.JPG": {
+    position: {
+      x: -530.2391363825928,
+      y: 50,
+      z: 1409.801196245591,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _order: "XYZ",
+      _x: 0,
+      _y: 1.5526603016535458,
+      _z: 0,
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/3.JPG": {
+    position: {
+      x: -530.290324724295,
+      y: 50,
+      z: 1590.4154624601751,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _order: "XYZ",
+      _x: 0,
+      _y: 1.5526603016535458,
+      _z: 0,
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/4.JPG": {
+    position: {
+      x: -527.2887924285917,
+      y: 50,
+      z: 1750.0947772323161,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 1.5526603016535458,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/5.JPG": {
+    position: {
+      x: -531.7018051567866,
+      y: 50,
+      z: 1930.4492671188464,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 1.5526603016535458,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/6.JPG": {
+    position: {
+      x: -586.680536594326,
+      y: 50,
+      z: 2100.979969681514,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 1.1368851581145212,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/7.JPG": {
+    position: {
+      x: -406.2188001721353,
+      y: 34.63725659141823,
+      z: 2201.4603889003383,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/8.JPG": {
+    position: {
+      x: -231.19410366743904,
+      y: 36.843012235050836,
+      z: 2205.391626454688,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/backoffice/9.JPG": {
+    position: {
+      x: -95.50412464126333,
+      y: 33.53437876960193,
+      z: 2206.7569600415422,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  //
+  //
+  //
+  "./assets/images/portImages/okwin/web/1.JPG": {
+    position: {
+      x: 47.58324499273388,
+      y: 32.43150094778563,
+      z: 2203.7470924788367,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/web/2.JPG": {
+    position: {
+      x: 201.7982716602654,
+      y: 36.843012235050836,
+      z: 2203.036403498562,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/web/3.JPG": {
+    position: {
+      x: 346.6149950964518,
+      y: 30.225745304153023,
+      z: 2207.2541280467385,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/web/4.JPG": {
+    position: {
+      x: 501.2408522640491,
+      y: 25.814234016887816,
+      z: 2207.242459353797,
+    },
+    scale: {
+      x: 0.4,
+      y: 0.6,
+      z: 1.037394451145959,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  //
+  //
+  //
+  "./assets/images/portImages/okwin/app/1.JPG": {
+    position: {
+      x: 729.9040922507413,
+      y: 32.43150094778563,
+      z: 2205.6984835558915,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/app/2.JPG": {
+    position: {
+      x: 917.11248909846,
+      y: 32.43150094778563,
+      z: 2206.894246513672,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/app/3.JPG": {
+    position: {
+      x: 1118.2207006061847,
+      y: 31.328623125969322,
+      z: 2205.416487630942,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/app/4.JPG": {
+    position: {
+      x: 1323.515988921996,
+      y: 31.328623125969322,
+      z: 2205.356408573908,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
+  "./assets/images/portImages/okwin/app/5.JPG": {
+    position: {
+      x: 1503.671384396818,
+      y: 31.328623125969322,
+      z: 2207.277513216363,
+    },
+    scale: {
+      x: 0.82,
+      y: 0.49,
+      z: 1,
+    },
+    rotation: {
+      _x: 0,
+      _y: 0,
+      _z: 0,
+      _order: "XYZ",
+    },
+  },
 };
 
 export { portfoliosData };
