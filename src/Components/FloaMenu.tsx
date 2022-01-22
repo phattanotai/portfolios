@@ -52,7 +52,8 @@ const FloaMenu: FC = () => {
           }}
         >
           <div className="style-switcher-toggler s-icon outer-shadow hover-in-shadow">
-            <i className="fas fa-cog fa-spin"></i>
+            {/* <i className="fas fa-cog fa-spin"></i> */}
+            <i className="	fa fa-gear fa-spin"></i>
           </div>
         </div>
         <div className="light-dark-mode">
