@@ -228,7 +228,7 @@ const Portfolios3dPage: FC = () => {
               );
             })}
           </ImagesScoll>
-          <ImagesScollMobile ref={imgScollMobileRef}>
+          {/* <ImagesScollMobile ref={imgScollMobileRef}>
             {images.map((item: imgDataType, index: number) => {
               return (
                 <div key={index}>
@@ -246,7 +246,7 @@ const Portfolios3dPage: FC = () => {
                 </div>
               );
             })}
-          </ImagesScollMobile>
+          </ImagesScollMobile> */}
 
           <ControlUi>
             <div className="control-ui-w">
@@ -329,33 +329,33 @@ const Portfolios3dPage: FC = () => {
   );
 };
 
-const ImagesScollMobile = styled.div`
-  position: absolute;
-  bottom: 30px;
+// const ImagesScollMobile = styled.div`
+//   position: absolute;
+//   bottom: 30px;
 
-  width: 100%;
-  height: 20%;
-  display: none;
-  overflow: scroll;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
+//   width: 100%;
+//   height: 20%;
+//   display: none;
+//   overflow: scroll;
+//   overflow-x: auto;
+//   overflow-y: hidden;
+//   white-space: nowrap;
 
-  div {
-    width: 30%;
-    height: 100%;
-    text-align: center;
-    display: inline;
-  }
+//   div {
+//     width: 30%;
+//     height: 100%;
+//     text-align: center;
+//     display: inline;
+//   }
 
-  img {
-    height: 85%;
-    width: 60%;
-    padding: 2px;
-    border-radius: 15px;
-    cursor: pointer;
-  }
-`;
+//   img {
+//     height: 85%;
+//     width: 60%;
+//     padding: 2px;
+//     border-radius: 15px;
+//     cursor: pointer;
+//   }
+// `;
 
 const IconUi = styled.div`
   Button {
