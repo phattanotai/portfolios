@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 
 import location from "../data/json/world-locations.json";
-import success from "../data/json/success-screen.json";
+import success from "../data/json/loading.json";
 import styled from "styled-components";
 import FadeIn from "react-fade-in";
 
@@ -34,7 +34,7 @@ const PreLoader = ({ children }: any) => {
       setTimeout(() => {
         setcompleted(true);
       }, 1000);
-    }, 4000);
+    }, 3000);
   }, []);
 
   return (
@@ -46,7 +46,10 @@ const PreLoader = ({ children }: any) => {
               {!loading ? (
                 <Lottie options={defaultOptions1} height={200} width={200} />
               ) : (
-                <Lottie options={defaultOptions2} height={100} width={100} />
+                <div className="welcome">
+                  <h2 className="loading-text">WELCOME</h2>
+                  <Lottie options={defaultOptions2} height={100} width={100} />
+                </div>
               )}
             </div>
           </div>
@@ -73,6 +76,10 @@ const LoadingDiv = styled.div`
   .flaxBox {
     text-align: center;
     display: flex;
+    .welcome {
+      display: flex;
+      align-items: center;
+    }
   }
 `;
 
