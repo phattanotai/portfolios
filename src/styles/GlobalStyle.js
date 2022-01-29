@@ -38,6 +38,8 @@ const GlobalStyle = createGlobalStyle`
     --scrollbar-bg-color: #383838;
     --scrollbar-thump-color: #6b6b6b;
     --scrollbar-track-color: #383838;
+
+    --portfolios-menu-color: white;
 }
 .dark-theme{
     --primary-color: #007bff;
@@ -56,6 +58,8 @@ const GlobalStyle = createGlobalStyle`
     --scrollbar-bg-color: #383838;
     --scrollbar-thump-color: #6b6b6b;
     --scrollbar-track-color: #383838;
+
+    --portfolios-menu-color: rgba(43,44,47,0.5);
 }
 
 *{
