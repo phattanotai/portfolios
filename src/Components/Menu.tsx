@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import GitHub from "@material-ui/icons/GitHub";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -40,9 +40,20 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const Menu: FC<PropsType> = ({ menuItem }) => {
+  const [expandeds, setExpandeds] = useState<boolean[]>([]);
   const [expanded, setExpanded] = useState<boolean>(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  useEffect(() => {
+    const data: boolean[] = [];
+    for (const index in menuItem) {
+      data[index] = false;
+    }
+    setExpandeds(data);
+  }, []);
+
+  const handleExpandClick = (index: number) => {
+    let newArr = [...expandeds]; // copying the old datas array
+    newArr[index] = !newArr[index]; // replace newArr[index] value with whatever you want to change it to
+    setExpandeds(newArr);
   };
 
   const goToLink = (link: string) => {
@@ -50,9 +61,9 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
   };
   return (
     <MenuItemStyled>
-      {menuItem.map((item: PortfoliosType) => {
+      {menuItem.map((item: PortfoliosType, index: number) => {
         return (
-          <Card key={item.id}>
+          <Card key={index}>
             <CardHeader title={item.title} subheader={item.text} />
             <div className="portfolio-img">
               {item.images.map((image: any) => {
@@ -71,13 +82,8 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
                 );
               })}
             </div>
-
             <CardContent>
-              <Typography variant="body2">
-                This impressive paella is a perfect party dish and a fun meal to
-                cook together with your guests. Add 1 cup of frozen peas along
-                with the mussels, if you like.
-              </Typography>
+              <Typography variant="body2">{item.content}</Typography>
             </CardContent>
             <CardActions disableSpacing>
               <IconButton
@@ -96,18 +102,27 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
                   goToLink(item.link1);
                 }}
               >
-                <FavoriteIcon />
+                <GitHub />
               </IconButton>
-              <ExpandMore
-                expand={expanded}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon />
-              </ExpandMore>
+
+              {/* <ExpandMore
+                  expand={expandeds[index]}
+                  onClick={() => {
+                    handleExpandClick(index);
+                  }}
+                  aria-expanded={expandeds[index]}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </ExpandMore> */}
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+
+            <Collapse
+              in={expandeds[index]}
+              timeout="auto"
+              unmountOnExit
+              className="collapse-info"
+            >
               <CardContent>
                 <Typography paragraph>Method:</Typography>
                 <Typography paragraph>
@@ -155,6 +170,13 @@ const MenuItemStyled = styled.div`
     }
   }
 
+  .collapse-info {
+    position: absolute;
+    width: 41%;
+    min-height: 20%;
+    background-color: var(--sidebar-dark-color);
+    z-index: 100;
+  }
   .portfolio-img {
     align-items: center;
     text-align: center;

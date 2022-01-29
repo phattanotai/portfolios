@@ -26,10 +26,13 @@ export type imgDataType = {
 const Portfolios3dPage: FC = () => {
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [images, setImages] = useState<imgDataType[]>([]);
+  const [blocker, setBlocker] = useState<boolean>(true);
+
   let imageRef = useRef<HTMLImageElement>(null);
   let imgScollRef = useRef<HTMLDivElement>(null);
   let imgScollMobileRef = useRef<HTMLDivElement>(null);
   let imageShowRef = useRef<HTMLDivElement>(null);
+
   const history = useHistory<string>();
 
   const checkMobile = window.matchMedia(
@@ -38,34 +41,14 @@ const Portfolios3dPage: FC = () => {
 
   useEffect(() => {
     portfolios = new Portfolios();
-    const img: imgDataType[] = [];
+    // portfolios.onInit();
 
     if (checkMobile) {
       history.replace("portfolios");
     }
 
-    if (portfolios) {
-      for (let index in portfolios.images) {
-        const items = portfolios.images[index];
-
-        for (let i = 0; i < items.length; i++) {
-          const imagesData = items[i];
-          for (let imageUrl of imagesData.images) {
-            const data = {
-              url: imageUrl,
-              width: imagesData.width ? imagesData.width : "86%",
-              height: imagesData.height ? imagesData.height : "90%",
-              type: imagesData.category,
-            };
-            img.push(data);
-          }
-        }
-      }
-      setImages(img);
-    }
-
     return () => {
-      if (portfolios) {
+      if (portfolios && !blocker) {
         portfolios.onDestroy();
       }
     };
@@ -131,11 +114,61 @@ const Portfolios3dPage: FC = () => {
     portfolios.moveForwardBtnF(btn);
   };
 
+  const goToNormal = () => {
+    history.replace("portfolios");
+  };
+
+  const continues3D = () => {
+    setBlocker(false);
+    portfolios.onInit();
+
+    const img: imgDataType[] = [];
+
+    if (portfolios) {
+      for (let index in portfolios.images) {
+        const items = portfolios.images[index];
+
+        for (let i = 0; i < items.length; i++) {
+          const imagesData = items[i];
+          for (let imageUrl of imagesData.images) {
+            const data = {
+              url: imageUrl,
+              width: imagesData.width ? imagesData.width : "86%",
+              height: imagesData.height ? imagesData.height : "90%",
+              type: imagesData.category,
+            };
+            img.push(data);
+          }
+        }
+      }
+      setImages(img);
+    }
+  };
+
   return (
     <>
       <PortfoliosDiv>
+        <Blocker style={{ display: blocker ? "block" : "none" }}>
+          <div className="instructions">
+            <p style={{ fontSize: "36px", marginBottom: "20px" }}>
+              Click to play
+            </p>
+            <p>
+              Move: WASD
+              <br />
+              Jump: SPACE
+              <br />
+              Look: MOUSE
+            </p>
+          </div>
+          <div className="port-link">
+            <a onClick={continues3D}>Continues</a>
+
+            <a onClick={goToNormal}>View Normal</a>
+          </div>
+        </Blocker>
         <div id="canvasContainer">
-          <IconUi>
+          <IconUi style={{ display: !blocker ? "block" : "none" }}>
             <div className="icon-ui">
               <div className="icon-bar" id="icon-bar">
                 {/* <div
@@ -356,6 +389,37 @@ const Portfolios3dPage: FC = () => {
 //     cursor: pointer;
 //   }
 // `;
+
+const Blocker = styled.div`
+  width: 80vw;
+  height: 100vh;
+  background-color: black;
+  align-items: center;
+  display: grid;
+
+  .instructions {
+    display: grid;
+    position: fixed;
+    left: 48%;
+    top: 35%;
+  }
+
+  .port-link {
+    display: inline;
+    position: fixed;
+    left: 48%;
+    top: 75%;
+
+    a {
+      margin-right: 180px;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: brown;
+    }
+  }
+`;
 
 const IconUi = styled.div`
   Button {

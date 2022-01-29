@@ -123,15 +123,13 @@ export class Portfolios {
   showImage: any;
 
   constructor() {
-    this.canvasContainer = document.getElementById("canvasContainer");
     if (this.canvasContainer) {
-      // this.onCreateBlocker();
-      // this.onCreateInfo();
-      this.onInit();
+      // this.onInit();
     }
   }
 
-  onInit() {
+  public onInit() {
+    this.canvasContainer = document.getElementById("canvasContainer");
     this.canvas = document.createElement("canvas");
     this.canvas.setAttribute("id", "three-canvas");
     this.canvasContainer.appendChild(this.canvas);
@@ -284,38 +282,6 @@ export class Portfolios {
     this.moveMouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
   };
 
-  private onCreateInfo = () => {
-    const info: HTMLElement = document.createElement("div");
-    info.setAttribute("id", "info");
-    const htmlInfo = ` Portfolios
-          <br />
-          <p>
-            The animation system allows clips to be played individually, looped,
-            or crossfaded with other clips. This example shows a character
-            looping in one of several base animation states, then transitioning
-            smoothly to one-time actions. Facial expressions are controlled
-            independently with morph targets.
-          </p>
-          Model by
-          <a
-            href="https://www.patreon.com/quaternius"
-            target="_blank"
-            rel="noopener"
-          >
-            Tomás Laulhé
-          </a>
-          , modifications by{" "}
-          <a href="https://donmccurdy.com/" target="_blank" rel="noopener">
-            Don McCurdy
-          </a>
-          . CC0.
-          <br />`;
-
-    info.innerHTML = htmlInfo;
-
-    this.canvasContainer.appendChild(info);
-  };
-
   private onLoadImages = () => {
     for (let index in this.images) {
       const items = this.images[index];
@@ -391,36 +357,6 @@ export class Portfolios {
 
   private random = (min: number, max: number) => {
     return min + Math.random() * (max - min);
-  };
-
-  private onCreateBlocker = () => {
-    const blocker: HTMLElement = document.createElement("div");
-    blocker.setAttribute("id", "blocker");
-
-    const instructions: HTMLElement = document.createElement("div");
-    instructions.setAttribute("id", "instructions");
-
-    const html = `<p style={{ fontSize: "36px" }}>Click to play</p>
-            <p>
-              Move: WASD
-              <br />
-              Jump: SPACE
-              <br />
-              Look: MOUSE
-            </p>`;
-
-    instructions.innerHTML = html;
-
-    blocker.appendChild(instructions);
-
-    instructions.addEventListener("click", () => {
-      instructions.style.display = "none";
-      blocker.style.display = "none";
-      this.gui.open();
-      this.setNewScene();
-    });
-
-    this.canvasContainer.appendChild(blocker);
   };
 
   private setNewScene = () => {

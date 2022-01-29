@@ -2,14 +2,27 @@ import { FC, useState, useRef } from "react";
 import { MainLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import portfoliosData from "../data/portfolios";
+import { PortfoliosType } from "../data/portfolios";
 import Menu from "../Components/Menu";
 import Button from "../Components/Button";
 import styled from "styled-components";
 
-const allButtons = [
+// const allButtons = [
+//   "All",
+//   ...Array.from(new Set(portfoliosData.map((item) => item.category))),
+// ];
+
+const allButtons2 = [
   "All",
   ...Array.from(new Set(portfoliosData.map((item) => item.category))),
 ];
+
+console.log(allButtons2);
+
+let allButtons: string[] = ["All"];
+portfoliosData.map((item) => {
+  allButtons = [...Array.from(new Set(allButtons)), ...item.category];
+});
 
 export type imgDataType = {
   url: string;
@@ -19,10 +32,10 @@ export type imgDataType = {
 };
 
 const PortfoliosPage: FC = () => {
-  const [menuItem, setMenuItems] = useState(portfoliosData);
-  const [button, setButtons] = useState(allButtons);
+  const [menuItem, setMenuItems] = useState<PortfoliosType[]>(portfoliosData);
+  const [button, setButtons] = useState<string[]>(allButtons);
 
-  const checkMobile = window.matchMedia(
+  const checkMobile: boolean = window.matchMedia(
     "only screen and (max-width: 1024px)"
   ).matches;
 
@@ -31,8 +44,8 @@ const PortfoliosPage: FC = () => {
       setMenuItems(portfoliosData);
       return;
     }
-    const filteredData = portfoliosData.filter(
-      (item) => item.category === button
+    const filteredData = portfoliosData.filter((item) =>
+      item.category.includes(button)
     );
     setMenuItems(filteredData);
   };
