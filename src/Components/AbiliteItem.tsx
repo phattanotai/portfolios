@@ -1,19 +1,21 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 export type PropsType = {
+  title: string;
   text: any;
 };
 
-const ReviewItem: FC<PropsType> = ({ text }) => {
+const AbiliteItem: FC<PropsType> = ({ title, text }) => {
   return (
-    <RevivewItemStyled>
+    <AbiliteItemStyled>
+      <h1>{title}</h1>
       <p>{text}</p>
-    </RevivewItemStyled>
+    </AbiliteItemStyled>
   );
 };
 
-const RevivewItemStyled = styled.div`
+const AbiliteItemStyled = styled.div`
   padding: 2rem 1rem;
   border-left: 6px solid var(--border-color);
   background-color: var(--background-dark-grey);
@@ -36,4 +38,4 @@ const RevivewItemStyled = styled.div`
   }
 `;
 
-export default ReviewItem;
+export default AbiliteItem;

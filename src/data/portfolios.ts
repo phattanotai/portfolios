@@ -104,7 +104,7 @@ const portfolios: PortfoliosType[] = [
     text: "Created with Angular",
   },
   {
-    category: ["NextJS", "Mongodb"],
+    category: ["NextJS", "Mongodb", "Nestjs"],
     images: ["./assets/images/portImages/okwin/backoffice/0.JPG"],
     link1: "",
     link2: "",
@@ -114,7 +114,7 @@ const portfolios: PortfoliosType[] = [
     text: "Created with Next.Js",
   },
   {
-    category: ["NextJS", "Mongodb"],
+    category: ["NextJS", "Mongodb", "Nestjs"],
     images: ["./assets/images/portImages/okwin/web/1.JPG"],
     link1: "",
     link2: "",
@@ -124,7 +124,7 @@ const portfolios: PortfoliosType[] = [
     text: "Created with Next.Js",
   },
   {
-    category: ["React Native"],
+    category: ["React Native", "Mongodb", "Nestjs"],
     images: ["./assets/images/portImages/okwin/app/2.JPG"],
     link1: "",
     link2: "",
