@@ -68,7 +68,7 @@ const NavigationStyled = styled.nav`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   border-right: 1px solid var(--border-color);
   .avatar {
@@ -146,6 +146,7 @@ const NavigationStyled = styled.nav`
   }
 
   @media screen and (max-width: 768px) {
+    height: 90vh;
     .nav-items {
       a {
         font-size: 23px;
