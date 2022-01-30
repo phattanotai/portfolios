@@ -9,6 +9,7 @@ import AppRouter from "./Components/AppRoute";
 import NotFound from "./Pages/NotFound";
 import HamMenu from "./Components/HamMenu";
 import FloaMenu from "./Components/FloaMenu";
+import { useEffect } from "react";
 
 const AppLine = () => {
   return (
@@ -48,6 +49,11 @@ const AppChildren = () => {
 };
 
 function App() {
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      window.location.reload();
+    });
+  }, []);
   return (
     <div className="App">
       <PreLoader>

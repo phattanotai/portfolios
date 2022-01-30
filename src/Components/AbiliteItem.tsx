@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 
 export type PropsType = {
@@ -7,10 +7,21 @@ export type PropsType = {
 };
 
 const AbiliteItem: FC<PropsType> = ({ title, text }) => {
+  const [textArr, setTextArr] = useState<string[]>([]);
+
+  useEffect(() => {
+    const myArray = text.split("\n");
+    setTextArr(myArray);
+    console.log(textArr);
+  }, []);
+
   return (
     <AbiliteItemStyled>
       <h1>{title}</h1>
-      <p>{text}</p>
+
+      {textArr.map((item: string, index: number) => {
+        return <p key={index}>{item}</p>;
+      })}
     </AbiliteItemStyled>
   );
 };
@@ -21,6 +32,7 @@ const AbiliteItemStyled = styled.div`
   background-color: var(--background-dark-grey);
   position: relative;
   width: 100%;
+  margin-bottom: 10px;
   &:not(:first-child) {
   }
   &::after {
@@ -34,7 +46,16 @@ const AbiliteItemStyled = styled.div`
       var(--background-dark-grey);
   }
   p {
-    padding: 1rem 0;
+    padding: 2px 50px;
+  }
+  &:hover {
+    border-left: 8px solid var(--primary-color);
+    transform: translateX(25px) translateZ(15px);
+  }
+  @media screen and (max-width: 670px) {
+    p {
+      padding: 2px 10px;
+    }
   }
 `;
 

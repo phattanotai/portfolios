@@ -188,12 +188,14 @@ const ContactPage: FC = () => {
 
   return (
     <div>
-      <Particles
-        style={{
-          position: "absolute",
-        }}
-      />
       <MainLayout>
+        <Particles
+          style={{
+            position: "absolute",
+            zIndex: "-10",
+            width: "80%",
+          }}
+        />
         <ToastContainer
           theme="dark"
           position="top-right"
@@ -365,6 +367,21 @@ const ContactPageStyled = styled.section`
           color: inherit;
           width: 100%;
           padding: 0.8rem 1rem;
+        }
+
+        input,
+        textarea {
+          &:hover {
+            border: 2px solid var(--primary-color);
+            transform: translateX(-15px);
+          }
+        }
+
+        a {
+          &:hover {
+            border: 2px solid var(--primary-color);
+            transform: translateZ(15px);
+          }
         }
       }
     }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 
 export type PropsType = {
@@ -7,12 +7,27 @@ export type PropsType = {
 };
 
 const Button: FC<PropsType> = ({ filter, button }) => {
-  // function Button({filter, button}) {
+  const [activeButtons, setActiveButtons] = useState<string[]>([]);
+
+  const handleActiveClick = (index: number, but: any) => {
+    filter(but);
+    let newArr = [...activeButtons];
+    for (let i in newArr) {
+      newArr[i] = "";
+    }
+    newArr[index] = "active";
+    setActiveButtons(newArr);
+  };
+
   return (
     <ButtonsStyled>
-      {button.map((but: any, i: any) => {
+      {button.map((but: string, index: number) => {
         return (
-          <ButtonStyled key={i} onClick={() => filter(but)}>
+          <ButtonStyled
+            className={activeButtons[index]}
+            key={index}
+            onClick={() => handleActiveClick(index, but)}
+          >
             {but}
           </ButtonStyled>
         );
@@ -31,6 +46,7 @@ const ButtonStyled = styled.button`
   cursor: pointer;
   transition: all 0.4s ease-in-out;
   margin-bottom: 0.6rem;
+
   &:active,
   &:focus {
     background-color: var(--primary-color);
@@ -50,5 +66,9 @@ const ButtonsStyled = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin: 2.4rem auto;
+
+  .active {
+    background-color: var(--primary-color);
+  }
 `;
 export default Button;

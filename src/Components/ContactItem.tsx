@@ -26,9 +26,16 @@ const ContactItemStyled = styled.div`
   background-color: var(--background-dark-grey);
   display: flex;
   align-items: center;
+
   &:not(:last-child) {
     margin-bottom: 2.5rem;
   }
+
+  &:hover {
+    border-left: 2px solid var(--primary-color);
+    transform: translateZ(15px);
+  }
+
   .left-content {
     padding: 1.5rem;
     border: 1px solid var(--border-color);
@@ -37,6 +44,7 @@ const ContactItemStyled = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 1.5rem;
+
     svg {
       font-size: 2.3rem;
     }

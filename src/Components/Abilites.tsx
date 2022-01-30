@@ -50,7 +50,7 @@ const Abilites: FC = () => {
                       ASP.Net Core, FastAPI, Rust, Golang(fiber), Solidity,
                       Wab3, Ethers.js, Truffle, Kotlin, Swift, Unity, Firebase,
                       Facebook API, Robot Framework,cypress, Argo CD, Jenkins,
-                      Apache Kafka`}
+                      Apache Kafka, WebRTC`}
           />
         </div>
       </InnerLayout>

@@ -97,7 +97,7 @@ const FloaMenuDiv = styled.div`
 
   .style-switcher {
     position: absolute;
-    right: 100%;
+    right: 105%;
     top: 0;
     z-index: 101;
     border-radius: 5px;

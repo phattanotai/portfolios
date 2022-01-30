@@ -41,7 +41,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const Menu: FC<PropsType> = ({ menuItem }) => {
   const [expandeds, setExpandeds] = useState<boolean[]>([]);
-  const [expanded, setExpanded] = useState<boolean>(false);
   useEffect(() => {
     const data: boolean[] = [];
     for (const index in menuItem) {
@@ -193,8 +192,14 @@ const MenuItemStyled = styled.div`
   }
 
   .MuiCard-root {
-    background-color: var(--portfolios-menu-color);
+    background-color: var(--background-dark-grey);
     color: var(--white-color);
+    border-right: 6px solid var(--border-color);
+
+    &:hover {
+      border: 2px solid var(--primary-color);
+      transform: translateZ(15px);
+    }
   }
 
   .MuiTypography-displayBlock {

@@ -25,7 +25,7 @@ const Resume: FC = () => {
             text={""}
           />
           <ResumeItem
-            year={"2015 - 2017"}
+            year={"2009 - 2017"}
             title={"Pali language "}
             subTitle={"Wat Paknam Bhasicharoen"}
             text={""}
@@ -36,6 +36,14 @@ const Resume: FC = () => {
           <SmallTitle icon={briefcase} title={"WORK EXPERIENCE"} />
         </div>
         <div className="resume-content">
+          <ResumeItem
+            year={"2021 - Present"}
+            title={"Full Stack Developer"}
+            subTitle={"Freelance"}
+            text={`
+              Nodejs, Vuejs, React, Nextjs, Nestjs, Mongodb, 
+              Mysql, GCP, AWS, Nginx, Docker, Docker Swarm, Cloudflare, Github, Bitbucket`}
+          />
           <ResumeItem
             year={"2020 - 2021"}
             title={"Full Stack Developer"}

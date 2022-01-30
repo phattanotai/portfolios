@@ -13,6 +13,9 @@ import {
   FaArrowRight,
   FaArrowsAltH,
 } from "react-icons/fa";
+import ImagesScoll from "../Components/Portfolios3d/ImagesScoll";
+import Blocker from "../Components/Portfolios3d/Blocker";
+import ImageShow from "../Components/Portfolios3d/ImageShow";
 
 let portfolios: Portfolios;
 
@@ -36,13 +39,11 @@ const Portfolios3dPage: FC = () => {
   const history = useHistory<string>();
 
   const checkMobile = window.matchMedia(
-    "only screen and (max-width: 500px)"
+    "only screen and (max-width: 1200px)"
   ).matches;
 
   useEffect(() => {
     portfolios = new Portfolios();
-    // portfolios.onInit();
-
     if (checkMobile) {
       history.replace("portfolios");
     }
@@ -54,29 +55,8 @@ const Portfolios3dPage: FC = () => {
     };
   }, []);
 
-  const closeImage = () => {
-    imageShowRef.current.style.display = "none";
-  };
-
-  const backImage = () => {
-    let index = imgIndex - 1;
-    setImgIndex(index);
-    imageRef.current.src = images[index].url;
-    imageRef.current.style.width = images[index].width;
-    imageRef.current.style.height = images[index].height;
-  };
-
-  const forwardImage = () => {
-    let index = imgIndex + 1;
-    setImgIndex(index);
-    imageRef.current.src = images[index].url;
-    imageRef.current.style.width = images[index].width;
-    imageRef.current.style.height = images[index].height;
-  };
-
   const showImage = (index: number) => {
     imageShowRef.current.style.display = "block";
-    console.log(images);
     imageRef.current.src = images[index].url;
     imageRef.current.style.width = images[index].width;
     imageRef.current.style.height = images[index].height;
@@ -85,7 +65,6 @@ const Portfolios3dPage: FC = () => {
   };
 
   const showImgScoll = () => {
-    console.log(imgScollRef.current);
     if (
       imgScollRef.current.style.display === "none" ||
       !imgScollRef.current.style.display
@@ -118,6 +97,9 @@ const Portfolios3dPage: FC = () => {
     history.replace("portfolios");
   };
 
+  const createModelGUI = () => {
+    portfolios.createModelGUI();
+  };
   const continues3D = () => {
     setBlocker(false);
     portfolios.onInit();
@@ -148,29 +130,11 @@ const Portfolios3dPage: FC = () => {
   return (
     <>
       <PortfoliosDiv>
-        <Blocker style={{ display: blocker ? "block" : "none" }}>
-          <div className="instructions">
-            <p style={{ fontSize: "36px", marginBottom: "20px" }}>
-              Click to play
-            </p>
-            <p>
-              Move: WASD
-              <br />
-              Jump: SPACE
-              <br />
-              Look: MOUSE
-            </p>
-          </div>
-          <div className="port-link">
-            <p className="port-warning">
-              ***อาจจะทำให้คอมพิวเตอร์ทำงานหนักและเกิดอาการช้าได้ เนื่องจากใช้
-              CPU และ Memory มาก
-            </p>
-            <a onClick={continues3D}>Continues</a>
-            <p>or</p>
-            <a onClick={goToNormal}>View Normal</a>
-          </div>
-        </Blocker>
+        <Blocker
+          goToNormal={goToNormal}
+          continues3D={continues3D}
+          blocker={blocker}
+        />
         <div id="canvasContainer">
           <IconUi style={{ display: !blocker ? "block" : "none" }}>
             <div className="icon-ui">
@@ -214,57 +178,26 @@ const Portfolios3dPage: FC = () => {
                       backgroundImage: 'url("./assets/icons/ui/skills.png")',
                     }}
                     onClick={() => {
-                      portfolios.createModelGUI();
+                      createModelGUI();
                     }}
                   />
                 </Button>
               </div>
             </div>
           </IconUi>
-          <ImageShow ref={imageShowRef}>
-            <Button
-              className="back"
-              disabled={imgIndex <= 0 ? true : false}
-              onClick={backImage}
-            >
-              <FaChevronLeft></FaChevronLeft>
-            </Button>
-            <img
-              ref={imageRef}
-              src="./assets/images/portImages/bet888/backoffice/2.jpg"
-              alt=""
-            />
-            <Button
-              className="forward"
-              disabled={imgIndex >= images.length ? true : false}
-              onClick={forwardImage}
-            >
-              <FaChevronRight></FaChevronRight>
-            </Button>
 
-            <Button className="close" onClick={closeImage}>
-              <FaTimes></FaTimes>
-            </Button>
-          </ImageShow>
-          <ImagesScoll ref={imgScollRef}>
-            {images.map((item: imgDataType, index: number) => {
-              return (
-                <div key={index}>
-                  <img
-                    src={item.url}
-                    alt=""
-                    style={{
-                      height: item.height,
-                      width: item.width,
-                    }}
-                    onClick={() => {
-                      showImage(index);
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </ImagesScoll>
+          <ImageShow
+            imageShowRef={imageShowRef}
+            imageRef={imageRef}
+            indexImg={imgIndex}
+            images={images}
+          />
+
+          <ImagesScoll
+            imgScollRef={imgScollRef}
+            images={images}
+            showImage={showImage}
+          />
 
           {/* <ImagesScollMobile ref={imgScollMobileRef}>
             {images.map((item: imgDataType, index: number) => {
@@ -275,7 +208,7 @@ const Portfolios3dPage: FC = () => {
                     alt=""
                     style={{
                       height: "85%",
-                      width: item.type === "APP" ? "25%" : "60%",
+                      width: item.width ? "25%" : "60%",
                     }}
                     onClick={() => {
                       showImage(index);
@@ -367,68 +300,29 @@ const Portfolios3dPage: FC = () => {
   );
 };
 
-// const ImagesScollMobile = styled.div`
-//   position: absolute;
-//   bottom: 30px;
+const ImagesScollMobile = styled.div`
+  z-index: 2;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  height: 20%;
+  display: block;
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 
-//   width: 100%;
-//   height: 20%;
-//   display: none;
-//   overflow: scroll;
-//   overflow-x: auto;
-//   overflow-y: hidden;
-//   white-space: nowrap;
-
-//   div {
-//     width: 30%;
-//     height: 100%;
-//     text-align: center;
-//     display: inline;
-//   }
-
-//   img {
-//     height: 85%;
-//     width: 60%;
-//     padding: 2px;
-//     border-radius: 15px;
-//     cursor: pointer;
-//   }
-// `;
-
-const Blocker = styled.div`
-  width: 80vw;
-  height: 100vh;
-  background-color: black;
-  align-items: center;
-  display: grid;
-
-  .instructions {
-    display: grid;
-    position: fixed;
-    left: 48%;
-    top: 20%;
+  div {
+    text-align: center;
+    display: inline;
   }
 
-  .port-link {
-    display: grid;
-    position: fixed;
-
-    left: 39%;
-    top: 60%;
-    text-align: center;
-
-    .port-warning {
-      color: brown;
-      margin-bottom: 20px;
-    }
-    a {
-      margin: 10px 0 10px 0;
-      cursor: pointer;
-    }
-
-    a:hover {
-      color: darkkhaki;
-    }
+  img {
+    height: 85%;
+    width: 60%;
+    padding: 2px;
+    border-radius: 15px;
+    cursor: pointer;
   }
 `;
 
@@ -493,109 +387,6 @@ const IconUi = styled.div`
     .icon-bar-item {
       width: 40px;
       height: 40px;
-    }
-  }
-`;
-
-const ImagesScoll = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30%;
-  height: 95vh;
-  display: none;
-  overflow: scroll;
-  background-color: darkgrey;
-  z-index: 20;
-  padding-top: 15px;
-  border-radius: 10px;
-
-  div {
-    width: 100%;
-    height: 30%;
-    text-align: center;
-  }
-
-  img {
-    width: 100%;
-    height: 30%;
-    padding: 2px;
-    border-radius: 15px;
-    cursor: pointer;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    right: 0px;
-    top: 100px;
-    div {
-      width: 100%;
-      height: 30%;
-    }
-    img {
-      width: 100%;
-      height: 30%;
-    }
-  }
-  @media screen and (max-width: 320px) {
-    right: -3px;
-  }
-`;
-
-const ImageShow = styled.div`
-  position: absolute;
-  top: 0 px;
-  width: 70%;
-  height: 80%;
-  padding: 10 px;
-  padding-top: 50px;
-  box-sizing: border-box;
-  text-align: center;
-  z-index: 20;
-  color: white;
-  display: none;
-
-  img {
-    width: 86%;
-    height: 90%;
-  }
-  .close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .back {
-    position: absolute;
-    top: 50%;
-    left: 50px;
-    color: blue;
-  }
-  .forward {
-    position: absolute;
-    top: 50%;
-    right: 50px;
-    color: blue;
-  }
-
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    height: 50%;
-    top: 15%;
-    .close {
-      right: 0px;
-    }
-
-    .back {
-      top: 50%;
-      left: 10px;
-    }
-    .forward {
-      top: 50%;
-      right: 10px;
     }
   }
 `;

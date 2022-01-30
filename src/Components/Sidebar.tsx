@@ -21,7 +21,9 @@ const SidebarStyled = styled.div`
   background-color: var(--sidebar-dark-color);
   overflow: hidden;
   transition: all 0.4s ease-in-out;
+
   @media screen and (max-width: 1200px) {
+    width: 34.3rem;
     transform: translateX(-100%);
     z-index: 20;
   }
