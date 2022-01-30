@@ -12,18 +12,11 @@ import styled from "styled-components";
 //   ...Array.from(new Set(portfoliosData.map((item) => item.category))),
 // ];
 
-const allButtons2 = [
-  "All",
-  ...Array.from(new Set(portfoliosData.map((item) => item.category))),
-];
-
-console.log(allButtons2);
-
 let allButtons: string[] = ["All"];
 portfoliosData.map((item) => {
-  allButtons = [...Array.from(new Set(allButtons)), ...item.category];
+  allButtons = [...allButtons, ...item.category];
 });
-
+allButtons = [...Array.from(new Set(allButtons))];
 export type imgDataType = {
   url: string;
   width: string;
