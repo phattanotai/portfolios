@@ -162,8 +162,12 @@ const Portfolios3dPage: FC = () => {
             </p>
           </div>
           <div className="port-link">
+            <p className="port-warning">
+              ***อาจจะทำให้คอมพิวเตอร์ทำงานหนักและเกิดอาการช้าได้ เนื่องจากใช้
+              CPU และ Memory มาก
+            </p>
             <a onClick={continues3D}>Continues</a>
-
+            <p>or</p>
             <a onClick={goToNormal}>View Normal</a>
           </div>
         </Blocker>
@@ -261,6 +265,7 @@ const Portfolios3dPage: FC = () => {
               );
             })}
           </ImagesScoll>
+
           {/* <ImagesScollMobile ref={imgScollMobileRef}>
             {images.map((item: imgDataType, index: number) => {
               return (
@@ -401,22 +406,28 @@ const Blocker = styled.div`
     display: grid;
     position: fixed;
     left: 48%;
-    top: 35%;
+    top: 20%;
   }
 
   .port-link {
-    display: inline;
+    display: grid;
     position: fixed;
-    left: 48%;
-    top: 75%;
 
+    left: 39%;
+    top: 60%;
+    text-align: center;
+
+    .port-warning {
+      color: brown;
+      margin-bottom: 20px;
+    }
     a {
-      margin-right: 180px;
+      margin: 10px 0 10px 0;
       cursor: pointer;
     }
 
     a:hover {
-      color: brown;
+      color: darkkhaki;
     }
   }
 `;

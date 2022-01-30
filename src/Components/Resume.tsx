@@ -14,8 +14,26 @@ const Resume: FC = () => {
     <ResumeStyled>
       <Title title={"Resume"} span={"resume"} />
       <InnerLayout>
-        <div className="small-title">
-          <SmallTitle icon={briefcase} title={"Working Experience"} />
+        <div className="small-title ">
+          <SmallTitle icon={school} title={"EDUCATION"} />
+        </div>
+        <div className="resume-content ">
+          <ResumeItem
+            year={"2012 - 2016"}
+            title={"Bachelor of Science Program in Computer Science"}
+            subTitle={"Suan Sunandha Rajabhat University"}
+            text={""}
+          />
+          <ResumeItem
+            year={"2015 - 2017"}
+            title={"Pali language "}
+            subTitle={"Wat Paknam Bhasicharoen"}
+            text={""}
+          />
+        </div>
+
+        <div className="small-title u-small-title-margin">
+          <SmallTitle icon={briefcase} title={"WORK EXPERIENCE"} />
         </div>
         <div className="resume-content">
           <ResumeItem
@@ -51,24 +69,6 @@ const Resume: FC = () => {
             text={"PHP, Mysql "}
           />
         </div>
-
-        <div className="small-title u-small-title-margin">
-          <SmallTitle icon={school} title={"Educational Qualifications"} />
-        </div>
-        <div className="resume-content ">
-          <ResumeItem
-            year={"2012 - 2016"}
-            title={"Bachelor of Science Program in Computer Science"}
-            subTitle={"Suan Sunandha Rajabhat University"}
-            text={""}
-          />
-          <ResumeItem
-            year={"2015 - 2017"}
-            title={"Pali language "}
-            subTitle={"Wat Paknam Bhasicharoen"}
-            text={""}
-          />
-        </div>
       </InnerLayout>
     </ResumeStyled>
   );
@@ -84,6 +84,12 @@ const ResumeStyled = styled.section`
 
   .resume-content {
     border-left: 2px solid var(--border-color);
+  }
+
+  @media screen and (max-width: 700px) {
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 `;
 export default Resume;

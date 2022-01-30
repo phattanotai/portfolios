@@ -61,13 +61,14 @@ const ImageSection: FC = () => {
           }}
           style={{
             marginRight: "5px",
+            marginBottom: "5px",
           }}
         />
         <PrimaryButton
           title={"Download"}
           onClick={() => {
             window.open(
-              `../assets/resume/Resume-Phattanothai-Pukham-${langType}.pdf`,
+              `../html/Resume-Phattanothai-Pukham-${langType}.pdf`,
               "_blank"
             );
           }}
@@ -80,12 +81,7 @@ const ImageSection: FC = () => {
 const ImageSectionStyled = styled.div`
   margin-top: 5rem;
   display: flex;
-  @media screen and (max-width: 1000px) {
-    flex-direction: column;
-    .left-content {
-      margin-bottom: 2rem;
-    }
-  }
+
   .left-content {
     width: 100%;
     img {
@@ -131,6 +127,21 @@ const ImageSectionStyled = styled.div`
           padding: 0.3rem 0;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    .left-content {
+      margin-bottom: 2rem;
+      align-items: center;
+      text-align: center;
+    }
+    .right-content {
+      padding: 10px;
+    }
+    h1 {
+      font-size: 1.7rem;
     }
   }
 `;

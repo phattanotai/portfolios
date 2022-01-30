@@ -89,6 +89,18 @@ const ResumeItemStyled = styled.div`
       width: 128%;
       padding-left: 1rem;
       position: initial;
+
+      h5 {
+        font-size: 1.5rem;
+      }
+
+      h6 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 90%;
+      }
     }
   }
 `;

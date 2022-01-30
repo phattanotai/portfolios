@@ -16,33 +16,29 @@ const ServicesSection: FC = () => {
         <div className="services">
           <ServiceCard
             image={design}
-            title={"Frontend Developere"}
-            paragraph={
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
-            }
+            title={"Frontend Developer"}
+            paragraph={`พัฒนาหรือเขียนเว็บไซต์ที่จะรองรับทุกขนาดหน้าจอของเครื่องมือต่างๆ ไม่ว่าจะเข้าเว็บไซต์จากมือถือ แลปท็อป หรือคอมพิวเตอร์ตั้งโต๊ะ`}
           />
           <ServiceCard
             image={design}
-            title={"Backend Developere"}
+            title={"Backend Developer"}
             paragraph={
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
+              "บริการทำระบบหลังบ้านต่าง ๆ ของโปรแกรม เช่น RESTful APIs และการ integrate 3rd parties APIs"
             }
           />
           <div className="mid-card">
             <ServiceCard
               image={intelligence}
-              title={"Application Developere"}
-              paragraph={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
-              }
+              title={"Application Developer"}
+              paragraph={"พัฒนาแอปพลิเคชันมือถือที่รองรับทุกระบบ"}
             />
           </div>
           <div className="mid-card">
             <ServiceCard
               image={intelligence}
-              title={"Devops"}
+              title={"Devops Engineer"}
               paragraph={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tenetur ratione quod."
+                "แนะนำกระบวนการ เครื่องมือ และวิธีการเพื่อสร้างสมดุลระหว่างความต้องการตลอดวงจรชีวิตการพัฒนาซอฟต์แวร์ ตั้งแต่การเข้ารหัสและการปรับใช้ ไปจนถึงการบำรุงรักษาและการอัปเดต"
               }
             />
           </div>
@@ -67,6 +63,7 @@ const ServicesSectionStyled = styled.section`
     grid-gap: 1.5rem;
     @media screen and (max-width: 1000px) {
       flex-direction: column;
+      padding: 10px;
     }
     @media screen and (max-width: 950px) {
       grid-template-columns: repeat(2, 1fr);
