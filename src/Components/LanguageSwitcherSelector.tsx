@@ -9,13 +9,18 @@ const LanguageSwitcherSelector: FC = () => {
   const langType = useSelector((state: any) => state.lang);
   const dispatch = useDispatch();
 
-  const onChange = (e: any) => {
-    dispatch(setLang(e.target.className));
+  const onChange = (language: string) => {
+    dispatch(setLang(language));
   };
   const options = languages.map((language) => {
     if (language.code != langType) {
       return (
-        <li onClick={onChange} key={language.code}>
+        <li
+          onClick={() => {
+            onChange(language.code);
+          }}
+          key={language.code}
+        >
           <div className={language.code}></div>
         </li>
       );
