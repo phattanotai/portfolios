@@ -9,7 +9,7 @@ import { openNav } from "../redux-thunk/actions/navAction";
 const avatar = "../assets/images/avatar.jpg";
 
 const Navigation: FC = () => {
-  const langType = useSelector((state: any) => state.lang);
+  const langType = useSelector((state: any) => state.lang) || "EN";
   const navToggle = useSelector((state: any) => state.nav);
   const dispatch = useDispatch();
 
