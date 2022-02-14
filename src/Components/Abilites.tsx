@@ -22,9 +22,7 @@ const Abilites: FC = () => {
             Google Map, Leaflet Map, Longdo Map,
             Polling, Server Sent Event, Websocket, SocketIO,
             OpenCv, EmguCV,
-            Integrate Api e.g. dlt, scg, cpf, Integrate gamebrand e.g.,
-             sexy, pg, sbobet send sms email, line api,
-             Message Broker e.g. RabbitMQ,
+            Integrate Api e.g. dlt, scg, cpf, Integrate gamebrand e.g. sexy, pg, sbobet send sms email, line api,
             `}
           />
           <AbiliteItem
@@ -36,21 +34,23 @@ const Abilites: FC = () => {
           <AbiliteItem
             title="Server"
             text={`Ubuntu, Window Server, Nginx , Load Balance, Cluster Mode,
-                      Kubernetes, Docker, Docker Swarm, Kong Api Gateway,
-                      Cloudflare, GCP, AWS, Netlify, CircleCI, Grafana, gRPC`}
+                  Kubernetes, Docker, Docker Swarm, Kong Api Gateway,
+                  Cloudflare, GCP, AWS, Netlify, CircleCI, Grafana, gRPC, RabbitMQ`}
           />
           <AbiliteItem
             title="General"
             text={`Gitlab, Bitbucket, Github, Jira, Asana`}
           />
           <AbiliteItem
-            title="Learning"
-            text={`  BigQuery, BigTable, Service Mesh Isito, Elasticsearch,
-                      Opensearch, LevelDB, Flutter, Laravel, Spring Boot,
-                      ASP.Net Core, FastAPI, Rust, Golang(fiber), Solidity,
-                      Wab3, Ethers.js, Truffle, Kotlin, Swift, Unity, Firebase,
-                      Facebook API, Robot Framework,cypress, Argo CD, Jenkins,
-                      Apache Kafka, WebRTC`}
+            title="Researching"
+            text={`Microservice, Microfrontend, Service Mesh Isito, Argo CD,
+             Jenkins, Apache Kafka, Terraform, Ansible
+            Elasticsearch, Opensearch, LevelDB, Firebase
+            Robot Framework, Cypress, Figma
+            Flutter, Laravel, Spring Boot, ASP.Net Core, FastAPI,
+            Rust, Golang, Solidity, Wab3, Ethers.js, Truffle, Kotlin,
+            Swift, Unity, Facebook API, WebRTC
+            `}
           />
         </div>
       </InnerLayout>

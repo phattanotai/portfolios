@@ -42,12 +42,12 @@ const HomePage: FC = () => {
     });
 
     tl.to(pRef, {
-      duration: 2,
+      duration: 8,
       clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
     });
 
     gsap.to(nameRef, {
-      duration: 3,
+      duration: 4,
       text: "Phattanothai Pukham",
       ease: "out",
     });

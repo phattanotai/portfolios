@@ -14,7 +14,7 @@ body {
 }
 
 .opacity-9 {
-  opacity: 0.4;
+  opacity: 0.05;
 }
 @media print {
   #hid {

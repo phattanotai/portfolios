@@ -6,7 +6,7 @@ import { PortfoliosType } from "../data/portfolios";
 import Menu from "../Components/Menu";
 import Button from "../Components/Button";
 import styled from "styled-components";
-
+import Particle from "../Components/Particle";
 // const allButtons = [
 //   "All",
 //   ...Array.from(new Set(portfoliosData.map((item) => item.category))),
@@ -44,19 +44,21 @@ const PortfoliosPage: FC = () => {
   };
 
   return (
-    <>
-      <PortfoliosDiv>
-        <MainLayout>
-          <Title title={"Portfolios"} span={"portfolios"} />
-          <Button filter={filter} button={button} />
-          <Menu menuItem={menuItem} />
-        </MainLayout>
-      </PortfoliosDiv>
-    </>
+    <PortfoliosDiv>
+      <Particle />
+      <MainLayout>
+        <Title title={"Portfolios"} span={"portfolios"} />
+        <Button filter={filter} button={button} />
+        <Menu menuItem={menuItem} />
+      </MainLayout>
+    </PortfoliosDiv>
   );
 };
 
 const PortfoliosDiv = styled.div`
+  canvas {
+    z-index: -10;
+  }
   body {
     color: #222;
     width: 100%;
