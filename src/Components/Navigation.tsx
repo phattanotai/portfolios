@@ -86,6 +86,14 @@ const NavigationStyled = styled.nav`
   .nav-items {
     width: 100%;
     text-align: center;
+
+    overflow: auto;
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+
     .active-class {
       background-color: var(--primary-color-light);
       color: white;
