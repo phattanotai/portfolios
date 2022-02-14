@@ -27,7 +27,7 @@ const ImageSection: FC = () => {
 
         <p className="paragraph">
           I am interested in working as a programmer. And what I'm interested in
-          is Computer Programming,Web/App Developer, Devops
+          is Computer Programming, Web/App Developer, Devops
         </p>
         <p>
           I don't have much work experience. But I am ready to learn and
