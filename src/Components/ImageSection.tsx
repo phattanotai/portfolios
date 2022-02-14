@@ -2,23 +2,48 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
+
+import ReactTyped from "react-typed";
+
 const resume = "../assets/images/resume.jpg";
 const resume2 = "../assets/images/resume2.jpg";
+
 const ImageSection: FC = () => {
   const langType = useSelector((state: any) => state.lang);
 
   return (
     <ImageSectionStyled>
       <div className="left-content">
-        {/* <img src={resume} alt="" /> */}
+        <div>
+          <ReactTyped
+            strings={[
+              "I AM FRONTEND DEVELOPER",
+              "I AM BACKEND DEVELOPER",
+              "I AM DEVOPS ENGINEER",
+              "I AM APPLICATION DEVELOPER",
+              "I AM INFRASTRUCTURE ENGINEER",
+            ]}
+            typeSpeed={100}
+            backSpeed={80}
+            backDelay={1}
+            loop
+            style={{
+              fontSize: "20px",
+              color: "#d49c6b",
+            }}
+          />
+        </div>
         <img src={resume2} alt="" />
+        <br />
       </div>
       <div className="right-content">
         <h4>
           <span>my name is</span>
         </h4>
         <h1>Phattanothai Pukham</h1>
+
         <h2>I build things for the web.</h2>
+
         {/* <p className="paragraph">
           I’m a software engineer specializing in building exceptional digital
           experiences. Currently, I’m focused on building accessible,
@@ -87,6 +112,16 @@ const ImageSectionStyled = styled.div`
     img {
       width: 95%;
       object-fit: cover;
+    }
+
+    div {
+      display: grid;
+      margin-top: 7%;
+      margin-bottom: 5%;
+    }
+    span {
+      font-size: 20px;
+      color: #d49c6b;
     }
   }
   h1 {
