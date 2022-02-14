@@ -12,7 +12,6 @@ const AbiliteItem: FC<PropsType> = ({ title, text }) => {
   useEffect(() => {
     const myArray = text.split("\n");
     setTextArr(myArray);
-    console.log(textArr);
   }, []);
 
   return (

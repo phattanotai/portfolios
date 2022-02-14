@@ -29,7 +29,7 @@ export type imgDataType = {
 const Portfolios3dPage: FC = () => {
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [images, setImages] = useState<imgDataType[]>([]);
-  const [blocker, setBlocker] = useState<boolean>(true);
+  const [blocker, setBlocker] = useState<boolean>(false);
 
   let imageRef = useRef<HTMLImageElement>(null);
   let imgScollRef = useRef<HTMLDivElement>(null);
@@ -44,11 +44,13 @@ const Portfolios3dPage: FC = () => {
 
   useEffect(() => {
     portfolios = new Portfolios();
+    setBlocker(true);
     if (checkMobile) {
       history.replace("portfolios");
     }
 
     return () => {
+      console.log(portfolios, blocker);
       if (portfolios && !blocker) {
         portfolios.onDestroy();
       }
