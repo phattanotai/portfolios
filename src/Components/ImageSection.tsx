@@ -166,6 +166,7 @@ const ImageSectionStyled = styled.div`
   }
 
   @media screen and (max-width: 1000px) {
+    margin-top: 1rem;
     flex-direction: column;
     .left-content {
       margin-bottom: 2rem;
