@@ -242,6 +242,8 @@ const InformationStyled = styled.div`
       object-fit: cover;
       margin-bottom: 5px;
       padding-top: 15px;
+
+      border-radius: 30px;
     }
     p {
       font-size: 14px;
@@ -293,6 +295,20 @@ const InformationStyled = styled.div`
       label {
         padding-left: 8%;
       }
+    }
+    .in-img {
+      img {
+        border-radius: 35px;
+      }
+      p {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .info {
+      /* display: none; */
     }
   }
 `;
