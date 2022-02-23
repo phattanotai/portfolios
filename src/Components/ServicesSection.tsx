@@ -10,49 +10,49 @@ const gamedev = "../assets/images/game-dev.svg";
 
 const ServicesSection: FC = () => {
   return (
-    // <InnerLayout>
-    <ServicesSectionStyled>
-      <Title title={"Services"} span={"services"} />
-      <div className="services">
-        <ServiceCard
-          image={design}
-          title={"Frontend Developer"}
-          paragraph={`พัฒนาหรือเขียนเว็บไซต์ที่จะรองรับทุกขนาดหน้าจอของเครื่องมือต่างๆ 
-            ไม่ว่าจะเข้าเว็บไซต์จากมือถือ แลปท็อป หรือคอมพิวเตอร์ตั้งโต๊ะ`}
-        />
-        <ServiceCard
-          image={design}
-          title={"Backend Developer"}
-          paragraph={`บริการทำระบบหลังบ้านต่าง ๆ ของโปรแกรม เช่น RESTful APIs 
-              และการ integrate 3rd parties APIs`}
-        />
-        <div className="mid-card">
-          <ServiceCard
-            image={intelligence}
-            title={"Devops Engineer"}
-            paragraph={`แนะนำกระบวนการ เครื่องมือ และวิธีการเพื่อสร้างสมดุลระหว่างความต้องการตลอดวงจรชีวิตการพัฒนาซอฟต์แวร์ 
-                ตั้งแต่การเข้ารหัสและการปรับใช้ ไปจนถึงการบำรุงรักษาและการอัปเดต`}
-          />
-        </div>
-        <div className="mid-card">
+    <InnerLayout>
+      <ServicesSectionStyled>
+        <Title title={"Services"} span={"services"} />
+        <div className="services">
           <ServiceCard
             image={design}
-            title={"Application Developer"}
-            paragraph={"พัฒนาแอปพลิเคชันมือถือที่รองรับทุกระบบ"}
+            title={"Frontend Developer"}
+            paragraph={`พัฒนาหรือเขียนเว็บไซต์ที่จะรองรับทุกขนาดหน้าจอของเครื่องมือต่างๆ 
+            ไม่ว่าจะเข้าเว็บไซต์จากมือถือ แลปท็อป หรือคอมพิวเตอร์ตั้งโต๊ะ`}
           />
-        </div>
-        <ServiceCard
-          image={intelligence}
-          title={"Infrastructure Engineer"}
-          paragraph={`ดูแล Resource System, Server และ Storage โดยภาพรวม
+          <ServiceCard
+            image={design}
+            title={"Backend Developer"}
+            paragraph={`บริการทำระบบหลังบ้านต่าง ๆ ของโปรแกรม เช่น RESTful APIs 
+              และการ integrate 3rd parties APIs`}
+          />
+          <div className="mid-card">
+            <ServiceCard
+              image={intelligence}
+              title={"Devops Engineer"}
+              paragraph={`แนะนำกระบวนการ เครื่องมือ และวิธีการเพื่อสร้างสมดุลระหว่างความต้องการตลอดวงจรชีวิตการพัฒนาซอฟต์แวร์ 
+                ตั้งแต่การเข้ารหัสและการปรับใช้ ไปจนถึงการบำรุงรักษาและการอัปเดต`}
+            />
+          </div>
+          <div className="mid-card">
+            <ServiceCard
+              image={design}
+              title={"Application Developer"}
+              paragraph={"พัฒนาแอปพลิเคชันมือถือที่รองรับทุกระบบ"}
+            />
+          </div>
+          <ServiceCard
+            image={intelligence}
+            title={"Infrastructure Engineer"}
+            paragraph={`ดูแล Resource System, Server และ Storage โดยภาพรวม
              ทำการซ่อมบำรุง ระบบ System Server และ Storage 
              เฝ้าระวังและตรวจสอบการให้บริการระบบเครือข่ายและเซิร์ฟเวอร์ ที่ผิดปกติ 
              เมื่อได้รับแจ้งปัญหาให้ตรวจสอบสาเหตุของปัญหา ติดตั้งระบบปฏิบัติการ และ Configure อุปกรณ์ Server, 
              ระบบ Virtualization ระบบ Backup และอุปกรณ์ประกอบอื่นๆ เบื้องต้น`}
-        />
-      </div>
+          />
+        </div>
 
-      {/* <ServiceCard
+        {/* <ServiceCard
             image={gamedev}
             title={"Infrastructure Engineer"}
             paragraph={`ดูแล Resource System, Server และ Storage โดยภาพรวม
@@ -62,8 +62,8 @@ const ServicesSection: FC = () => {
              ระบบ Virtualization ระบบ Backup และอุปกรณ์ประกอบอื่นๆ เบื้องต้น`}
           />
         </div> */}
-    </ServicesSectionStyled>
-    // </InnerLayout>
+      </ServicesSectionStyled>
+    </InnerLayout>
   );
 };
 

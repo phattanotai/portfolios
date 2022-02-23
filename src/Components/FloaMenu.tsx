@@ -84,7 +84,7 @@ const FloaMenuDiv = styled.div`
     right: 0;
     top: 50vh;
     transform: translateX(100%);
-    z-index: 101;
+    z-index: 1001;
   }
 
   .style-switcher .style-switcher-toggler {

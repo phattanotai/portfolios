@@ -319,11 +319,16 @@ const ContactPageStyled = styled.section`
         margin-bottom: 3rem;
       }
     }
+    @media screen and (max-width: 502px) {
+      align-content: center;
+    }
+
     .right-content {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       @media screen and (max-width: 502px) {
-        width: 70%;
+        width: 99%;
+        align-content: center;
       }
     }
     .contact-title {
@@ -337,6 +342,7 @@ const ContactPageStyled = styled.section`
       width: 100%;
       @media screen and (max-width: 502px) {
         width: 100%;
+        text-align: center;
       }
       .form-field {
         margin-top: 2rem;
@@ -373,7 +379,11 @@ const ContactPageStyled = styled.section`
         textarea {
           &:hover {
             border: 2px solid var(--primary-color);
-            transform: translateX(-15px);
+            transform: translateX(-5px);
+
+            @media screen and (max-width: 502px) {
+              transform: translateX(0px);
+            }
           }
         }
 
@@ -381,6 +391,10 @@ const ContactPageStyled = styled.section`
           &:hover {
             border: 2px solid var(--primary-color);
             transform: translateZ(15px);
+
+            @media screen and (max-width: 502px) {
+              transform: translateX(0px);
+            }
           }
         }
       }
