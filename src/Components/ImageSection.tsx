@@ -1,20 +1,42 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
 
 import ReactTyped from "react-typed";
+import { openInfo } from "../redux-thunk/actions/mainAction";
+import SlideImages from "./SlideImages";
 
-const resume = "../assets/images/resume.jpg";
+const resume = [
+  "../assets/images/resume2.jpg",
+  "../assets/images/resume2.jpg",
+  "../assets/images/resume2.jpg",
+  // "../assets/images/in4.jpeg",
+  // "../assets/images/in7.jpeg",
+];
 const resume2 = "../assets/images/resume2.jpg";
 
 const ImageSection: FC = () => {
+  const dispatch = useDispatch();
   const langType = useSelector((state: any) => state.lang);
+  const { info } = useSelector((state: any) => state.main);
+  const checkScreen = window.matchMedia(
+    "only screen and (max-width: 1200px)"
+  ).matches;
+
+  const viewMore = () => {
+    if (!checkScreen) {
+      window.scrollTo(0, 1200);
+    } else {
+      window.scrollTo(0, 1760);
+    }
+    dispatch(openInfo(true));
+  };
 
   return (
     <ImageSectionStyled>
       <div className="left-content">
-        <div>
+        <div className="typed">
           <ReactTyped
             strings={[
               "I AM FRONTEND DEVELOPER",
@@ -33,7 +55,25 @@ const ImageSection: FC = () => {
             }}
           />
         </div>
-        <img src={resume2} alt="" />
+        <div>
+          {!checkScreen && (
+            <SlideImages
+              images={resume}
+              className="resume"
+              dots={true}
+              arrows={true}
+              speed={10000}
+              autoplay={true}
+              progressBar={true}
+              width="100%"
+              style={{
+                width: "90%",
+              }}
+            />
+          )}
+          {checkScreen && <img src={resume2} alt="" />}
+        </div>
+
         <br />
       </div>
       <div className="right-content">
@@ -76,6 +116,11 @@ const ImageSection: FC = () => {
             <p> 96 Moo.6 Tambon Thanthong, Amphur Phan, Chiang Rai 57250</p>
           </div>
         </div>
+        <div className="view-more">
+          <a onClick={viewMore}>view more</a>
+        </div>
+        <br />
+
         <PrimaryButton
           title={"See Resume"}
           onClick={() => {
@@ -106,15 +151,28 @@ const ImageSection: FC = () => {
 const ImageSectionStyled = styled.div`
   margin-top: 5rem;
   display: flex;
+  .view-more {
+    text-align: center;
+    z-index: 200;
+    a {
+      color: #d49c6b;
 
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
   .left-content {
     width: 100%;
     img {
       width: 95%;
       object-fit: cover;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
     }
 
-    div {
+    .typed {
       display: grid;
       margin-top: 7%;
       margin-bottom: 5%;
@@ -169,7 +227,7 @@ const ImageSectionStyled = styled.div`
     margin-top: 1rem;
     flex-direction: column;
     .left-content {
-      margin-bottom: 2rem;
+      /* margin-bottom: 2rem; */
       align-items: center;
       text-align: center;
     }
@@ -178,6 +236,11 @@ const ImageSectionStyled = styled.div`
     }
     h1 {
       font-size: 1.7rem;
+    }
+
+    a {
+      width: 100%;
+      text-align: center;
     }
   }
 `;

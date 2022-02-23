@@ -10,20 +10,22 @@ import PersonalInformation from "../Components/PersonalInformation";
 
 const AboutPage: FC = () => {
   return (
-    <div>
-      {/* <Particle /> */}
+    <AboutStyled>
+      <Particle />
       <MainLayout>
-        <AboutStyled>
-          <Title title={"About Me"} span={"About Me"} />
-          <ImageSection />
-          <PersonalInformation />
-          <ServicesSection />
-        </AboutStyled>
+        <Title title={"About Me"} span={"About Me"} />
+        <ImageSection />
+        <PersonalInformation />
+        <ServicesSection />
       </MainLayout>
-    </div>
+    </AboutStyled>
   );
 };
 
-const AboutStyled = styled.section``;
+const AboutStyled = styled.section`
+  canvas {
+    z-index: -1;
+  }
+`;
 
 export default AboutPage;
