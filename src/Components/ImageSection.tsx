@@ -11,7 +11,7 @@ const resume = [
   "../assets/images/resume2.jpg",
   "../assets/images/resume2.jpg",
   "../assets/images/resume2.jpg",
-  // "../assets/images/in4.jpeg",
+  "../assets/images/in4.jpeg",
   // "../assets/images/in7.jpeg",
 ];
 const resume2 = "../assets/images/resume2.jpg";
