@@ -51,11 +51,11 @@ const AppChildren = () => {
 function App() {
   useEffect(() => {
     window.addEventListener("resize", () => {
-      // window.location.reload();
+      window.location.reload();
     });
   }, []);
   return (
-    <div className="App">
+    <div className="App" data-testid="app">
       <PreLoader>
         <AppChildren></AppChildren>
       </PreLoader>
