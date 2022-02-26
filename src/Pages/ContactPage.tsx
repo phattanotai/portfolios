@@ -187,7 +187,7 @@ const ContactPage: FC = () => {
   };
 
   return (
-    <div>
+    <div data-testid="contact">
       <MainLayout>
         <Particles
           style={{

@@ -31,7 +31,8 @@
     "styled-components": "^5.2.1",
     "three": "^0.135.0",
     "typescript": "^4.5.2",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "dat.gui": "^0.7.7"
   },
   "scripts": {
     "start": "react-scripts start --port=4000",
@@ -67,7 +68,7 @@
     "@types/react-router-dom": "^5.3.1",
     "@types/styled-components": "^5.1.15",
     "@types/three": "^0.134.0",
-    "dat.gui": "^0.7.7",
+   
     "gltf-loader-ts": "^0.3.1"
   }
 }
