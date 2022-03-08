@@ -5,11 +5,13 @@ import { useLocation, Route } from "react-router-dom";
 // import LangContext from "./contexts/LangContext";
 import { openNav } from "./redux-thunk/actions/navAction";
 import PreLoader from "./Components/PreLoader";
-import AppRouter from "./Components/AppRoute";
+import AppRouter from "./Components/AppRouter";
 import NotFound from "./Pages/NotFound";
 import HamMenu from "./Components/HamMenu";
 import FloaMenu from "./Components/FloaMenu";
 import { useEffect } from "react";
+
+// import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 const AppLine = () => {
   return (
@@ -73,7 +75,6 @@ const MainContentStyled = styled.main`
   @media screen and (max-width: 670px) {
     min-height: 90vh;
   }
-
   .lines {
     position: absolute;
     min-height: 100%;

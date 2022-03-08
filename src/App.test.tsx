@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import "jest-canvas-mock";
 import App from "./App";
 
 test("renders learn react link", () => {
-  // render(<App />);
+  render(<App />);
   // expect(screen.getByTestId("app")).toBeInTheDocument();
 });
