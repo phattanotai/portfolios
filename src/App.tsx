@@ -53,7 +53,7 @@ const AppChildren = () => {
 function App() {
   useEffect(() => {
     window.addEventListener("resize", () => {
-      window.location.reload();
+      // window.location.reload();
     });
   }, []);
   return (
