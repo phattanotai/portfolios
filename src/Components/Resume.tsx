@@ -63,7 +63,7 @@ const Resume: FC = () => {
           <ResumeItem
             year={"2019 - 2020"}
             title={"Programmer"}
-            subTitle={"WORLD GPS TRACKER"}
+            subTitle={"WGT GPS"}
             text={`
               Nodejs, Express.js, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
               Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket,
