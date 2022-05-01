@@ -55,7 +55,8 @@ function App() {
     // window.addEventListener("resize", () => {
     //   window.location.reload();
     // });
-    if (process.env.REACT_APP_VERSION_INFO === "production") {
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV === "production") {
       document.addEventListener("contextmenu", (event) =>
         event.preventDefault()
       );
