@@ -55,7 +55,6 @@ function App() {
     // window.addEventListener("resize", () => {
     //   window.location.reload();
     // });
-    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === "production") {
       document.addEventListener("contextmenu", (event) =>
         event.preventDefault()
