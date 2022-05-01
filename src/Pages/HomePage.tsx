@@ -11,14 +11,13 @@ import { TextPlugin } from "gsap/dist/TextPlugin";
 gsap.registerPlugin(TextPlugin);
 
 const HomePage: FC = () => {
-  let typographyRef: any = useRef(null);
   let h2Ref: any = useRef(null);
   let nameRef: any = useRef(null);
   let pRef: any = useRef(null);
 
   let versionRef = useRef<HTMLDivElement>(null);
 
-  const [name, setName] = useState("Phattano");
+  const [name] = useState("Phattano");
 
   useEffect(() => {
     const world = new WorldMap();
@@ -26,7 +25,7 @@ const HomePage: FC = () => {
     return () => {
       world.onDestroy();
     };
-  }, [typographyRef]);
+  });
 
   const particle = () => {
     const tl = gsap.timeline();
@@ -85,19 +84,14 @@ const HomePage: FC = () => {
     });
   };
 
-  const random = (min, max) => {
+  const random = (min: number, max: number) => {
     return Math.random() * (max - min) + min;
   };
 
   return (
     <HomePageStyled>
       <div id="canvasContainer"></div>
-      <div
-        className="typography"
-        ref={(e) => {
-          typographyRef = e;
-        }}
-      >
+      <div className="typography">
         <div className="typography-border"></div>
         <h2
           className="h22"
@@ -123,7 +117,7 @@ const HomePage: FC = () => {
             pRef = e;
           }}
         >
-          I’m a software developer and I enjoy creating things that live on the
+          I'm a software developer and I enjoy creating things that live on the
           internet.{" "}
         </p>
         <div className="icons">
@@ -131,6 +125,7 @@ const HomePage: FC = () => {
             href="https://www.facebook.com/profile.php?id=100025241772649"
             target="_blank"
             className="icon i-facebook"
+            rel="noreferrer"
           >
             <FacebookIcon />
           </a>
@@ -138,6 +133,7 @@ const HomePage: FC = () => {
             href="https://github.com/phattanotai"
             target="_blank"
             className="icon i-github"
+            rel="noreferrer"
           >
             <GithubIcon />
           </a>
@@ -145,6 +141,7 @@ const HomePage: FC = () => {
             href="https://www.youtube.com/channel/UC-kzdCM7NyiLn3tih8yFtMw"
             target="_blank"
             className="icon i-youtube"
+            rel="noreferrer"
           >
             <YoutubeIcon />
           </a>
@@ -223,13 +220,11 @@ const HomePageStyled = styled.header`
   }
 
   h2 {
-    flex-basic: 0;
     flex-grow: 1;
     clip-path: polygon(0 0, 100% 0, 0 0);
   }
 
   p {
-    flex-basic: 0;
     flex-grow: 1;
     clip-path: polygon(0 0, 0 0, 0 0);
   }
