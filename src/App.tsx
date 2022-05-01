@@ -52,9 +52,15 @@ const AppChildren = () => {
 
 function App() {
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      // window.location.reload();
-    });
+    // window.addEventListener("resize", () => {
+    //   window.location.reload();
+    // });
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    return () => {
+      document.removeEventListener("contextmenu", (event) =>
+        event.preventDefault()
+      );
+    };
   }, []);
   return (
     <div className="App" data-testid="app">
