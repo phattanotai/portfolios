@@ -1,6 +1,6 @@
 FROM node:14.17.0-alpine as build-step
 ARG VERSION_INFO=v1.0.1
-ENV APP_VERSION_INFO=${VERSION_INFO}
+ENV REACT_APP_VERSION_INFO=${VERSION_INFO}
 RUN mkdir -p /app
 WORKDIR /app
 COPY package.json /app
