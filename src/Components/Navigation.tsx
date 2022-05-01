@@ -20,7 +20,7 @@ const Navigation: FC = () => {
   return (
     <NavigationStyled>
       <div className="avatar">
-        <img src={avatar} alt="" />
+        <img src={avatar} alt="Phattanothai Pukham" />
       </div>
       <ul className="nav-items">
         <li className="nav-item" onClick={setNavToggle}>
@@ -80,6 +80,11 @@ const NavigationStyled = styled.nav`
       width: 70%;
       border-radius: 50%;
       border: 8px solid var(--border-color);
+
+      &:hover {
+        border: 5px solid var(--primary-color);
+        transform: translateZ(15px);
+      }
     }
   }
 

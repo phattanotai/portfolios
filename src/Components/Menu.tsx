@@ -75,8 +75,9 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
                       width: item.type === 2 ? "120px" : "80%",
                       height: item.type === 2 ? "215px" : "50%",
                       margin: "0px",
+                      filter: item.blur ? "blur(5px)" : "",
                     }}
-                    alt="Paella dish"
+                    alt={item.content}
                   />
                 );
               })}
@@ -98,7 +99,7 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
                 aria-label="add to favorites"
                 style={{ display: item.link2 ? "block" : "none" }}
                 onClick={() => {
-                  goToLink(item.link1);
+                  goToLink(item.link2);
                 }}
               >
                 <GitHub />

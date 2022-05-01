@@ -28,9 +28,9 @@ const PortfoliosPage: FC = () => {
   const [menuItem, setMenuItems] = useState<PortfoliosType[]>(portfoliosData);
   const [button, setButtons] = useState<string[]>(allButtons);
 
-  const checkMobile: boolean = window.matchMedia(
-    "only screen and (max-width: 1024px)"
-  ).matches;
+  // const checkMobile: boolean = window.matchMedia(
+  //   "only screen and (max-width: 1024px)"
+  // ).matches;
 
   const filter = (button: string) => {
     if (button === "All") {
