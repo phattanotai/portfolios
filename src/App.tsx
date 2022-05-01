@@ -55,7 +55,12 @@ function App() {
     // window.addEventListener("resize", () => {
     //   window.location.reload();
     // });
-    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    if (process.env.REACT_APP_VERSION_INFO === "production") {
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault()
+      );
+    }
+
     return () => {
       document.removeEventListener("contextmenu", (event) =>
         event.preventDefault()
