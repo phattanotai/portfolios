@@ -237,7 +237,6 @@ export class Portfolios {
 
   private dragObject = () => {
     if (this.editImages) {
-      const found = this.intersect(this.moveMouse);
       if (this.draggable != null) {
         const found = this.intersect(this.moveMouse);
         if (found.length > 0) {

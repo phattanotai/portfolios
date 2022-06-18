@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Lottie from "react-lottie";
 import { IconButton } from "@material-ui/core";
 import styled from "styled-components";
-import MenuIcon from "@material-ui/icons/Menu";
 import { openNav } from "../redux-thunk/actions/navAction";
 
 import ham from "../data/json/hamburger.json";

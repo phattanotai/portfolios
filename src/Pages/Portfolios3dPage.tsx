@@ -2,11 +2,8 @@ import { FC, useState, useEffect, useRef } from "react";
 import Button from "@material-ui/core/Button";
 import { Portfolios } from "../Threejs/Portfolios";
 import styled from "styled-components";
-import { useHistory } from "react-router";
+
 import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaTimes,
   FaArrowDown,
   FaArrowLeft,
   FaArrowUp,
@@ -16,6 +13,7 @@ import {
 import ImagesScoll from "../Components/Portfolios3d/ImagesScoll";
 import Blocker from "../Components/Portfolios3d/Blocker";
 import ImageShow from "../Components/Portfolios3d/ImageShow";
+import { useHistory } from "react-router-dom";
 
 let portfolios: Portfolios;
 

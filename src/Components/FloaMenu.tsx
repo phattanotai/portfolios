@@ -3,8 +3,6 @@ import styled from "styled-components";
 import LanguageSwitcherSelector from "./LanguageSwitcherSelector";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Switch from "@material-ui/core/Switch";
-import { useDispatch, useSelector } from "react-redux";
-import { setLangAsync, setLang } from "../redux-thunk/actions/langAction";
 
 const FloaMenu: FC = () => {
   const [checked, setChecked] = useState<boolean>(
@@ -12,19 +10,11 @@ const FloaMenu: FC = () => {
   );
   const [openMenu, setOpenmenu] = useState<boolean>(false);
 
-  // const [checkedLang, setCheckedLang] = useState<boolean>(
-  //   localStorage.getItem("theme") === "light-theme" ? true : false
-  // );
-
   const [theme, setTheme] = useState<string>(
     localStorage.getItem("theme")
       ? String(localStorage.getItem("theme"))
       : "dark-theme"
   );
-
-  // state manament redux
-  const dispatch = useDispatch();
-  const langType = useSelector((state: any) => state.lang);
 
   useEffect(() => {
     document.documentElement.className = theme;
