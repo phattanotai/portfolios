@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from "react";
+import { FC, useState } from "react";
 import { MainLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
 import portfoliosData from "../data/portfolios";
@@ -26,7 +26,7 @@ export type imgDataType = {
 
 const PortfoliosPage: FC = () => {
   const [menuItem, setMenuItems] = useState<PortfoliosType[]>(portfoliosData);
-  const [button, setButtons] = useState<string[]>(allButtons);
+  const [button] = useState<string[]>(allButtons);
 
   // const checkMobile: boolean = window.matchMedia(
   //   "only screen and (max-width: 1024px)"

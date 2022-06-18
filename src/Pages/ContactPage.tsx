@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from "react";
+import { useState, FC } from "react";
 import styled from "styled-components";
 import { MainLayout, InnerLayout } from "../styles/Layouts";
 import Title from "../Components/Title";
@@ -8,8 +8,8 @@ import EmailIcon from "@material-ui/icons/Email";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import ContactItem from "../Components/ContactItem";
 import { contactData, contactMenu, contactLabel } from "../data/contact";
-import emailService from "../services/emailService";
-import Particle from "../Components/Particle";
+import * as emailService from "../services/emailService";
+
 import { useSelector } from "react-redux";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -91,7 +91,7 @@ const ContactPage: FC = () => {
           !(
             lastAtPos < lastDotPos &&
             lastAtPos > 0 &&
-            value.indexOf("@@") == -1 &&
+            value.indexOf("@@") === -1 &&
             lastDotPos > 2 &&
             value.length - lastDotPos > 2
           )
@@ -115,10 +115,10 @@ const ContactPage: FC = () => {
   const checkValidation = () => {
     const list = document.querySelectorAll("#contactForm div.form-field");
     let fields = emailData;
-    let errors = {
-      name: "",
-      email: "",
-    };
+    // let errors = {
+    //   name: "",
+    //   email: "",
+    // };
     let formIsValid = true;
     let errorMessage = "";
     //Name
@@ -146,7 +146,7 @@ const ContactPage: FC = () => {
         !(
           lastAtPos < lastDotPos &&
           lastAtPos > 0 &&
-          fields["email"].indexOf("@@") == -1 &&
+          fields["email"].indexOf("@@") === -1 &&
           lastDotPos > 2 &&
           fields["email"].length - lastDotPos > 2
         )
@@ -169,11 +169,12 @@ const ContactPage: FC = () => {
   };
 
   const sendEmail = async (e: any) => {
-    const { formIsValid, errorMessage } = checkValidation();
+    const { formIsValid } = checkValidation();
     if (formIsValid) {
       notifySuccess("Form submitted");
       const form = document.querySelector("#contactForm");
-      const data = await emailService.sendEmail(form);
+      await emailService.sendEmail(form);
+
       setEmailData({
         from_name: "",
         email: "",

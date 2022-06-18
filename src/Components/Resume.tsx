@@ -47,9 +47,9 @@ const Resume: FC = () => {
           <ResumeItem
             year={"2020 - 2021"}
             title={"Full Stack Developer"}
-            subTitle={"OTEN INNOVAT"}
+            subTitle={"OTEN INNOVATION"}
             text={`
-              Nodejs, Express.js, React Native, React, Nextjs, PHP, Mongodb, 
+              Nodejs, Express.js, React Native, React, Nextjs, Vuejs, Mongodb,  
               Mysql, GCP, AWS, Nginx, Docker, Cloudflare, Github, Kubernetes`}
           />
           <ResumeItem
@@ -57,7 +57,7 @@ const Resume: FC = () => {
             title={"Developer"}
             subTitle={"GWT"}
             text={`
-              Nodejs, Express.js, Mongodb, Jquery, Nginx, Nifty, Api Gateway, 
+              Nodejs, Express.js, Mongodb, Jquery, Nginx, Vuejs, Api Gateway, 
               Line Api, Gitlab, Jira, Cloudflare, Selenium, GCP`}
           />
           <ResumeItem

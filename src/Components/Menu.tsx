@@ -1,13 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import GitHub from "@material-ui/icons/GitHub";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Pinterest from "@material-ui/icons/Pinterest";
 import { PortfoliosType } from "../data/portfolios";
 
 import {
-  Avatar,
   Card,
   CardActions,
   CardContent,
@@ -15,29 +13,12 @@ import {
   CardMedia,
   Collapse,
   IconButton,
-  IconButtonProps,
   Typography,
 } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 export type PropsType = {
   menuItem: any;
 };
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  // transition: theme.transitions.create("transform", {
-  //   duration: theme.transitions.duration.shortest,
-  // }),
-}));
 
 const Menu: FC<PropsType> = ({ menuItem }) => {
   const [expandeds, setExpandeds] = useState<boolean[]>([]);
@@ -48,12 +29,6 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
     }
     setExpandeds(data);
   }, []);
-
-  const handleExpandClick = (index: number) => {
-    let newArr = [...expandeds]; // copying the old datas array
-    newArr[index] = !newArr[index]; // replace newArr[index] value with whatever you want to change it to
-    setExpandeds(newArr);
-  };
 
   const goToLink = (link: string) => {
     window.open(link);
@@ -104,17 +79,6 @@ const Menu: FC<PropsType> = ({ menuItem }) => {
               >
                 <GitHub />
               </IconButton>
-
-              {/* <ExpandMore
-                  expand={expandeds[index]}
-                  onClick={() => {
-                    handleExpandClick(index);
-                  }}
-                  aria-expanded={expandeds[index]}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore> */}
             </CardActions>
 
             <Collapse

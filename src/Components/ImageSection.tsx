@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import PrimaryButton from "./PrimaryButton";
-
 import ReactTyped from "react-typed";
 import { openInfo } from "../redux-thunk/actions/mainAction";
 import SlideImages from "./SlideImages";
@@ -19,7 +18,7 @@ const resume2 = "../assets/images/resume2.jpg";
 const ImageSection: FC = () => {
   const dispatch = useDispatch();
   const langType = useSelector((state: any) => state.lang);
-  const { info } = useSelector((state: any) => state.main);
+  // const { info } = useSelector((state: any) => state.main);
   const checkScreen = window.matchMedia(
     "only screen and (max-width: 1200px)"
   ).matches;

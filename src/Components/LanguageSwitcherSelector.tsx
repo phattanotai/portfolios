@@ -13,7 +13,7 @@ const LanguageSwitcherSelector: FC = () => {
     dispatch(setLang(language));
   };
   const options = languages.map((language) => {
-    if (language.code != langType) {
+    if (language.code !== langType) {
       return (
         <li
           onClick={() => {
