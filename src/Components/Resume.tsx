@@ -65,7 +65,7 @@ const Resume: FC = () => {
             title={"Programmer"}
             subTitle={"WGT GPS"}
             text={`
-              Nodejs, Express.js, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
+              Nodejs, Nestjs, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
               Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket,
               Postgis, Nginx, Google Map, Leaflet Map, Longdo Map, Asana, Bitbucket
               `}
