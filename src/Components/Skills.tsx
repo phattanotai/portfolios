@@ -10,12 +10,12 @@ const Skills: FC = () => {
       <Title title={"My Skills"} span={"my skills"} />
       <InnerLayout>
         <div className="skills">
-          <ProgressBar title={"Graphic Design"} width={"20%"} text={"20%"} />
-          <ProgressBar title={"Coding"} width={"90%"} text={"90%"} />
-          <ProgressBar title={"Database"} width={"80%"} text={"80%"} />
-          <ProgressBar title={"Server"} width={"70%"} text={"70%"} />
-          <ProgressBar title={"Research"} width={"85%"} text={"85%"} />
-          <ProgressBar title={"UX/UI"} width={"30%"} text={"30%"} />
+          <ProgressBar title={"Graphic Design"} width={"10%"} text={"Fair"} />
+          <ProgressBar title={"Coding"} width={"75%"} text={"Fluent"} />
+          <ProgressBar title={"Database"} width={"60%"} text={"Good"} />
+          <ProgressBar title={"Server"} width={"50%"} text={"Standard"} />
+          <ProgressBar title={"Research"} width={"90%"} text={"Excellent"} />
+          <ProgressBar title={"UX/UI"} width={"15%"} text={"Fair"} />
           {/* <ProgressBar title={"UNITY"} width={"10%"} text={"10"} /> */}
         </div>
       </InnerLayout>

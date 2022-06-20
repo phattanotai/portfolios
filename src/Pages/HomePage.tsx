@@ -17,7 +17,7 @@ const HomePage: FC = () => {
 
   let versionRef = useRef<HTMLDivElement>(null);
 
-  const [name] = useState("Phattano");
+  const [name] = useState("");
 
   useEffect(() => {
     const world = new WorldMap();
@@ -30,7 +30,7 @@ const HomePage: FC = () => {
   const particle = () => {
     const tl = gsap.timeline();
 
-    tl.to(".typography-border", {
+    tl.from(".typography-border", {
       duration: 2,
       scaleX: 0,
     });
@@ -40,32 +40,55 @@ const HomePage: FC = () => {
       clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
     });
 
+    // nameRef
+    // tl.to(nameRef, {
+    //   duration: 8,
+    //   text: "Phattanothai Pukham",
+    //   ease: "in",
+    //   color: "#057FFF",
+    // });
+    tl.to(nameRef, {
+      duration: 8,
+      clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
+    });
+
+    setTimeout(() => {
+      gsap.to(nameRef, {
+        duration: 12,
+        color: "#057FFF",
+      });
+    }, 5000);
+
+    // pRef
     tl.to(pRef, {
       duration: 8,
       clipPath: "polygon(0 0,100% 0,100% 100%, 0% 100%)",
     });
 
-    gsap.to(nameRef, {
+    tl.to(".typography-border", {
       duration: 4,
-      text: "Phattanothai Pukham",
-      ease: "out",
+      scaleX: 0,
     });
 
-    TweenMax.from(".icons", 2.5, {
-      opacity: 1,
-      x: random(-500, 500),
-      y: random(-500, 500),
-      z: random(-500, 500),
-      scale: 1,
-      delay: 1,
-      yoyo: true,
-    });
+    // icom
+    setTimeout(() => {
+      gsap.from(".icons", 2.5, {
+        opacity: 1,
+        x: random(-500, 500),
+        y: random(-500, 500),
+        z: random(-500, 500),
+        scale: 1,
+        delay: 1,
+        yoyo: true,
+      });
+    }, 10000);
 
     tl.to(".icons", {
       duration: 2,
       scaleY: 1,
     });
 
+    // versionRef
     gsap.to(versionRef.current, {
       duration: 4,
       scaleX: 1,
@@ -102,15 +125,13 @@ const HomePage: FC = () => {
         >
           Hi, my name is
         </h2>
-        <h1>
-          <span
-            ref={(e) => {
-              nameRef = e;
-            }}
-          >
-            {name}
-            {/* Phattanothai Pukham */}
-          </span>
+        <h1
+          ref={(e) => {
+            nameRef = e;
+          }}
+        >
+          {/* {name} */}
+          Phattanothai Pukham
         </h1>
         <p
           ref={(e) => {
@@ -222,6 +243,11 @@ const HomePageStyled = styled.header`
   h2 {
     flex-grow: 1;
     clip-path: polygon(0 0, 100% 0, 0 0);
+  }
+
+  h1 {
+    flex-grow: 1;
+    clip-path: polygon(0 0, 0 0, 0 0);
   }
 
   p {

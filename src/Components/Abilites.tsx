@@ -38,8 +38,8 @@ const Abilites: FC = () => {
                   Cloudflare, GCP, AWS, Netlify, CircleCI, Grafana, gRPC, RabbitMQ`}
           />
           <AbiliteItem
-            title="General"
-            text={`Gitlab, Bitbucket, Github, Jira, Asana`}
+            title="Tools"
+            text={`Gitlab, Bitbucket, Github, Jira, Asana, Gather Town, Slack`}
           />
           <AbiliteItem
             title="Researching"

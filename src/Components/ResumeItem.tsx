@@ -1,14 +1,28 @@
-import React, { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 
 export type PropsType = {
   year: any;
   title: any;
   subTitle: any;
-  text: any;
+  text?: any;
+  tech?: any;
 };
 
-const ResumeItem: FC<PropsType> = ({ year, title, subTitle, text }) => {
+const ResumeItem: FC<PropsType> = ({
+  year,
+  title,
+  subTitle,
+  tech,
+  text = "",
+}) => {
+  const [textArr, setTextArr] = useState<string[]>([]);
+
+  useEffect(() => {
+    const myArray = text.split(",");
+    setTextArr(myArray);
+  }, [text]);
+
   return (
     <ResumeItemStyled>
       <div className="left-content">
@@ -17,7 +31,19 @@ const ResumeItem: FC<PropsType> = ({ year, title, subTitle, text }) => {
       <div className="right-content">
         <h5>{title}</h5>
         <h6>{subTitle}</h6>
-        <p>{text}</p>
+        {tech ? <p>{tech}</p> : ""}
+
+        {text ? (
+          <div>
+            <ul>
+              {textArr.map((item: string, index: number) => {
+                return <li key={index}>{item}</li>;
+              })}
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </ResumeItemStyled>
   );
@@ -29,6 +55,21 @@ const ResumeItemStyled = styled.div`
   &:not(:last-child) {
     padding-bottom: 3rem;
   }
+
+  &:hover {
+    .left-content {
+      &::before {
+        background-color: var(--primary-color);
+      }
+    }
+
+    .right-content {
+      &::before {
+        background-color: var(--primary-color);
+      }
+    }
+  }
+
   .left-content {
     width: 20%;
     padding-left: 20px;
@@ -37,13 +78,14 @@ const ResumeItemStyled = styled.div`
       content: "";
       position: absolute;
       left: -10px;
-      top: 5px;
+      top: 0px;
       height: 15px;
       width: 15px;
       border-radius: 50%;
       border: 2px solid var(--border-color);
       background-color: var(--background-dark-color);
     }
+
     p {
       display: inline-block;
     }
@@ -69,6 +111,33 @@ const ResumeItemStyled = styled.div`
     h6 {
       padding-bottom: 0.6rem;
       font-size: 1.5rem;
+    }
+
+    ul {
+      padding-top: 10px;
+      padding-left: 30px;
+      li {
+        padding-bottom: 10px;
+        ::before {
+          content: "";
+          position: absolute;
+          left: 90px;
+          margin-top: 10px;
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          border: 2px solid var(--border-color);
+          background-color: #18d26e;
+        }
+
+        &:hover {
+          ::before {
+            background-color: red;
+          }
+
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -100,6 +169,19 @@ const ResumeItemStyled = styled.div`
 
       p {
         font-size: 90%;
+      }
+
+      ul {
+        padding-top: 40px;
+        padding-left: 0px;
+        li {
+          ::before {
+            left: 105px;
+            margin-top: 10px;
+            height: 5px;
+            width: 5px;
+          }
+        }
       }
     }
   }

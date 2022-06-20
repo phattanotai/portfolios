@@ -39,7 +39,7 @@ const PreLoader = ({ children }: any) => {
 
   return (
     <LoadingDiv>
-      {!completed ? (
+      {!completed && process.env.NODE_ENV === "production" ? (
         <FadeIn>
           <div className="App-header">
             <div className="flaxBox">

@@ -22,13 +22,11 @@ const Resume: FC = () => {
             year={"2012 - 2016"}
             title={"Bachelor of Science Program in Computer Science"}
             subTitle={"Suan Sunandha Rajabhat University"}
-            text={""}
           />
           <ResumeItem
             year={"2009 - 2017"}
             title={"Pali language "}
             subTitle={"Wat Paknam Bhasicharoen"}
-            text={""}
           />
         </div>
 
@@ -40,41 +38,72 @@ const Resume: FC = () => {
             year={"2021 - Present"}
             title={"Full Stack Developer"}
             subTitle={"Freelance"}
-            text={`
+            tech={`
               Nodejs, Vuejs, React, Nextjs, Nestjs, Mongodb, 
               Mysql, GCP, AWS, Nginx, Docker, Docker Swarm, Cloudflare, Github, Bitbucket`}
+            text={`
+              Created frontend to requirements, 
+              Created backend api for the frontend,
+              Designed and created database,
+              Write technical documents,
+              Integrate third party app`}
           />
           <ResumeItem
             year={"2020 - 2021"}
             title={"Full Stack Developer"}
             subTitle={"OTEN INNOVATION"}
-            text={`
+            tech={`
               Nodejs, Express.js, React Native, React, Nextjs, Vuejs, Mongodb,  
-              Mysql, GCP, AWS, Nginx, Docker, Cloudflare, Github, Kubernetes`}
+              Mysql, GCP, AWS, Nginx, Docker, Cloudflare, Github, Kubernetes, Name.com`}
+            text={`
+              Created frontend to requirements, 
+              Created mobile appliaction,
+              Created backend api for the frontend,
+              Designed and created database,
+              Deployed on a cloud server,
+              Connected cloud server to registered domain name,
+              Write technical documents,
+              Integrate third party app,
+              Maintained the system until everything went satisfied`}
           />
           <ResumeItem
             year={"2020 - 2020"}
             title={"Developer"}
             subTitle={"GWT"}
+            tech={`
+              Nodejs, Express.js, Mongodb, Jquery, Vuejs, React, Api Gateway, 
+              Line Api, Gitlab, Jira, Selenium`}
             text={`
-              Nodejs, Express.js, Mongodb, Jquery, Nginx, Vuejs, Api Gateway, 
-              Line Api, Gitlab, Jira, Cloudflare, Selenium, GCP`}
+              Created frontend pages according to requirements, 
+              Created backend api for the website,
+              Designed and created database,
+              Write technical documents,
+              Integrate third party app`}
           />
           <ResumeItem
             year={"2019 - 2020"}
             title={"Programmer"}
             subTitle={"WGT GPS"}
-            text={`
+            tech={`
               Nodejs, Nestjs, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
-              Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket,
+              Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket, MDVR,
               Postgis, Nginx, Google Map, Leaflet Map, Longdo Map, Asana, Bitbucket
               `}
+            text={`
+            Website: http://wgtgps.net,
+            Created frontend to requirements, 
+            Created mobile appliaction,
+            Created backend api for the frontend and the mobile appliaction,
+            Designed and created database,
+            Design software system architecture,
+            Write technical documents,
+            Integrate third party app e.g. dlt scg cpf MDVR`}
           />
           <ResumeItem
             year={"2018 - 2019"}
             title={"Programmer"}
             subTitle={"Fort Mengraimaharaj Hospital"}
-            text={"PHP, Mysql "}
+            tech={"PHP, Mysql "}
           />
         </div>
       </InnerLayout>
