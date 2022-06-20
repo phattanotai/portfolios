@@ -22,6 +22,9 @@ const Resume: FC = () => {
             year={"2012 - 2016"}
             title={"Bachelor of Science Program in Computer Science"}
             subTitle={"Suan Sunandha Rajabhat University"}
+            tech={`
+              Nodejs, PHP, Angularjs, Java, C/C++, VB, Mysql,
+              C#`}
           />
           <ResumeItem
             year={"2009 - 2017"}
@@ -39,8 +42,9 @@ const Resume: FC = () => {
             title={"Full Stack Developer"}
             subTitle={"Freelance"}
             tech={`
-              Nodejs, Vuejs, React, Nextjs, Nestjs, Mongodb, 
-              Mysql, GCP, AWS, Nginx, Docker, Docker Swarm, Cloudflare, Github, Bitbucket`}
+              Nodejs, Expressjs, Angular, Vuejs, React, Nextjs, Nestjs, Mongodb, 
+              Mysql, Postresql, GCP, AWS, Nginx, Docker, Docker Swarm, Cloudflare, 
+              Github, Bitbucket, Gather Town`}
             text={`
               Created frontend to requirements, 
               Created backend api for the frontend,
@@ -53,7 +57,7 @@ const Resume: FC = () => {
             title={"Full Stack Developer"}
             subTitle={"OTEN INNOVATION"}
             tech={`
-              Nodejs, Express.js, React Native, React, Nextjs, Vuejs, Mongodb,  
+              Nodejs, Nestjs, React Native, React, Nextjs, Mongodb,  
               Mysql, GCP, AWS, Nginx, Docker, Cloudflare, Github, Kubernetes, Name.com`}
             text={`
               Created frontend to requirements, 
@@ -71,7 +75,7 @@ const Resume: FC = () => {
             title={"Developer"}
             subTitle={"GWT"}
             tech={`
-              Nodejs, Express.js, Mongodb, Jquery, Vuejs, React, Api Gateway, 
+              Nodejs, Expressjs, Mongodb, Jquery, Vuejs, Reactjs, Api Gateway, 
               Line Api, Gitlab, Jira, Selenium`}
             text={`
               Created frontend pages according to requirements, 
@@ -85,7 +89,7 @@ const Resume: FC = () => {
             title={"Programmer"}
             subTitle={"WGT GPS"}
             tech={`
-              Nodejs, Nestjs, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
+              Nodejs, Expressjs, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
               Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket, MDVR,
               Postgis, Nginx, Google Map, Leaflet Map, Longdo Map, Asana, Bitbucket
               `}
@@ -103,7 +107,7 @@ const Resume: FC = () => {
             year={"2018 - 2019"}
             title={"Programmer"}
             subTitle={"Fort Mengraimaharaj Hospital"}
-            tech={"PHP, Mysql "}
+            tech={"PHP, Mysql, Nodejs"}
           />
         </div>
       </InnerLayout>
