@@ -10,7 +10,6 @@ import NotFound from "./Pages/NotFound";
 import HamMenu from "./Components/HamMenu";
 import FloaMenu from "./Components/FloaMenu";
 import { useEffect } from "react";
-
 // import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 const AppLine = () => {
@@ -29,7 +28,6 @@ const AppChildren = () => {
   // state manament redux
   const dispatch = useDispatch();
   const navToggle = useSelector((state: any) => state.nav);
-
   if (location.pathname === "/404") {
     return (
       <div>
@@ -52,15 +50,11 @@ const AppChildren = () => {
 
 function App() {
   useEffect(() => {
-    // window.addEventListener("resize", () => {
-    //   window.location.reload();
-    // });
     if (process.env.NODE_ENV === "production") {
       document.addEventListener("contextmenu", (event) =>
         event.preventDefault()
       );
     }
-
     return () => {
       document.removeEventListener("contextmenu", (event) =>
         event.preventDefault()
