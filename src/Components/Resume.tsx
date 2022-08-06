@@ -38,8 +38,8 @@ const Resume: FC = () => {
         </div>
         <div className="resume-content">
           <ResumeItem
-            year={"2021 - Present"}
-            title={"Full Stack Developer"}
+            year={"Jan. 2022 - Present"}
+            title={"Software Developer"}
             subTitle={"Freelance"}
             tech={`
               Nodejs, Expressjs, Angular, Vuejs, React, Nextjs, Nestjs, Mongodb, 
@@ -53,7 +53,7 @@ const Resume: FC = () => {
               Integrate third party app`}
           />
           <ResumeItem
-            year={"2020 - 2021"}
+            year={"Nov. 2020 - Jan. 2022"}
             title={"Full Stack Developer"}
             subTitle={"OTEN INNOVATION"}
             tech={`
@@ -71,8 +71,8 @@ const Resume: FC = () => {
               Maintained the system until everything went satisfied`}
           />
           <ResumeItem
-            year={"2020 - 2020"}
-            title={"Developer"}
+            year={"Aug. 2020 - Nov. 2020"}
+            title={"Software Developer"}
             subTitle={"GWT"}
             tech={`
               Nodejs, Expressjs, Mongodb, Jquery, Vuejs, Reactjs, Api Gateway, 
@@ -85,9 +85,9 @@ const Resume: FC = () => {
               Integrate third party app`}
           />
           <ResumeItem
-            year={"2019 - 2020"}
+            year={"Jun. 2019 - Jul. 2020"}
             title={"Programmer"}
-            subTitle={"WGT GPS"}
+            subTitle={"World Gps Tracker Co.,Ltd,"}
             tech={`
               Nodejs, Expressjs, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
               Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket, MDVR,
@@ -104,8 +104,8 @@ const Resume: FC = () => {
             Integrate third party app e.g. dlt scg cpf MDVR`}
           />
           <ResumeItem
-            year={"2018 - 2019"}
-            title={"Programmer"}
+            year={"May 2017 – Apr. 2019"}
+            title={""}
             subTitle={"Fort Mengraimaharaj Hospital"}
             tech={"PHP, Mysql, Nodejs"}
           />
