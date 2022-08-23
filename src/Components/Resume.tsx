@@ -71,9 +71,9 @@ const Resume: FC = () => {
               Maintained the system until everything went satisfied`}
           />
           <ResumeItem
-            year={"Aug. 2020 - Nov. 2020"}
+            year={"Sep. 2020 - Nov. 2020"}
             title={"Software Developer"}
-            subTitle={"GWT"}
+            subTitle={"Freelance"}
             tech={`
               Nodejs, Expressjs, Mongodb, Jquery, Vuejs, Reactjs, Api Gateway, 
               Line Api, Gitlab, Jira, Selenium`}
@@ -85,7 +85,7 @@ const Resume: FC = () => {
               Integrate third party app`}
           />
           <ResumeItem
-            year={"Jun. 2019 - Jul. 2020"}
+            year={"Jun. 2019 - Aug. 2020"}
             title={"Programmer"}
             subTitle={"World Gps Tracker Co.,Ltd,"}
             tech={`
