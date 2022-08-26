@@ -32,14 +32,14 @@ const contactData: { [key: string]: any } = {
   EN: {
     address: ["96 Moo.6 Tambon Thanthong, Amphur Phan, Chiang Rai 57250"],
     email: ["phattanothai.pukham@gmail.com"],
-    tel: ["0875683762"],
+    tel: ["0635957755", "0875683762"],
   },
   TH: {
     address: [
       "เลขที่ 9ที่ 6 หมู่.6 บ้านสันมะแฟน ตำบลธารทอง อำเภอพาน จังหวัดเชียงราย 57250",
     ],
     email: ["phattanothai.pukham@gmail.com"],
-    tel: ["0875683762"],
+    tel: ["0635957755", "0875683762"],
   },
 };
 
