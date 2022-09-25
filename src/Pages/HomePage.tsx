@@ -123,7 +123,7 @@ const HomePage: FC = () => {
           }}
           style={{ clipPath: "polygon(0 0, 100% 0, 0 0)" }}
         >
-          Hi, my name is
+          Hi, My name is
         </h2>
         <h1
           ref={(e) => {
