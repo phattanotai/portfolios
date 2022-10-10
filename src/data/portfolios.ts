@@ -230,6 +230,31 @@ const portfolios: PortfoliosType[] = [
     text: "Created with Vuejs",
     blur: false,
   },
+
+  {
+    category: ["Nuxtjs"],
+    images: ["./assets/images/portImages/new-vision-for-life/backoffice.png"],
+    link1: "",
+    link2: "",
+    title: "Backoffice",
+    content:
+      "ตัวอย่างระบบจัดการหลังบ้านสำหรับให้แอดมินจัดการข้อมูลการตั้งค่าต่างๆ ข้อมูลผู้ใช้ ผู้อุปการะ นักเรียน  และอื่นๆ ",
+    type: 1,
+    text: "Created with Nuxtjs",
+    blur: false,
+  },
+
+  {
+    category: ["Nuxtjs"],
+    images: ["./assets/images/portImages/new-vision-for-life/website.png"],
+    link1: "",
+    link2: "",
+    title: "Website",
+    content: "ตัวอย่างระบบสำหรับให้ผู้ที่ต้องการอุปการะนักเรียน",
+    type: 1,
+    text: "Created with Nuxtjs",
+    blur: false,
+  },
 ];
 
 export default portfolios;
