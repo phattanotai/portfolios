@@ -38,6 +38,16 @@ const Resume: FC = () => {
         </div>
         <div className="resume-content">
           <ResumeItem
+            year={"Aug. 2022 - Present"}
+            title={"Frontend Developer"}
+            subTitle={"Driven Digital Co.,Ltd."}
+            tech={`
+              Nuxtjs, Vuejs`}
+            text={`
+              Created frontend pages according to requirements, 
+              Integrate third party app`}
+          />
+          <ResumeItem
             year={"Jan. 2022 - Present"}
             title={"Software Developer"}
             subTitle={"Freelance"}
@@ -70,22 +80,9 @@ const Resume: FC = () => {
               Integrate third party app,
               Maintained the system until everything went satisfied`}
           />
+
           <ResumeItem
-            year={"Sep. 2020 - Nov. 2020"}
-            title={"Software Developer"}
-            subTitle={"Freelance"}
-            tech={`
-              Nodejs, Expressjs, Mongodb, Jquery, Vuejs, Reactjs, Api Gateway, 
-              Line Api, Gitlab, Jira, Selenium`}
-            text={`
-              Created frontend pages according to requirements, 
-              Created backend api for the website,
-              Designed and created database,
-              Write technical documents,
-              Integrate third party app`}
-          />
-          <ResumeItem
-            year={"Jun. 2019 - Aug. 2020"}
+            year={"Jun. 2019 - Oct. 2020"}
             title={"Programmer"}
             subTitle={"World Gps Tracker Co.,Ltd,"}
             tech={`
