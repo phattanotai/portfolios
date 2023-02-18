@@ -69,6 +69,7 @@ const Resume: FC = () => {
             tech={`
               Nodejs, Nestjs, Nextjs, Mysql, Bitbucket, Gather Town`}
             text={`
+              Website: https://crm.bullsphere.com,
               Created frontend to requirements, 
               Created backend api for the frontend,
               Designed and created database,
