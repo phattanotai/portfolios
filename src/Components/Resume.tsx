@@ -38,9 +38,9 @@ const Resume: FC = () => {
         </div>
         <div className="resume-content">
           <ResumeItem
-            year={"Aug. 2022 - Present"}
+            year={"2022 - Present"}
             title={"Frontend Developer"}
-            subTitle={"Driven Digital Co.,Ltd."}
+            subTitle={"DRIVEN DIGTAL"}
             tech={`
               Nuxtjs, Vuejs`}
             text={`
@@ -48,9 +48,9 @@ const Resume: FC = () => {
               Integrate third party app`}
           />
           <ResumeItem
-            year={"Jan. 2022 - Present"}
+            year={"2022 - Present"}
             title={"Software Developer"}
-            subTitle={"Freelance"}
+            subTitle={"FREELANCE"}
             tech={`
               Nodejs, Expressjs, Angular, Vuejs, React, Nextjs, Nestjs, Mongodb, 
               Mysql, Postresql, GCP, AWS, Nginx, Docker, Docker Swarm, Cloudflare, 
@@ -63,7 +63,21 @@ const Resume: FC = () => {
               Integrate third party app`}
           />
           <ResumeItem
-            year={"Nov. 2020 - Jan. 2022"}
+            year={"2022 - 2022"}
+            title={"Software Developer"}
+            subTitle={"BE YOUR TECH"}
+            tech={`
+              Nodejs, Nestjs, Nextjs, Mysql, Bitbucket, Gather Town`}
+            text={`
+              Website: https://crm.bullsphere.com,
+              Created frontend to requirements, 
+              Created backend api for the frontend,
+              Designed and created database,
+              Write technical documents,
+              Integrate third party app`}
+          />
+          <ResumeItem
+            year={"2020 - 2022"}
             title={"Full Stack Developer"}
             subTitle={"OTEN INNOVATION"}
             tech={`
@@ -80,11 +94,28 @@ const Resume: FC = () => {
               Integrate third party app,
               Maintained the system until everything went satisfied`}
           />
-
           <ResumeItem
-            year={"Jun. 2019 - Oct. 2020"}
+            year={"2020 - 2020"}
+            title={"Full Stack Developer"}
+            subTitle={"GAMES WAVE TECHNOLOGY"}
+            tech={`
+              Nodejs, Expressjs Mongodb,  
+               GCP, Nginx, Cloudflare, Gitlab, Bitbucket`}
+            text={`
+              Created frontend to requirements, 
+              Created mobile appliaction,
+              Created backend api for the frontend,
+              Designed and created database,
+              Deployed on a cloud server,
+              Connected cloud server to registered domain name,
+              Write technical documents,
+              Integrate third party app,
+              Maintained the system until everything went satisfied`}
+          />
+          <ResumeItem
+            year={"2019 - 2020"}
             title={"Programmer"}
-            subTitle={"World Gps Tracker Co.,Ltd,"}
+            subTitle={"WORLD GPS TRACKER"}
             tech={`
               Nodejs, Expressjs, Angular, Vuejs, Ionic, Graphql, Apollo, PHP, Slim, 
               Postgresql, Mysql, Sql Server, Mongodb, Redis, Websocket, MDVR,
@@ -101,7 +132,7 @@ const Resume: FC = () => {
             Integrate third party app e.g. dlt scg cpf MDVR`}
           />
           <ResumeItem
-            year={"May 2017 – Apr. 2019"}
+            year={"2017 – 2019"}
             title={""}
             subTitle={"Fort Mengraimaharaj Hospital"}
             tech={"PHP, Mysql, Nodejs"}
