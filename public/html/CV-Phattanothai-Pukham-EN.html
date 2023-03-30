@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>รีซูเม่ พัฒโนทัย ปูคำ</title>
+    <title>Resume Phattanothai Pukham</title>
     <link rel="icon" href="../logo.svg" />
     <meta charset="utf-8" />
     <meta charset="utf-8" />
@@ -15,7 +15,20 @@
       href="https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=K2D:wght@300&family=Pattaya&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style-th.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style-cv.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -31,27 +44,24 @@
     <div class="header-mask opacity-9">
       <button id="hid" onclick="printF()" class="btn btn-primary">print</button>
     </div>
-    <div class="container" style="margin-top: 25px; margin-bottom: 30px">
+    <div>
       <div class="content">
         <div class="row">
           <div class="col-sm-4 content-left">
             <div
-              style="
-                padding-top: 50px;
-                text-align: center;
-                padding-bottom: 30px;
-              "
+              style="padding-top: 50px; text-align: center; padding-bottom: 5px"
             >
               <img
                 src="profile.jpg"
                 class="rounded-circle"
                 alt="Cinque Terre"
-                width="210"
-                height="250"
+                width="180"
+                height="220"
               />
             </div>
+
             <div style="text-align: center; margin-top: 10px">
-              <h1>พัฒโนทัย ปูคำ</h1>
+              <h2>Phattanothai Pukham</h2>
               <span
                 class="badge badge-pill badge-success"
                 style="padding: 10px; margin-top: 5px"
@@ -59,84 +69,87 @@
                 <h2>Software Developer</h2></span
               >
             </div>
-            <br />
-            <div style="padding: 10px; margin-top: 10px">
-              <h4>ข้อมูลส่วนบุคคล</h4>
+
+            <div style="padding: 10px; margin-top: 15px">
+              <h4>Personal Information</h4>
               <hr />
               <div style="padding-left: 15px">
                 <div class="row">
                   <div class="col-sm-7">
-                    <i class="fas fa-address-card" style="font-size: 11px"></i>
-                    ชื่อเล่น
+                    <i class="fas fa-address-card" style="font-size: 18px"></i
+                    >Nick Name
                   </div>
-                  <div class="col-sm-5 content-history">ฟลุ๊ค</div>
+                  <div class="col-sm-5 content-history">Fluke</div>
                 </div>
                 <!-- <div class="row">
-                  <div class="col-sm-5">
-                    <i class="fas fa-birthday-cake" style="font-size: 11px"></i>
-                    วันเกิด
+                  <div class="col-sm-6">
+                    <i class="fas fa-birthday-cake" style="font-size: 18px"></i>
+                    Date of birth
                   </div>
-                  <div class="col-sm-7 content-history">3 พฤษภาคม 1993</div>
+                  <div class="col-sm-6 content-history">3 may 1993</div>
                 </div> -->
                 <div class="row">
-                  <div class="col-sm-7">
-                    <i class="fas fa-male" style="font-size: 11px"></i>
-                    สถานภาพทางทหาร
+                  <div class="col-sm-6">
+                    <i class="fas fa-male" style="font-size: 18px"></i>
+                    Military Status
                   </div>
-                  <div class="col-sm-5 content-history">ผ่านการเกณฑ์</div>
+                  <div class="col-sm-6 content-history">Reservist</div>
                 </div>
                 <!-- <div class="row">
                   <div class="col-sm-7">
-                    <i class="fab fa-btc" style="font-size: 11px"></i>
-                    เงินเดือนปัจจุบัน
+                    <i class="fab fa-btc" style="font-size: 18px"></i>
+                    Current Salary
                   </div>
                   <div class="col-sm-5 content-history">30000</div>
                 </div> -->
                 <!-- <div class="row">
                   <div class="col-sm-7">
-                    <i class="fab fa-btc" style="font-size: 11px"></i>
-                    เงินเดือนคาดหวัง
+                    <i class="fab fa-btc" style="font-size: 18px"></i>
+                    Expected Salary
                   </div>
-                  <div class="col-sm-5 content-history">35000 ขึ้นไป</div>
+                  <div class="col-sm-5 content-history">35000 up</div>
                 </div> -->
                 <div class="row">
                   <div class="col-sm-8">
-                    <i class="fab fa-btc" style="font-size: 11px"></i>
-                    วันที่พร้อมเริ่มงาน
+                    <i class="fab fa-btc" style="font-size: 18px"></i>
+                    Date of Availaility
                   </div>
-                  <div class="col-sm-4 content-history">ทันที</div>
+                  <div class="col-sm-4 content-history">Immediately</div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-sm-12">
                     <p>
-                      อยากร่วมงานกับคนเก่งๆ
-                      พร้อมที่เรียนรู้สิ่งใหม่ๆจากคนเหล่านั้น
-                      ชอบงานที่ท้าทายความสามารถ เพราะจะได้พัฒนาตัวเองให้เก่งขึ้น
-                      ทุ่มเทและจริงจังให้กับงานที่ทำ ไม่ชอบเอาเปรียบใคร
+                      I don't have much work experience. But I am ready to learn
+                      and develop. I'm the type of person who likes a challenge.
+                      easy to get along with I like to try new things and
+                      develop myself all the time.
                     </p>
-                    <p>หวังว่าจะได้จะได้ร่วมงานกัน</p>
+                    <p>
+                      I hope that we will have the opportunity to work together.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="margin-top: 10px; padding: 10px">
-              <h4>ข้อมูลติดต่อ</h4>
+
+            <div style="margin-top: 5px; padding: 10px">
+              <h4>Contect</h4>
               <hr />
               <div style="padding-left: 15px">
                 <div class="row">
                   <div class="col-sm-5">
-                    <i class="fas fa-mobile-alt" style="font-size: 11px"> </i>
-                    เบอร์โทรศัพท์
+                    <i class="fas fa-mobile-alt" style="font-size: 18px"> </i>
+                    Tel
                   </div>
                   <div class="col-sm-7 content-history">0635957755</div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-3">
-                    <i class="fas fa-mail-bulk" style="font-size: 11px"></i>
-                    อีเมล
+                  <div class="col-sm-4">
+                    <i class="fas fa-mail-bulk" style="font-size: 18px"></i>
+                    Email
                   </div>
-                  <div class="col-sm-9 content-history">
+                  <div class="col-sm-8 content-history">
                     phattanothai.pukham@gmail.com
                   </div>
                 </div>
@@ -146,16 +159,15 @@
                       class="fas fa-map-marker-alt"
                       style="font-size: 18px"
                     ></i>
-                    ที่อยู่
+                    Address
                   </div>
                   <div class="col-sm-7 content-history">
-                    เลขที่ 96 หมู่.6 บ้านสันมะแฟน ตำบลธารทอง อำเภอพาน
-                    จังหวัดเชียงราย 57250
+                    96 Moo.6 Tambon Thanthong, Amphur Phan, Chiang Rai 57250
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-4">
-                    <i class="fab fa-github" style="font-size: 11px"></i>
+                    <i class="fab fa-github" style="font-size: 18px"></i>
                     Github
                   </div>
                   <div class="col-sm-8 content-history">
@@ -164,21 +176,17 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-4">
-                    <i class="far fa-id-badge" style="font-size: 11px"></i>
+                    <i class="far fa-id-badge" style="font-size: 18px"></i>
                     Website
                   </div>
                   <div class="col-sm-8 content-history">
-                    <!-- https://portfolios.gracia.tech -->
                     https://phattanothai-pukham-web.netlify.app
                   </div>
                 </div>
               </div>
             </div>
 
-            <br />
-            <br />
-
-            <div style="margin-top: 5px; padding: 10px">
+            <div style="margin-top: 5px; margin-bottom: 10px; padding: 10px">
               <h4>Skills</h4>
               <hr />
               <div style="padding-left: 15px">
@@ -232,34 +240,29 @@
                 </div>
               </div>
             </div>
-            <br />
-            <br />
-            <br />
           </div>
+
           <div class="col-sm-8 content-right">
-            <div style="margin-top: 30px; padding: 10px">
-              <div class="pointer alert-success">
+            <div style="margin-top: 50px; padding: 10px">
+              <div class="alert alert-success">
                 <i class="fas fa-graduation-cap" style="font-size: 24px">
-                  <label> การศึกษา </label>
+                  <label> EDUCATION </label>
                 </i>
               </div>
               <div style="padding-left: 15px">
                 <div class="row">
                   <div class="col-sm-3">2012-2016</div>
                   <div class="col-sm-9">
-                    <div>
-                      มหาวิทยาลัยราชภัฏสวนสุนันทา คณะวิทยาศาสตร์บัณฑิต
-                      สาขาวิชาวิทยาการคอมพิวเตอร์ วันสำเร็จการศึกษา 23 ธันวาคม
-                      2559
-                    </div>
-                    <div>เกรดเฉลี่ยสะสม 3.21</div>
+                    <div>Bachelor of Science Program in Computer Science</div>
+                    <div>Suan Sunandha Rajabhat University</div>
+                    <div>GPA 3.21</div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-3">2009-2016</div>
                   <div class="col-sm-9">
-                    <div>โรงเรียนพระปริยัติธรรมภาวนานุสนธิ์ กรุงเทพมหานคร</div>
-                    <div>ประโยค ป.ธ.8</div>
+                    <div>Pali language</div>
+                    <div>Wat Paknam Bhasicharoen</div>
                   </div>
                 </div>
               </div>
@@ -268,77 +271,134 @@
             <div style="margin-top: 10px; padding: 10px">
               <div class="alert alert-warning">
                 <i class="fas fa-laptop-code" style="font-size: 24px">
-                  <label> การทำงาน </label>
+                  <label> WORK EXPERIENCE </label>
                 </i>
               </div>
-              <div style="padding-left: 15px">
+              <div class="experience-div">
                 <div class="row">
-                  <div class="col-sm-5">2022 - Present</div>
-                  <div class="col-sm-7">
+                  <div class="col-sm-7 experience-title">
                     DRIVEN DIGTAL, WFH
-                    <br />
-                    Frontend Developer (Nuxtjs, Vuejs)
                   </div>
+                  <div class="col-sm-5 text-right">2022 - 2023</div>
+                </div>
+                <div class="experience-position">Frontend Developer</div>
+                <div class="experience-ul">
+                  <ul>
+                    <li>Created frontend to requirements (Nuxtjs, Vuejs)</li>
+                  </ul>
                 </div>
               </div>
-              <div style="padding-left: 15px">
+
+              <div class="experience-div">
                 <div class="row">
-                  <div class="col-sm-5">2022 - 2022</div>
-                  <div class="col-sm-7">
-                    BE YOUR TECH, WFH
-                    <br />
-                    Software Developer (Nestjs, Nextjs, React, Mysql, PHP)
-                    <div>https://crm.bullsphere.com</div>
-                  </div>
+                  <div class="col-sm-7 experience-title">FREELANCE, WFH</div>
+                  <div class="col-sm-5 text-right">2022 - 2023</div>
+                </div>
+                <div class="experience-position">Software Developer</div>
+                <div>
+                  <ul>
+                    <li>
+                      Created frontend to requirements (Angular,Vuejs,Reactjs)
+                    </li>
+                    <li>Created backend api for the frontend (Nestjs,PHP)</li>
+                    <li>Designed and created database (Mysql)</li>
+                    <li>Integrate third party app e.g. PG PP Sbobet</li>
+                  </ul>
                 </div>
               </div>
-              <div style="padding-left: 15px">
+
+              <div class="experience-div">
                 <div class="row">
-                  <div class="col-sm-5">
-                    <div>2020 - 2022</div>
-                  </div>
-                  <div class="col-sm-7">
+                  <div class="col-sm-7 experience-title">BE YOUR TECH, WFH</div>
+                  <div class="col-sm-5 text-right">2022 - 2022</div>
+                </div>
+                <div class="experience-position">Software Developer</div>
+                <div>https://crm.bullsphere.com)</div>
+                <div>
+                  <ul>
+                    <li>Created frontend to requirements (Nextjs,PHP)</li>
+                    <li>Created backend api for the frontend (Nestjs,PHP)</li>
+                    <li>Designed and created database (Mysql)</li>
+                    <li>Integrate third party app e.g. MT4 MT5 cTrader</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="experience-div">
+                <div class="row">
+                  <div class="col-sm-7 experience-title">
                     OTEN INNOVATION, WFH
-                    <br />
-                    Full Stack Developer (Nextjs, Nuxtjs, Expressjs, Mongodb,
-                    React Native)
                   </div>
+                  <div class="col-sm-5 text-right">2020 - 2022</div>
+                </div>
+                <div class="experience-position">Full Stack Developer</div>
+
+                <div>
+                  <ul>
+                    <li>Created frontend to requirements (Nextjs Reactjs)</li>
+                    <li>Create a Hybrid application (React Native)</li>
+                    <li>
+                      Created backend api for the frontend ( Nodejs Expressjs)
+                    </li>
+                    <li>Designed and created database (Mysql Mongodb)</li>
+                    <li>Write technical documents (swagger)</li>
+                    <li>Integrate third party app</li>
+                    <li>Deployed on a cloud server</li>
+                  </ul>
                 </div>
               </div>
-              <div style="padding-left: 15px">
+
+              <div class="experience-div">
                 <div class="row">
-                  <div class="col-sm-5">
-                    <div>2019 - 2020</div>
-                  </div>
-                  <div class="col-sm-7">
+                  <div class="col-sm-7 experience-title">
                     WORLD GPS TRACKER, Chiang Rai
-                    <br />
-                    Programmer (PHP, Angular, Expressjs, Ionic, Postgresql,
-                    Mysql)
-                    <div>http://wgtgps.net</div>
                   </div>
+                  <div class="col-sm-5 text-right">2019 - 2020</div>
                 </div>
+                <div class="experience-position">Programmer</div>
+                <div>http://wgtgps.net</div>
+                <ul>
+                  <li>
+                    Created frontend to requirements (Angular, Vuejs, PHP)
+                  </li>
+                  <li>Create a hybrid mobile application (Ionic)</li>
+                  <li>
+                    Created backend api for the web frontend and mobile
+                    application (Nodejs, Expressjs, PHP)
+                  </li>
+                  <li>
+                    Designed and created database (Mysql, Postgresql, Mongodb)
+                  </li>
+                  <li>Write technical documents</li>
+                  <li>Write technical documents</li>
+                  <li>Integrate third party app e.g. dlt, scg, cpf</li>
+                </ul>
               </div>
-              <div style="padding-left: 15px">
+
+              <div class="experience-div">
                 <div class="row">
-                  <div class="col-sm-5">2018 – 2019</div>
-                  <div class="col-sm-7">
+                  <div class="col-sm-7 experience-title">
                     Fort Mengraimaharaj Hospital, Chiang Rai
                   </div>
+                  <div class="col-sm-5 text-right">2018 – 2019</div>
                 </div>
               </div>
             </div>
+            <br />
+            <br />
+          </div>
 
-            <div style="margin-top: 10px; margin-bottom: 10px; padding: 10px">
-              <div class="pointer alert-danger">
+          <div class="col-sm-12 content-ability">
+            <div style="margin-top: 30px; margin-bottom: 10px; padding: 10px">
+              <div class="alert alert-danger">
                 <i class="fas fa-list" style="font-size: 24px">
-                  <label> ความสามารถ </label>
+                  <label> ABILITIES </label>
                 </i>
               </div>
               <div style="padding-left: 15px">
-                <div class="row">
-                  <div class="col-sm-3">Coding</div>
-                  <div class="col-sm-9">
+                <div class="row ability-row">
+                  <div class="col-sm-2">Coding</div>
+                  <div class="col-sm-10">
                     <div>Nodejs, Javascript, Typescript, PHP, SQL, Python</div>
                     <div>Flask, Expressjs, Slim, Nestjs</div>
                     <div>
@@ -362,10 +422,10 @@
                     </div>
                   </div>
                 </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-3">Database</div>
-                  <div class="col-sm-9">
+
+                <div class="row ability-row">
+                  <div class="col-sm-2">Database</div>
+                  <div class="col-sm-10">
                     <div>
                       Postgresql, Mysql, Sql Server, Mongodb, Redis, SQLite
                     </div>
@@ -374,20 +434,19 @@
                     <!-- <div>Vacuum (AUTO,FULL | FREEZE | VERBOSE | ANALYZE)</div> -->
                   </div>
                 </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-3">Server</div>
-                  <div class="col-sm-9">
+
+                <div class="row ability-row">
+                  <div class="col-sm-2">Infrastructure</div>
+                  <div class="col-sm-10">
                     <div>
-                      Ubuntu, Window Server, Nginx, Kubernetes, Docker, Kong Api
-                      Gateway, GCP, AWS
+                      Nginx, Kubernetes, Docker, Kong Api Gateway, GCP, AWS
                     </div>
                   </div>
                 </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-3">เครื่องมือ</div>
-                  <div class="col-sm-9">
+
+                <div class="row ability-row">
+                  <div class="col-sm-2">Tools</div>
+                  <div class="col-sm-10">
                     <div>
                       Gitlab, Bitbucket, Github, Jira, Asana, Gather Town,
                       Slack, CircleCI, GitlabCI, Netlify, Cloudflare,
@@ -395,10 +454,17 @@
                     </div>
                   </div>
                 </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-3">กำลังศึกษา</div>
-                  <div class="col-sm-9">
+
+                <div class="row ability-row">
+                  <div class="col-sm-2">Operation Systems</div>
+                  <div class="col-sm-10">
+                    <div>Window7/10, Mac OS X,Ubuntu, Window Server</div>
+                  </div>
+                </div>
+
+                <div class="row ability-row">
+                  <div class="col-sm-2">Research</div>
+                  <div class="col-sm-10">
                     <div>
                       Microfrontend, Service Mesh Isito, ArgoCD, Jenkins, Apache
                       Kafka, Terraform, Ansible, SonarQube

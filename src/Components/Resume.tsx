@@ -132,7 +132,7 @@ const Resume: FC = () => {
             Integrate third party app e.g. dlt scg cpf MDVR`}
           />
           <ResumeItem
-            year={"2017 – 2019"}
+            year={"2018 – 2019"}
             title={""}
             subTitle={"Fort Mengraimaharaj Hospital"}
             tech={"PHP, Mysql, Nodejs"}
