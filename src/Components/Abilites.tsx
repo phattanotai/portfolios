@@ -12,9 +12,9 @@ const Abilites: FC = () => {
         <div className="Abilites">
           <AbiliteItem
             title="Coding"
-            text={` Python, Nodejs, PHP, SQL, C/C++, C#, Java, Javascript,Typescript,
+            text={` Python, Nodejs, PHP, SQL, ASP.NET C#, Java, Javascript, Typescript,
             Flask, Express, Slim, Nestjs,
-            Angular, Vue.js, React, Nextjs, React Native, Ionic,Jquery,
+            Angular, Vue.js, React, Nextjs, React Native, Ionic, Jquery,
             Bootstrap, Material-ui,
             DevExtreme, Rxjs, Redux, Vuex,
             One Signal, Pusher, Selenium, Graphql, Apollo, Threejs,

@@ -28,6 +28,8 @@ body {
   background-color: white;
   box-shadow: 10px 10px;
   box-shadow: 5px 10px red;
+  padding-left: 8px;
+  padding-right: 8px;
   
 }
 .content-left {
@@ -35,7 +37,7 @@ body {
   font-family: "Pattaya", sans-serif;
   font-size:20px;
   font-family: 'League Gothic', sans-serif;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
 
 .content-left h1,h2,h4{
@@ -44,16 +46,19 @@ body {
 }
 .content-right {
   background-color: white;
-  font-size: 16.5px;
+  font-size: 20.5px;
   font-family: "Charmonman", cursive;
   font-family: "K2D", sans-serif;
   padding-right: 20px;
+
 }
 
 .content-ability{
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 50px;
+  padding-top: 30px;
+  font-size: 20.5px;
 }
 h7 {
   color: black;
@@ -108,9 +113,10 @@ h7 {
 .experience-div{
   padding-left: 15px;
   padding-right: 15px;
-  margin-bottom: 13px;
-padding-bottom: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgba(0,0,0,.1);
+  padding-top: 20px;
 }
 
 .experience-title{
