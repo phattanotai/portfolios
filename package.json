@@ -37,6 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start --port=4000",
+    "dev": "react-scripts start --port=4000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
