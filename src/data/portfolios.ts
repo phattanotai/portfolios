@@ -145,6 +145,7 @@ const portfolios: PortfoliosType[] = [
     text: "Created with Nuxtjs",
     blur: false,
   },
+
   {
     category: ["Javascript", "Expressjs", "Mongodb", "Jquery"],
     images: ["./assets/images/portImages/gwt/2.png"],
