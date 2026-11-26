@@ -1,528 +1,531 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Resume Phattanothai Pukham</title>
     <link rel="icon" href="../logo.svg" />
-    <meta charset="utf-8" />
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Charmonman:wght@700&family=K2D:wght@300&family=Pattaya&display=swap"
-      rel="stylesheet"
-    />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --navy: #0f2742;
+        --blue: #2563eb;
+        --teal: #0d9488;
+        --ink: #1f2937;
+        --muted: #64748b;
+        --line: #e2e8f0;
+        --tint: #eff5fc;
+        --tint2: #f6f9fd;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Sarabun", sans-serif;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: var(--ink);
+        background: #e5eaf1;
+        padding: 28px 12px;
+      }
+      .print-btn {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 10;
+        border: 0;
+        cursor: pointer;
+        color: #fff;
+        background: var(--navy);
+        padding: 10px 20px;
+        border-radius: 999px;
+        font:
+          500 14px "Prompt",
+          sans-serif;
+        box-shadow: 0 6px 18px rgba(15, 39, 66, 0.3);
+      }
 
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+      /* ===== หน้ากระดาษ A4 ===== */
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto 24px;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 14px 40px rgba(15, 39, 66, 0.18);
+        padding: 0 14mm 18mm;
+      }
+      .sheet::before {
+        /* แถบสีบนสุด */
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 5mm;
+        background: linear-gradient(
+          90deg,
+          var(--navy),
+          var(--blue) 70%,
+          var(--teal)
+        );
+      }
+      .footer {
+        position: absolute;
+        left: 14mm;
+        right: 14mm;
+        bottom: 8mm;
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        padding-top: 5px;
+      }
 
-    <link rel="stylesheet" href="style-cv.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script>
-      var printF = function () {
-        window.print();
-      };
-    </script>
+      /* ===== ส่วนหัว ===== */
+      header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 12mm 0 5mm;
+      }
+      .photo {
+        width: 27mm;
+        height: 27mm;
+        flex: none;
+        border-radius: 50%;
+        padding: 2px;
+        background: linear-gradient(135deg, var(--blue), var(--teal));
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+      .name {
+        font:
+          700 27px/1.15 "Prompt",
+          sans-serif;
+        color: var(--navy);
+        letter-spacing: 0.3px;
+      }
+      .role {
+        font:
+          500 14px "Prompt",
+          sans-serif;
+        color: var(--blue);
+        margin-top: 3px;
+      }
+      .contact {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px 22px;
+        margin-top: 8px;
+        font-size: 12.5px;
+        color: #475569;
+      }
+      .contact b {
+        color: var(--navy);
+        font-weight: 600;
+      }
+      .head-rule {
+        height: 1px;
+        background: var(--line);
+        margin-bottom: 5mm;
+      }
+
+      /* ===== หัวข้อ ===== */
+      h2 {
+        font:
+          600 14px "Prompt",
+          sans-serif;
+        color: var(--navy);
+        background: var(--tint);
+        border-left: 4px solid var(--blue);
+        padding: 4px 12px;
+        margin: 5mm 0 3mm;
+        border-radius: 0 4px 4px 0;
+        letter-spacing: 0.2px;
+      }
+      h2:first-of-type {
+        margin-top: 0;
+      }
+      p.summary {
+        padding: 0 4px;
+        text-align: justify;
+      }
+
+      /* ===== ตารางทักษะ ===== */
+      table.skills {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .skills th,
+      .skills td {
+        padding: 5px 10px;
+        vertical-align: top;
+        border-bottom: 1px solid var(--line);
+      }
+      .skills tr:last-child th,
+      .skills tr:last-child td {
+        border-bottom: 0;
+      }
+      .skills th {
+        width: 36mm;
+        text-align: left;
+        font:
+          500 12.5px "Prompt",
+          sans-serif;
+        color: var(--navy);
+        background: var(--tint2);
+      }
+      .skills td {
+        font-size: 13px;
+      }
+
+      /* ===== ประสบการณ์ ===== */
+      .job {
+        margin-bottom: 4mm;
+        break-inside: avoid;
+        padding: 0 4px;
+      }
+      .job-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .job-title {
+        font:
+          600 14px "Prompt",
+          sans-serif;
+        color: var(--navy);
+      }
+      .job-title span {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .date {
+        font:
+          600 12px "Prompt",
+          sans-serif;
+        color: var(--blue);
+        white-space: nowrap;
+        background: var(--tint);
+        padding: 1px 10px;
+        border-radius: 999px;
+      }
+      .job ul {
+        margin: 3px 0 0 18px;
+      }
+      .job li {
+        margin-bottom: 1px;
+      }
+      .job li::marker {
+        color: var(--blue);
+      }
+      .job a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      /* ===== หัวข้อรอง/การศึกษา ===== */
+      .areas {
+        padding: 0 4px;
+      }
+      .areas p {
+        margin-bottom: 6px;
+      }
+      .areas b {
+        color: var(--navy);
+        font-family: "Prompt", sans-serif;
+        font-weight: 500;
+      }
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        padding: 0 4px;
+        margin-bottom: 8px;
+      }
+      .edu-row .t {
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .edu-row .s {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .plain { padding: 0 4px; }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 0 4px;
+      }
+      .chip {
+        font-size: 12px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: var(--tint);
+        color: #1e40af;
+        border: 1px solid #d5e3f7;
+      }
+      .facts {
+        display: flex;
+        gap: 10px;
+        padding: 0 4px;
+        flex-wrap: wrap;
+      }
+      .fact {
+        flex: 1 1 0;
+        background: var(--tint2);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 7px 12px;
+      }
+      .fact small {
+        display: block;
+        color: var(--muted);
+        font-size: 11.5px;
+      }
+      .fact b {
+        font-family: "Prompt", sans-serif;
+        font-weight: 500;
+        color: var(--navy);
+      }
+
+      @media (max-width: 800px) {
+        .sheet {
+          width: 100%;
+          min-height: 0;
+          padding: 0 18px 60px;
+        }
+        .contact {
+          grid-template-columns: 1fr;
+        }
+        header {
+          flex-wrap: wrap;
+        }
+        .job-head,
+        .edu-row {
+          flex-wrap: wrap;
+        }
+      }
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        body {
+          background: #fff;
+          padding: 0;
+        }
+        .print-btn {
+          display: none;
+        }
+        .sheet {
+          margin: 0;
+          box-shadow: none;
+          width: 210mm;
+          height: 297mm;
+          min-height: 0;
+          page-break-after: always;
+          break-after: page;
+        }
+        .sheet:last-of-type {
+          page-break-after: auto;
+          break-after: auto;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="header-mask opacity-9">
-      <button id="hid" onclick="printF()" class="btn btn-primary">print</button>
-    </div>
-    <div>
-      <div class="content">
-        <div class="row">
-          <div class="col-sm-4 content-left">
-            <div
-              style="padding-top: 50px; text-align: center; padding-bottom: 5px"
-            >
-              <img
-                src="profile.jpg"
-                class="rounded-circle"
-                alt="Cinque Terre"
-                width="180"
-                height="220"
-              />
-            </div>
+    <button class="print-btn" onclick="window.print()">🖨 Print / Save PDF</button>
 
-            <div style="text-align: center; margin-top: 10px">
-              <h2>Phattanothai Pukham</h2>
-              <span
-                class="badge badge-pill badge-success"
-                style="padding: 10px; margin-top: 5px"
-              >
-                <h2>Software Developer</h2></span
-              >
-            </div>
-
-            <div style="padding: 10px; margin-top: 15px">
-              <h4>Personal Information</h4>
-              <hr />
-              <div style="padding-left: 15px">
-                <div class="row">
-                  <div class="col-sm-7">
-                    <i class="fas fa-address-card" style="font-size: 18px"></i
-                    >Nick Name
-                  </div>
-                  <div class="col-sm-5 content-history">Fluke</div>
-                </div>
-                <!-- <div class="row">
-                  <div class="col-sm-6">
-                    <i class="fas fa-birthday-cake" style="font-size: 18px"></i>
-                    Date of birth
-                  </div>
-                  <div class="col-sm-6 content-history">3 may 1993</div>
-                </div> -->
-                <div class="row">
-                  <div class="col-sm-6">
-                    <i class="fas fa-male" style="font-size: 18px"></i>
-                    Military Status
-                  </div>
-                  <div class="col-sm-6 content-history">Reservist</div>
-                </div>
-                <!-- <div class="row">
-                  <div class="col-sm-7">
-                    <i class="fab fa-btc" style="font-size: 18px"></i>
-                    Current Salary
-                  </div>
-                  <div class="col-sm-5 content-history">30000</div>
-                </div> -->
-                <!-- <div class="row">
-                  <div class="col-sm-7">
-                    <i class="fab fa-btc" style="font-size: 18px"></i>
-                    Expected Salary
-                  </div>
-                  <div class="col-sm-5 content-history">35000 up</div>
-                </div> -->
-                <div class="row">
-                  <div class="col-sm-8">
-                    <i class="fab fa-btc" style="font-size: 18px"></i>
-                    Date of Availaility
-                  </div>
-                  <div class="col-sm-4 content-history">Immediately</div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p>
-                      I don't have much work experience. But I am ready to learn
-                      and develop. I'm the type of person who likes a challenge.
-                      easy to get along with I like to try new things and
-                      develop myself all the time.
-                    </p>
-                    <p>
-                      I hope that we will have the opportunity to work together.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 5px; padding: 10px">
-              <h4>Contect</h4>
-              <hr />
-              <div style="padding-left: 15px">
-                <div class="row">
-                  <div class="col-sm-5">
-                    <i class="fas fa-mobile-alt" style="font-size: 18px"> </i>
-                    Tel
-                  </div>
-                  <div class="col-sm-7 content-history">0635957755</div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <i class="fas fa-mail-bulk" style="font-size: 18px"></i>
-                    Email
-                  </div>
-                  <div class="col-sm-8 content-history">
-                    phattanothai.pukham@gmail.com
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-5">
-                    <i
-                      class="fas fa-map-marker-alt"
-                      style="font-size: 18px"
-                    ></i>
-                    Address
-                  </div>
-                  <div class="col-sm-7 content-history">
-                    96 Moo.6 Tambon Thanthong, Amphur Phan, Chiang Rai 57250
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <i class="fab fa-github" style="font-size: 18px"></i>
-                    Github
-                  </div>
-                  <div class="col-sm-8 content-history">
-                    https://github.com/phattanotai
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <i class="far fa-id-badge" style="font-size: 18px"></i>
-                    Website
-                  </div>
-                  <div class="col-sm-8 content-history">
-                    https://phattanothai-pukham-web.netlify.app
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 5px; margin-bottom: 110px; padding: 10px">
-              <h4>Skills</h4>
-              <hr />
-              <div style="padding-left: 15px">
-                <div>
-                  Graphic Design
-                  <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" style="width: 10%">
-                      Fair
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  UX/UI Design
-                  <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" style="width: 15%">
-                      Fair
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  Coding
-                  <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" style="width: 75%">
-                      Fluent
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  Database
-                  <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" style="width: 60%">
-                      Good
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  Server
-                  <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" style="width: 50%">
-                      Standard
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  Research
-                  <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" style="width: 90%">
-                      Excellent
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-8 content-right">
-            <div style="margin-top: 50px; padding: 10px">
-              <div class="alert alert-success">
-                <i class="fas fa-graduation-cap" style="font-size: 24px">
-                  <label> EDUCATION </label>
-                </i>
-              </div>
-              <div style="padding-left: 15px; margin-top: 30px">
-                <div class="row">
-                  <div class="col-sm-3">2012-2016</div>
-                  <div class="col-sm-9">
-                    <div>Bachelor of Science Program in Computer Science</div>
-                    <div>Suan Sunandha Rajabhat University</div>
-                    <div>GPA 3.21</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3">2012-2016</div>
-                  <div class="col-sm-9">
-                    <div>Pali language</div>
-                    <div>Wat Paknam Bhasicharoen</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3">2009-2012</div>
-                  <div class="col-sm-9">
-                    <div>Pali language</div>
-                    <div>Wat Phra Singh Woramahaviharn</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top: 20px; margin-bottom: 10px; padding: 10px">
-              <div class="alert alert-danger">
-                <i class="fas fa-list" style="font-size: 24px">
-                  <label> ABILITIES </label>
-                </i>
-              </div>
-              <div style="padding-left: 15px; margin-top: 30px">
-                <div class="row ability-row" style="margin-top: 30px">
-                  <div class="col-sm-3">Coding</div>
-                  <div class="col-sm-9">
-                    <div>
-                      Nodejs, Javascript, Typescript, PHP, SQL, Python, Golang
-                    </div>
-                    <div>Flask, Expressjs, Slim, Nestjs, Fiber</div>
-                    <div>
-                      Angular, Vuejs, React, Nextjs, Ionic, Nuxtjs, React
-                      Native,
-                    </div>
-                    <div>
-                      Bootstrap, Material Design, Tailwind CSS, Ant Design
-                    </div>
-                    <!-- <div>DevExtreme, Rxjs, Redux, Vuex</div> -->
-                    <div>
-                      One Signal, Pusher, Selenium, Graphql, Apollo, Threejs
-                    </div>
-                    <div>Sequelize, TypeORM, Mongoose</div>
-                    <div>Google Map, Leaflet Map, Longdo Map</div>
-                    <!-- <div>Polling, Server Sent Event, Websocket, SocketIO</div> -->
-                    <!-- <div>OpenCv, EmguCV</div> -->
-                    <div>
-                      Integrate Api e.g. dlt, scg, cpf, Integrate gamebrand e.g.
-                    </div>
-                    <div>
-                      sexy, pg, sbobet, sms, email, line api, MT4 MT5 cTrader
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row ability-row" style="margin-top: 30px">
-                  <div class="col-sm-3">Database</div>
-                  <div class="col-sm-9">
-                    <div>
-                      Postgresql, Mysql, Sql Server, Mongodb, Redis, SQLite
-                    </div>
-                    <div>Config Replication Master and Slave Server</div>
-                    <div>Postgis, Geo, Stored Procedure, Database trigger</div>
-                    <!-- <div>Vacuum (AUTO,FULL | FREEZE | VERBOSE | ANALYZE)</div> -->
-                  </div>
-                </div>
-
-                <div class="row ability-row" style="margin-top: 30px">
-                  <div class="col-sm-3">Infrastructure</div>
-                  <div class="col-sm-9">
-                    <div>
-                      Nginx, Kubernetes, Docker, Kong Api Gateway, GCP, AWS
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row ability-row" style="margin-top: 30px">
-                  <div class="col-sm-3">Tools</div>
-                  <div class="col-sm-9">
-                    <div>
-                      Gitlab, Bitbucket, Github, Jira, Asana, Gather Town,
-                    </div>
-                    <div>Slack, CircleCI, GitlabCI, Netlify, Cloudflare,</div>
-                    <div>Prometheus, Grafana, gRPC, RabbitMQ</div>
-                  </div>
-                </div>
-
-                <div class="row ability-row" style="margin-top: 30px">
-                  <div class="col-sm-3">Operation Systems</div>
-                  <div class="col-sm-9">
-                    <div>Window7/10, Mac OS X,Ubuntu, Window Server</div>
-                  </div>
-                </div>
-
-                <div class="row ability-row">
-                  <div class="col-sm-3">Research</div>
-                  <div class="col-sm-9">
-                    <div>
-                      Microfrontend, Service Mesh Isito, ArgoCD, Jenkins, Apache
-                    </div>
-                    <div>Kafka, Terraform, Ansible, SonarQube</div>
-                    <div>Elasticsearch, Opensearch, LevelDB, Firebase</div>
-                    <!-- <div>Robot Framework, Cypress, Figma, Zeplin</div> -->
-                    <div>
-                      Flutter, Laravel, Spring Boot, .Net Core, FastAPI, Rust,
-                    </div>
-                    <div>
-                      Solidity, Wab3, Ethers.js, Kotlin, SwiftUI, Unity,
-                    </div>
-                    <div>Facebook API, WebRTC, WASM</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-12 content-ability">
-            <div style="margin-top: 10px; padding: 10px">
-              <div class="alert alert-warning">
-                <i class="fas fa-laptop-code" style="font-size: 24px">
-                  <label> WORK EXPERIENCE </label>
-                </i>
-              </div>
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">
-                    BETTER AND CO SOLUTION, WFH
-                  </div>
-                  <div class="col-sm-5 text-right">2023 - Present</div>
-                </div>
-                <div class="experience-position">Software Developer</div>
-                <div class="experience-ul">
-                  <ul>
-                    <li>
-                      Created frontend to requirements (Angular, ReactJs, React
-                      Native)
-                    </li>
-                    <li>Create a Hybrid application (React Native)</li>
-                    <li>
-                      Created backend api for the frontend ( ASP.NET, NestJs)
-                    </li>
-                    <li>
-                      Designed and created database (Mysql, Postgresql, SQL
-                      Server)
-                    </li>
-                    <li>Write technical documents (swagger)</li>
-                    <li>Integrate third party app</li>
-                    <li>Deployed on a cloud server</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">
-                    DRIVEN DIGTAL, FREELANCE, WFH
-                  </div>
-                  <div class="col-sm-5 text-right">2022 - 2023</div>
-                </div>
-                <div class="experience-position">Frontend Developer</div>
-                <div class="experience-ul">
-                  <ul>
-                    <li>Created frontend to requirements (Nuxtjs, Vuejs)</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">FREELANCE, WFH</div>
-                  <div class="col-sm-5 text-right">2022 - 2023</div>
-                </div>
-                <div class="experience-position">Software Developer</div>
-                <div>
-                  <ul>
-                    <li>
-                      Created frontend to requirements (Angular,Vuejs,Reactjs)
-                    </li>
-                    <li>Created backend api for the frontend (Nestjs,PHP)</li>
-                    <li>Designed and created database (Mysql)</li>
-                    <li>Integrate third party app e.g. PG PP Sbobet</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">BE YOUR TECH, WFH</div>
-                  <div class="col-sm-5 text-right">2022 - 2022</div>
-                </div>
-                <div class="experience-position">Software Developer</div>
-                <div>https://crm.bullsphere.com)</div>
-                <div>
-                  <ul>
-                    <li>Created frontend to requirements (Nextjs,PHP)</li>
-                    <li>Created backend api for the frontend (Nestjs,PHP)</li>
-                    <li>Designed and created database (Mysql)</li>
-                    <li>Integrate third party app e.g. MT4 MT5 cTrader</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">
-                    OTEN INNOVATION, WFH
-                  </div>
-                  <div class="col-sm-5 text-right">2020 - 2022</div>
-                </div>
-                <div class="experience-position">Full Stack Developer</div>
-
-                <div>
-                  <ul>
-                    <li>Created frontend to requirements (Nextjs Reactjs)</li>
-                    <li>Create a Hybrid application (React Native)</li>
-                    <li>
-                      Created backend api for the frontend ( Nodejs Expressjs)
-                    </li>
-                    <li>Designed and created database (Mysql Mongodb)</li>
-                    <li>Write technical documents (swagger)</li>
-                    <li>Integrate third party app</li>
-                    <li>Deployed on a cloud server</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top: 100px; padding: 10px">
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">
-                    WORLD GPS TRACKER, Chiang Rai
-                  </div>
-                  <div class="col-sm-5 text-right">2019 - 2020</div>
-                </div>
-                <div class="experience-position">Programmer</div>
-                <div>http://wgtgps.net</div>
-                <ul>
-                  <li>
-                    Created frontend to requirements (Angular, Vuejs, PHP)
-                  </li>
-                  <li>Create a hybrid mobile application (Ionic)</li>
-                  <li>
-                    Created backend api for the web frontend and mobile
-                    application (Nodejs, Expressjs, PHP)
-                  </li>
-                  <li>
-                    Designed and created database (Mysql, Postgresql, Mongodb)
-                  </li>
-                  <li>Write technical documents</li>
-                  <li>Write technical documents</li>
-                  <li>Integrate third party app e.g. dlt, scg, cpf</li>
-                </ul>
-              </div>
-
-              <div class="experience-div">
-                <div class="row">
-                  <div class="col-sm-7 experience-title">
-                    Fort Mengraimaharaj Hospital, Chiang Rai
-                  </div>
-                  <div class="col-sm-5 text-right">2018 – 2019</div>
-                </div>
-              </div>
-            </div>
+    <!-- ===================== PAGE 1 ===================== -->
+    <div class="sheet">
+      <header>
+        <div class="photo"><img src="profile.jpg" alt="Phattanothai Pukham" /></div>
+        <div>
+          <div class="name">PHATTANOTHAI PUKHAM</div>
+          <div class="role">Software Developer · Full-Stack Development</div>
+          <div class="contact">
+            <span><b>Tel</b> 063-595-7755</span>
+            <span><b>Email</b> phattanothai.pukham@gmail.com</span>
+            <span><b>GitHub</b> github.com/phattanotai</span>
+            <span><b>Web</b> phattanothai-pukham-web.netlify.app</span>
+            <span><b>Location</b> Chiang Rai, Thailand</span>
           </div>
         </div>
+      </header>
+      <div class="head-rule"></div>
+
+      <h2>Professional Summary</h2>
+      <p class="summary">
+        Software Developer with experience building web and hybrid mobile applications,
+        backend APIs, and database solutions. Hands-on experience across frontend
+        development, API integration, database design, technical documentation, and cloud
+        deployment. Works with JavaScript/TypeScript ecosystems and .NET/PHP services, and
+        has contributed to projects involving third-party platforms and external APIs.
+        A quick learner who enjoys challenges and works well with others.
+      </p>
+
+      <h2>Core Technical Skills</h2>
+      <table class="skills">
+        <tr><th>Languages</th><td>JavaScript, TypeScript, PHP, SQL, Python, Go</td></tr>
+        <tr><th>Frontend &amp; Mobile</th><td>React, Next.js, Angular, Vue.js, Nuxt.js, React Native, Ionic, Bootstrap, Tailwind CSS, Material Design, Ant Design</td></tr>
+        <tr><th>Backend &amp; APIs</th><td>Node.js, Express.js, NestJS, ASP.NET, Slim, Flask, Fiber, GraphQL, Apollo, REST API integration, Swagger</td></tr>
+        <tr><th>Databases</th><td>PostgreSQL, MySQL, SQL Server, MongoDB, Redis, SQLite, PostGIS; replication, stored procedures, database triggers</td></tr>
+        <tr><th>Infrastructure &amp; Tools</th><td>Docker, Kubernetes, Nginx, Kong API Gateway, GCP, AWS, GitHub, GitLab, Bitbucket, Jira, Asana, GitLab CI, CircleCI, Netlify, Cloudflare, Prometheus, Grafana, RabbitMQ, gRPC</td></tr>
+        <tr><th>Additional Exposure</th><td>Selenium, Pusher, OneSignal, Google Maps, Leaflet, Longdo Map, Firebase, Elasticsearch, OpenSearch, Jenkins, Kafka, Terraform, Ansible</td></tr>
+      </table>
+
+      <h2>Professional Experience</h2>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">BETTER AND CO SOLUTION <span>| Software Developer · Remote</span></div>
+          <div class="date">2023 – Present</div>
+        </div>
+        <ul>
+          <li>Develop frontend applications based on product and business requirements using Angular, React, and React Native.</li>
+          <li>Build hybrid mobile applications with React Native.</li>
+          <li>Develop backend APIs using ASP.NET and NestJS to support frontend applications.</li>
+          <li>Design and implement databases using MySQL, PostgreSQL, and SQL Server.</li>
+          <li>Prepare API and technical documentation using Swagger.</li>
+          <li>Integrate third-party services and deploy applications to cloud servers.</li>
+        </ul>
       </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">DRIVEN DIGITAL <span>| Frontend Developer · Freelance, Remote</span></div>
+          <div class="date">2022 – 2023</div>
+        </div>
+        <ul><li>Develop frontend interfaces from project requirements using Nuxt.js and Vue.js.</li></ul>
+      </div>
+
+      <div class="footer"><span>PHATTANOTHAI PUKHAM · SOFTWARE DEVELOPER</span><span>1</span></div>
+    </div>
+
+    <!-- ===================== PAGE 2 ===================== -->
+    <div class="sheet">
+      <header style="padding: 9mm 0 2mm">
+        <div class="name" style="font-size: 18px">PHATTANOTHAI PUKHAM</div>
+      </header>
+      <div class="head-rule" style="margin-bottom: 3mm"></div>
+
+      <h2>Professional Experience (continued)</h2>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">FREELANCE <span>| Software Developer · Remote</span></div>
+          <div class="date">2022 – 2023</div>
+        </div>
+        <ul>
+          <li>Build frontend applications using Angular, Vue.js, and React.</li>
+          <li>Develop backend APIs using NestJS and PHP, and design MySQL databases.</li>
+          <li>Integrate third-party services and platforms, e.g. PG, PP, Sbobet.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">BE YOUR TECH <span>| Software Developer · Remote</span></div>
+          <div class="date">2022</div>
+        </div>
+        <ul>
+          <li>Develop frontend applications using Next.js and PHP (<a href="https://crm.bullsphere.com">crm.bullsphere.com</a>).</li>
+          <li>Build backend APIs using NestJS and PHP, and design MySQL databases.</li>
+          <li>Integrate trading platform services, including MT4, MT5, and cTrader.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">OTEN INNOVATION <span>| Full Stack Developer · Remote</span></div>
+          <div class="date">2020 – 2022</div>
+        </div>
+        <ul>
+          <li>Develop web frontend applications using Next.js and React.</li>
+          <li>Build hybrid mobile applications using React Native.</li>
+          <li>Develop backend services using Node.js and Express.js.</li>
+          <li>Design and implement databases using MySQL and MongoDB.</li>
+          <li>Prepare API documentation using Swagger, integrate third-party services, and deploy applications to cloud servers.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">WORLD GPS TRACKER <span>| Programmer · Chiang Rai</span></div>
+          <div class="date">2019 – 2020</div>
+        </div>
+        <ul>
+          <li>Develop web interfaces using Angular, Vue.js, and PHP (<a href="http://wgtgps.net">wgtgps.net</a>).</li>
+          <li>Build hybrid mobile applications using Ionic.</li>
+          <li>Develop backend APIs for web and mobile applications using Node.js, Express.js, and PHP.</li>
+          <li>Design databases using MySQL, PostgreSQL, and MongoDB.</li>
+          <li>Prepare technical documentation and integrate external services, including DLT, SCG, and CPF.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">FORT MENGRAIMAHARAJ HOSPITAL <span>| Chiang Rai</span></div>
+          <div class="date">2018 – 2019</div>
+        </div>
+      </div>
+
+      <h2>Education</h2>
+      <div class="edu-row">
+        <div>
+          <div class="t">Bachelor of Science in Computer Science</div>
+          <div class="s">Suan Sunandha Rajabhat University · GPA 3.21</div>
+        </div>
+        <div class="date">2012 – 2016</div>
+      </div>
+      <div class="edu-row">
+        <div><div class="s">Pali language · Wat Paknam Bhasicharoen</div></div>
+        <div class="date">2012 – 2016</div>
+      </div>
+      <div class="edu-row">
+        <div><div class="s">Pali language · Wat Phra Singh Woramahaviharn</div></div>
+        <div class="date">2009 – 2012</div>
+      </div>
+
+      <h2>Currently Exploring</h2>
+      <p class="plain">
+        Microfrontend, Istio, ArgoCD, Flutter, Laravel, Spring Boot, .NET Core, FastAPI,
+        Rust, Solidity / Web3, Kotlin, SwiftUI, Unity, WebRTC, WASM, SonarQube
+      </p>
+
+      <h2>Additional Information</h2>
+      <p class="plain">
+        Availability: Immediately &nbsp;|&nbsp; Military status: Reservist
+        &nbsp;|&nbsp; Nickname: Fluke &nbsp;|&nbsp; OS: Windows, macOS, Ubuntu
+      </p>
+
+      <div class="footer"><span>PHATTANOTHAI PUKHAM · SOFTWARE DEVELOPER</span><span>2</span></div>
     </div>
   </body>
 </html>

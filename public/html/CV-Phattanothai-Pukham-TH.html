@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume Phattanothai Pukham (TH)</title>
+    <link rel="icon" href="../logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0f2742;
+        --blue: #2563eb;
+        --teal: #0d9488;
+        --ink: #1f2937;
+        --muted: #64748b;
+        --line: #e2e8f0;
+        --tint: #eff5fc;
+        --tint2: #f6f9fd;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Sarabun", sans-serif;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: var(--ink);
+        background: #e5eaf1;
+        padding: 28px 12px;
+      }
+      .print-btn {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 10;
+        border: 0;
+        cursor: pointer;
+        color: #fff;
+        background: var(--navy);
+        padding: 10px 20px;
+        border-radius: 999px;
+        font:
+          500 14px "Prompt",
+          sans-serif;
+        box-shadow: 0 6px 18px rgba(15, 39, 66, 0.3);
+      }
+
+      /* ===== หน้ากระดาษ A4 ===== */
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto 24px;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 14px 40px rgba(15, 39, 66, 0.18);
+        padding: 0 14mm 18mm;
+      }
+      .sheet::before {
+        /* แถบสีบนสุด */
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 5mm;
+        background: linear-gradient(
+          90deg,
+          var(--navy),
+          var(--blue) 70%,
+          var(--teal)
+        );
+      }
+      .footer {
+        position: absolute;
+        left: 14mm;
+        right: 14mm;
+        bottom: 8mm;
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        padding-top: 5px;
+      }
+
+      /* ===== ส่วนหัว ===== */
+      header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 12mm 0 5mm;
+      }
+      .photo {
+        width: 27mm;
+        height: 27mm;
+        flex: none;
+        border-radius: 50%;
+        padding: 2px;
+        background: linear-gradient(135deg, var(--blue), var(--teal));
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+      .name {
+        font:
+          700 27px/1.15 "Prompt",
+          sans-serif;
+        color: var(--navy);
+        letter-spacing: 0.3px;
+      }
+      .role {
+        font:
+          500 14px "Prompt",
+          sans-serif;
+        color: var(--blue);
+        margin-top: 3px;
+      }
+      .contact {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px 22px;
+        margin-top: 8px;
+        font-size: 12.5px;
+        color: #475569;
+      }
+      .contact b {
+        color: var(--navy);
+        font-weight: 600;
+      }
+      .head-rule {
+        height: 1px;
+        background: var(--line);
+        margin-bottom: 5mm;
+      }
+
+      /* ===== หัวข้อ ===== */
+      h2 {
+        font:
+          600 14px "Prompt",
+          sans-serif;
+        color: var(--navy);
+        background: var(--tint);
+        border-left: 4px solid var(--blue);
+        padding: 4px 12px;
+        margin: 5mm 0 3mm;
+        border-radius: 0 4px 4px 0;
+        letter-spacing: 0.2px;
+      }
+      h2:first-of-type {
+        margin-top: 0;
+      }
+      p.summary {
+        padding: 0 4px;
+        text-align: justify;
+      }
+
+      /* ===== ตารางทักษะ ===== */
+      table.skills {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .skills th,
+      .skills td {
+        padding: 5px 10px;
+        vertical-align: top;
+        border-bottom: 1px solid var(--line);
+      }
+      .skills tr:last-child th,
+      .skills tr:last-child td {
+        border-bottom: 0;
+      }
+      .skills th {
+        width: 36mm;
+        text-align: left;
+        font:
+          500 12.5px "Prompt",
+          sans-serif;
+        color: var(--navy);
+        background: var(--tint2);
+      }
+      .skills td {
+        font-size: 13px;
+      }
+
+      /* ===== ประสบการณ์ ===== */
+      .job {
+        margin-bottom: 4mm;
+        break-inside: avoid;
+        padding: 0 4px;
+      }
+      .job-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .job-title {
+        font:
+          600 14px "Prompt",
+          sans-serif;
+        color: var(--navy);
+      }
+      .job-title span {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .date {
+        font:
+          600 12px "Prompt",
+          sans-serif;
+        color: var(--blue);
+        white-space: nowrap;
+        background: var(--tint);
+        padding: 1px 10px;
+        border-radius: 999px;
+      }
+      .job ul {
+        margin: 3px 0 0 18px;
+      }
+      .job li {
+        margin-bottom: 1px;
+      }
+      .job li::marker {
+        color: var(--blue);
+      }
+      .job a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      /* ===== หัวข้อรอง/การศึกษา ===== */
+      .areas {
+        padding: 0 4px;
+      }
+      .areas p {
+        margin-bottom: 6px;
+      }
+      .areas b {
+        color: var(--navy);
+        font-family: "Prompt", sans-serif;
+        font-weight: 500;
+      }
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        padding: 0 4px;
+        margin-bottom: 8px;
+      }
+      .edu-row .t {
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .edu-row .s {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .plain {
+        padding: 0 4px;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 0 4px;
+      }
+      .chip {
+        font-size: 12px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: var(--tint);
+        color: #1e40af;
+        border: 1px solid #d5e3f7;
+      }
+      .facts {
+        display: flex;
+        gap: 10px;
+        padding: 0 4px;
+        flex-wrap: wrap;
+      }
+      .fact {
+        flex: 1 1 0;
+        background: var(--tint2);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 7px 12px;
+      }
+      .fact small {
+        display: block;
+        color: var(--muted);
+        font-size: 11.5px;
+      }
+      .fact b {
+        font-family: "Prompt", sans-serif;
+        font-weight: 500;
+        color: var(--navy);
+      }
+
+      @media (max-width: 800px) {
+        .sheet {
+          width: 100%;
+          min-height: 0;
+          padding: 0 18px 60px;
+        }
+        .contact {
+          grid-template-columns: 1fr;
+        }
+        header {
+          flex-wrap: wrap;
+        }
+        .job-head,
+        .edu-row {
+          flex-wrap: wrap;
+        }
+      }
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        body {
+          background: #fff;
+          padding: 0;
+        }
+        .print-btn {
+          display: none;
+        }
+        .sheet {
+          margin: 0;
+          box-shadow: none;
+          width: 210mm;
+          height: 297mm;
+          min-height: 0;
+          page-break-after: always;
+          break-after: page;
+        }
+        .sheet:last-of-type {
+          page-break-after: auto;
+          break-after: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="print-btn" onclick="window.print()">
+      🖨 พิมพ์ / บันทึก PDF
+    </button>
+
+    <!-- ===================== หน้า 1 ===================== -->
+    <div class="sheet">
+      <header>
+        <div class="photo">
+          <img src="profile.jpg" alt="Phattanothai Pukham" />
+        </div>
+        <div>
+          <div class="name">PHATTANOTHAI PUKHAM</div>
+          <div class="role">นักพัฒนาซอฟต์แวร์ · Full-Stack Development</div>
+          <div class="contact">
+            <span><b>โทร</b> 063-595-7755</span>
+            <span><b>อีเมล</b> phattanothai.pukham@gmail.com</span>
+            <span><b>GitHub</b> github.com/phattanotai</span>
+            <span><b>เว็บไซต์</b> phattanothai-pukham-web.netlify.app</span>
+            <span><b>ที่อยู่</b> เชียงราย ประเทศไทย</span>
+          </div>
+        </div>
+      </header>
+      <div class="head-rule"></div>
+
+      <h2>สรุปประวัติวิชาชีพ</h2>
+      <p class="summary">
+        นักพัฒนาซอฟต์แวร์ที่มีประสบการณ์พัฒนาเว็บแอปพลิเคชัน แอปมือถือแบบ
+        Hybrid, Backend API และงานฐานข้อมูล ครอบคลุมตั้งแต่การพัฒนา Frontend
+        การเชื่อมต่อ API ภายนอก การออกแบบฐานข้อมูล การเขียนเอกสารทางเทคนิค
+        ไปจนถึงการ Deploy บน Cloud ถนัดระบบนิเวศ JavaScript/TypeScript รวมถึง
+        .NET และ PHP เป็นคนชอบความท้าทาย เรียนรู้เทคโนโลยีใหม่อย่างต่อเนื่อง
+        และทำงานร่วมกับผู้อื่นได้ดี
+      </p>
+
+      <h2>ทักษะทางเทคนิคหลัก</h2>
+      <table class="skills">
+        <tr>
+          <th>ภาษาโปรแกรม</th>
+          <td>JavaScript, TypeScript, PHP, SQL, Python, Go</td>
+        </tr>
+        <tr>
+          <th>Frontend &amp; Mobile</th>
+          <td>
+            React, Next.js, Angular, Vue.js, Nuxt.js, React Native, Ionic,
+            Bootstrap, Tailwind CSS, Material Design, Ant Design
+          </td>
+        </tr>
+        <tr>
+          <th>Backend &amp; API</th>
+          <td>
+            Node.js, Express.js, NestJS, ASP.NET, Slim, Flask, Fiber, GraphQL,
+            Apollo, การเชื่อมต่อ REST API, Swagger
+          </td>
+        </tr>
+        <tr>
+          <th>ฐานข้อมูล</th>
+          <td>
+            PostgreSQL, MySQL, SQL Server, MongoDB, Redis, SQLite, PostGIS;
+            Replication, Stored Procedure, Trigger
+          </td>
+        </tr>
+        <tr>
+          <th>Infrastructure &amp; Tools</th>
+          <td>
+            Docker, Kubernetes, Nginx, Kong API Gateway, GCP, AWS, GitHub,
+            GitLab, Bitbucket, Jira, Asana, GitLab CI, CircleCI, Netlify,
+            Cloudflare, Prometheus, Grafana, RabbitMQ, gRPC
+          </td>
+        </tr>
+        <tr>
+          <th>เคยศึกษา/ใช้งานเพิ่มเติม</th>
+          <td>
+            Selenium, Pusher, OneSignal, Google Maps, Leaflet, Longdo Map,
+            Firebase, Elasticsearch, OpenSearch, Jenkins, Kafka, Terraform,
+            Ansible
+          </td>
+        </tr>
+      </table>
+
+      <h2>ประสบการณ์ทำงาน</h2>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            BETTER AND CO SOLUTION <span>| นักพัฒนาซอฟต์แวร์ · Remote</span>
+          </div>
+          <div class="date">2566 – ปัจจุบัน</div>
+        </div>
+        <ul>
+          <li>
+            พัฒนา Frontend ตามความต้องการของผลิตภัณฑ์และธุรกิจ ด้วย Angular,
+            React
+          </li>
+          <li>พัฒนาแอปพลิเคชันมือถือแบบ Hybrid ด้วย React Native</li>
+          <li>
+            จัดเตรียมและนำแอปพลิเคชันขึ้นเผยแพร่บน App Store และ Google Play
+            Store
+          </li>
+          <li>
+            พัฒนา Backend API ด้วย ASP.NET และ NestJS เพื่อรองรับ Frontend
+          </li>
+          <li>ออกแบบและสร้างฐานข้อมูลด้วย MySQL, PostgreSQL และ SQL Server</li>
+          <li>จัดทำเอกสาร API และเอกสารทางเทคนิคด้วย Swagger</li>
+          <li>เชื่อมต่อบริการภายนอก และ Deploy แอปพลิเคชันบน Cloud Server</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            DRIVEN DIGITAL <span>| นักพัฒนา Frontend · ฟรีแลนซ์, Remote</span>
+          </div>
+          <div class="date">2565 – 2566</div>
+        </div>
+        <ul>
+          <li>
+            พัฒนาหน้าจอ Frontend ตามความต้องการของโปรเจกต์ ด้วย Nuxt.js และ
+            Vue.js
+          </li>
+          <li>พัฒนา Backend ตามความต้องการของโปรเจกต์ ด้วย PHP</li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <span>PHATTANOTHAI PUKHAM · นักพัฒนาซอฟต์แวร์</span><span>1</span>
+      </div>
+    </div>
+
+    <!-- ===================== หน้า 2 ===================== -->
+    <div class="sheet">
+      <header style="padding: 9mm 0 2mm">
+        <div class="name" style="font-size: 18px">PHATTANOTHAI PUKHAM</div>
+      </header>
+      <div class="head-rule" style="margin-bottom: 3mm"></div>
+
+      <h2>ประสบการณ์ทำงาน (ต่อ)</h2>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            ฟรีแลนซ์ <span>| นักพัฒนาซอฟต์แวร์ · Remote</span>
+          </div>
+          <div class="date">2565 – 2566</div>
+        </div>
+        <ul>
+          <li>พัฒนา Frontend ด้วย Angular, Vue.js และ React</li>
+          <li>
+            พัฒนา Backend API ด้วย NestJS และ PHP พร้อมออกแบบฐานข้อมูล MySQL
+          </li>
+          <li>เชื่อมต่อบริการและแพลตฟอร์มภายนอก เช่น PG, PP, Sbobet</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            BE YOUR TECH <span>| นักพัฒนาซอฟต์แวร์ · Remote</span>
+          </div>
+          <div class="date">2565</div>
+        </div>
+        <ul>
+          <li>
+            พัฒนา Frontend ด้วย Next.js และ PHP (<a
+              href="https://crm.bullsphere.com"
+              >crm.bullsphere.com</a
+            >)
+          </li>
+          <li>
+            พัฒนา Backend API ด้วย NestJS และ PHP พร้อมออกแบบฐานข้อมูล MySQL
+          </li>
+          <li>เชื่อมต่อบริการแพลตฟอร์มเทรด ได้แก่ MT4, MT5 และ cTrader</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            OTEN INNOVATION <span>| นักพัฒนา Full Stack · Remote</span>
+          </div>
+          <div class="date">2563 – 2565</div>
+        </div>
+        <ul>
+          <li>พัฒนา Frontend ด้วย Next.js และ React</li>
+          <li>พัฒนาแอปพลิเคชันมือถือแบบ Hybrid ด้วย React Native</li>
+          <li>พัฒนา Backend ด้วย Node.js และ Express.js</li>
+          <li>ออกแบบและสร้างฐานข้อมูลด้วย MySQL และ MongoDB</li>
+          <li>
+            จัดทำเอกสาร API ด้วย Swagger, เชื่อมต่อบริการภายนอก และ Deploy บน
+            Cloud Server
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            WORLD GPS TRACKER <span>| โปรแกรมเมอร์ · เชียงราย</span>
+          </div>
+          <div class="date">2562 – 2563</div>
+        </div>
+        <ul>
+          <li>
+            พัฒนาหน้าเว็บด้วย Angular, Vue.js และ PHP (<a
+              href="http://wgtgps.net"
+              >wgtgps.net</a
+            >)
+          </li>
+          <li>พัฒนาแอปพลิเคชันมือถือแบบ Hybrid ด้วย Ionic</li>
+          <li>
+            พัฒนา Backend API สำหรับเว็บและมือถือ ด้วย Node.js, Express.js และ
+            PHP
+          </li>
+          <li>ออกแบบฐานข้อมูลด้วย MySQL, PostgreSQL และ MongoDB</li>
+          <li>
+            จัดทำเอกสารทางเทคนิค และเชื่อมต่อบริการภายนอก เช่น DLT, SCG, CPF
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">
+            โรงพยาบาลค่ายเม็งรายมหาราช <span>| เชียงราย</span>
+          </div>
+          <div class="date">2561 – 2562</div>
+        </div>
+      </div>
+
+      <h2>การศึกษา</h2>
+      <div class="edu-row">
+        <div>
+          <div class="t">วิทยาศาสตรบัณฑิต สาขาวิทยาการคอมพิวเตอร์</div>
+          <div class="s">มหาวิทยาลัยราชภัฏสวนสุนันทา</div>
+        </div>
+        <div class="date">2555 – 2559</div>
+      </div>
+      <div class="edu-row">
+        <div><div class="s">วัดปากน้ำภาษีเจริญ</div></div>
+        <div class="date">2555 – 2559</div>
+      </div>
+      <div class="edu-row">
+        <div><div class="s">วัดพระสิงห์วรมหาวิหาร</div></div>
+        <div class="date">2552 – 2555</div>
+      </div>
+
+      <h2>กำลังศึกษาเพิ่มเติม</h2>
+      <p class="plain">
+        Microfrontend, Istio, ArgoCD, Flutter, Laravel, Spring Boot, .NET Core,
+        FastAPI, Rust, Solidity / Web3, Kotlin, SwiftUI, Unity, WebRTC, WASM,
+        SonarQube
+      </p>
+
+      <h2>ข้อมูลเพิ่มเติม</h2>
+      <p class="plain">
+        เริ่มงานได้: ทันที &nbsp;|&nbsp; สถานะทางทหาร: ผ่านการเกณฑ์ทหาร
+        &nbsp;|&nbsp; ชื่อเล่น: ฟลุ๊ค (Fluke) &nbsp;|&nbsp; ระบบปฏิบัติการ:
+        Windows, macOS, Ubuntu
+      </p>
+
+      <div class="footer">
+        <span>PHATTANOTHAI PUKHAM · นักพัฒนาซอฟต์แวร์</span><span>2</span>
+      </div>
+    </div>
+  </body>
+</html>
